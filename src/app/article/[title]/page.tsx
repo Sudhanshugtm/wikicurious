@@ -76,20 +76,15 @@ function ArticleContent() {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0 typ-h3" style={{ color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-            </div>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/saved">Saved</Link>
           </div>
-        </header>
+        </nav>
         <div className="wiki-loading">
-          <div className="cdx-spinner"></div>
+          <div className="loading-story">Loading article...</div>
         </div>
       </div>
     );
@@ -98,24 +93,19 @@ function ArticleContent() {
   if (error || !article) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0 typ-h3" style={{ color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-            </div>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/saved">Saved</Link>
           </div>
-        </header>
+        </nav>
         <main className="wiki-content" style={{ padding: '40px 20px' }}>
           <div className="wiki-error">
             <div className="wiki-error-title">Article Not Found</div>
             <div className="typ-body">{error || 'The requested article could not be found.'}</div>
-            <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px', display: 'inline-block' }}>
-              ← Return to home
+            <Link href="/" className="back-link" style={{ marginTop: '16px' }}>
+              Return to home
             </Link>
           </div>
         </main>
@@ -125,31 +115,27 @@ function ArticleContent() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="wiki-header">
-        <div className="wiki-content">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-              <span style={{ fontSize: '2.5em' }}>🌍</span>
-              <h1 className="m-0 typ-h3" style={{ color: 'var(--wc-primary)' }}>
-                WikiCurious
-              </h1>
-            </Link>
-            <nav className="flex gap-2">
-              <button
-                onClick={handleSave}
-                className={`cdx-button ${saved ? 'cdx-button--action-primary' : 'cdx-button--action-secondary'}`}
-                style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-              >
-                {saved ? '★ Saved' : '☆ Save Article'}
-              </button>
-              <Link href="/saved" className="cdx-button cdx-button--action-secondary">
-                Saved
-              </Link>
-            </nav>
-          </div>
+      <nav className="journey-nav">
+        <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+        <div className="journey-nav-links">
+          <button
+            onClick={handleSave}
+            className="back-link"
+            style={{
+              margin: 0,
+              borderColor: saved ? 'var(--imperial-gold)' : 'var(--ottoman-purple)',
+              color: saved ? 'var(--antique-gold)' : 'var(--ottoman-purple)',
+              background: saved ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+              fontSize: 'var(--font-sm)',
+              padding: '4px 12px',
+            }}
+          >
+            {saved ? 'Saved' : 'Save'}
+          </button>
+          <Link href="/">Journey</Link>
+          <Link href="/saved">Saved</Link>
         </div>
-      </header>
+      </nav>
 
       <main className="wiki-content" style={{ padding: '32px 20px' }}>
         {/* Breadcrumb */}
@@ -164,17 +150,21 @@ function ArticleContent() {
           {/* Article Header */}
           <div className="flex flex-col md:flex-row gap-6" style={{ marginBottom: '32px' }}>
             {article.thumbnail && (
-              <img
-                src={article.thumbnail.source}
-                alt={article.title}
-                style={{ maxWidth: '400px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', alignSelf: 'flex-start' }}
-              />
+              <div className="hero-image-section" style={{ maxWidth: '400px' }}>
+                <img
+                  src={article.thumbnail.source}
+                  alt={`${article.title} - from Wikipedia`}
+                />
+                <div className="hero-image-caption">
+                  Image from <a href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`} target="_blank" rel="noopener noreferrer">Wikipedia</a>
+                </div>
+              </div>
             )}
             <div style={{ flex: 1 }}>
               <h1 className="typ-h1">{article.title}</h1>
               {article.description && (
-                <div className="wiki-infobox" style={{ marginBottom: '20px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)' }}>
-                  <div className="typ-h4" style={{ fontWeight: '600', marginBottom: '8px' }}>📝 About</div>
+                <div className="wiki-infobox" style={{ marginBottom: '20px' }}>
+                  <div className="wiki-infobox-title">About</div>
                   <div className="typ-body">{article.description}</div>
                 </div>
               )}
@@ -186,7 +176,7 @@ function ArticleContent() {
             {article.extract && (
               <div>
                 {article.extract.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="typ-body">
+                  <p key={idx} className={`typ-body ${idx === 0 ? 'typ-dropcap' : ''}`}>
                     {paragraph}
                   </p>
                 ))}
@@ -194,89 +184,65 @@ function ArticleContent() {
             )}
           </div>
 
-          {/* External Link */}
+          {/* Read More */}
           <div className="wiki-infobox" style={{ textAlign: 'center', padding: '28px' }}>
             <div className="wiki-infobox-title" style={{ justifyContent: 'center', marginBottom: '20px' }}>
-              📖 Read More on Wikipedia
+              Read More on Wikipedia
             </div>
-            <p className="typ-body" style={{ marginBottom: '20px', color: 'var(--wc-secondary)' }}>
+            <p className="typ-body" style={{ marginBottom: '20px', color: 'var(--cumin)' }}>
               This is a summary from Wikipedia. For the full article with citations, references, and more details:
             </p>
             <a
               href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="cdx-button cdx-button--action-primary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '1.05em', padding: '14px 28px' }}
+              className="journey-button"
+              style={{ display: 'inline-block', opacity: 1, animation: 'none', fontSize: 'var(--font-base)', padding: '12px 24px' }}
             >
-              Read full article <span>↗</span>
+              Read full article
             </a>
           </div>
 
-          {/* Interesting Facts Card */}
-          <div className="wiki-fact-card">
-            <div className="wiki-fact-label">💡 Quick Fact</div>
-            <div className="wiki-fact-value">
-              {article.extract?.substring(0, 300)}...
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3" style={{ marginTop: '32px', justifyContent: 'center' }}>
-            <Link
-              href="/saved"
-              className="cdx-button cdx-button--action-secondary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-            >
-              ⭐ View Saved Articles
+          {/* Actions */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginTop: '32px', justifyContent: 'center' }}>
+            <Link href="/saved" className="back-link" style={{ margin: 0 }}>
+              View Saved Articles
             </Link>
-            <button
-              onClick={() => window.print()}
-              className="cdx-button cdx-button--action-secondary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-            >
-              🖨️ Print Article
-            </button>
-            <Link
-              href={`/search?q=${encodeURIComponent(title)}`}
-              className="cdx-button cdx-button--action-secondary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-            >
-              🔍 Find Related Articles
+            <Link href={`/search?q=${encodeURIComponent(title)}`} className="back-link" style={{ margin: 0 }}>
+              Find Related Articles
             </Link>
           </div>
         </article>
 
         {/* Wikipedia Attribution */}
-        <div className="wiki-content" style={{ marginTop: '32px', padding: '20px' }}>
+        <div style={{ marginTop: '32px', padding: '20px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
           <div style={{
-            borderTop: '1px solid var(--wc-border)',
+            borderTop: '2px solid var(--imperial-gold)',
             paddingTop: '24px',
-            textAlign: 'center',
-            fontSize: '0.85em',
-            color: 'var(--wc-secondary)',
+            fontSize: 'var(--font-sm)',
+            color: 'var(--cumin)',
             lineHeight: '1.6'
           }}>
             <p style={{ margin: '0 0 8px 0' }}>
-              Content from "<a
+              Content from &ldquo;<a
                 href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'inherit', textDecoration: 'underline' }}
+                style={{ color: 'var(--iznik-cobalt)', textDecoration: 'underline' }}
               >
                 {article.title}
-              </a>" -
+              </a>&rdquo; &mdash;{' '}
               <a
                 href="https://creativecommons.org/licenses/by-sa/3.0/"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'inherit', textDecoration: 'underline' }}
+                style={{ color: 'var(--iznik-cobalt)', textDecoration: 'underline' }}
               >
                 CC BY-SA 3.0
               </a>
             </p>
             <p style={{ margin: '0' }}>
-              Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc.
+              Wikipedia&reg; is a registered trademark of the Wikimedia Foundation, Inc.
             </p>
           </div>
         </div>

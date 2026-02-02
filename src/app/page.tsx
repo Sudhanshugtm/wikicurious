@@ -1,23 +1,49 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useWikiSummaries } from './hooks/useWikiData';
+
+const CARD_TOPICS = [
+  { key: 'Istanbul', href: '/journey/istanbul', name: 'Istanbul', desc: 'The city that straddles two worlds' },
+  { key: 'Ottoman Empire', href: '/journey/history', name: 'Through Time', desc: 'From Byzantium to the Republic' },
+  { key: 'Cappadocia', href: '/journey/destinations', name: 'The Land', desc: 'Mountains, coasts, and fairy chimneys' },
+  { key: 'Turkish tea', href: '/journey/culture', name: 'The People', desc: 'Tea, hospitality, and traditions' },
+];
 
 export default function Home() {
   const [started, setStarted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+  const { data: wikiData, loading: imagesLoading } = useWikiSummaries(
+    CARD_TOPICS.map(c => c.key)
+  );
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   if (!started) {
     return (
       <div className="story-container">
-        <header className="header-minimal">
-          <Link href="/saved">saved</Link>
-        </header>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/search?q=Turkey">Search</Link>
+            <Link href="/saved">Saved</Link>
+            <Link href="/about">About</Link>
+          </div>
+        </nav>
 
         <div className="opening-scene">
           <h1 className="opening-title">TURKEY</h1>
           <p className="opening-subtitle">A journey through time, across two continents</p>
           <button className="journey-button" onClick={() => setStarted(true)}>
-            Begin the journey →
+            Begin the journey
           </button>
         </div>
       </div>
@@ -26,46 +52,71 @@ export default function Home() {
 
   return (
     <div className="story-container">
-      <header className="header-minimal">
-        <Link href="/">home</Link>
-      </header>
+      <nav className="journey-nav">
+        <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+        <div className="journey-nav-links">
+          <Link href="/search?q=Turkey">Search</Link>
+          <Link href="/saved">Saved</Link>
+          <Link href="/about">About</Link>
+        </div>
+      </nav>
 
-      <div style={{ flex: 1, padding: '60px 20px' }}>
+      <div style={{ flex: 1, padding: '40px 20px' }}>
         <h2 className="scene-header">Where would you like to begin?</h2>
-        <p className="scene-subtitle">Choose your path through Turkey's story</p>
+        <p className="scene-subtitle">Choose your path through Turkey&apos;s story</p>
+
+        <div className="search-home">
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Search Wikipedia... try Bosphorus, Rumi, or Baklava"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
 
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-          <Link href="/journey/istanbul" style={{ textDecoration: 'none' }}>
-            <div className="place-card">
-              <span className="place-emoji">🕌</span>
-              <h3 className="typ-h1 place-name">Istanbul</h3>
-              <p className="place-invitation">The city that straddles two worlds</p>
-            </div>
-          </Link>
+          {CARD_TOPICS.map((card, i) => {
+            const wiki = wikiData[card.key];
+            const thumbUrl = wiki?.thumbnail?.source;
 
-          <Link href="/journey/history" style={{ textDecoration: 'none' }}>
-            <div className="place-card">
-              <span className="place-emoji">📜</span>
-              <h3 className="typ-h1 place-name">Through Time</h3>
-              <p className="place-invitation">From Byzantium to the Republic</p>
-            </div>
-          </Link>
+            return (
+              <Link key={card.key} href={card.href} className="image-card" style={{ animationDelay: `${i * 100}ms` }}>
+                <div style={{ overflow: 'hidden' }}>
+                  {thumbUrl ? (
+                    <img
+                      src={thumbUrl}
+                      alt={`${card.name} - from Wikipedia`}
+                      className="image-card-img"
+                    />
+                  ) : (
+                    <div className="image-card-placeholder">
+                      {imagesLoading ? '...' : ''}
+                    </div>
+                  )}
+                </div>
+                <div className="image-card-body">
+                  <h3 className="image-card-name">{card.name}</h3>
+                  <p className="image-card-desc">{card.desc}</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
 
-          <Link href="/journey/destinations" style={{ textDecoration: 'none' }}>
-            <div className="place-card">
-              <span className="place-emoji">🗺️</span>
-              <h3 className="typ-h1 place-name">The Land</h3>
-              <p className="place-invitation">Mountains, coasts, and fairy chimneys</p>
-            </div>
-          </Link>
-
-          <Link href="/journey/culture" style={{ textDecoration: 'none' }}>
-            <div className="place-card">
-              <span className="place-emoji">☕</span>
-              <h3 className="typ-h1 place-name">The People</h3>
-              <p className="place-invitation">Tea, hospitality, and traditions</p>
-            </div>
-          </Link>
+        <div className="curiosity-box" style={{ maxWidth: '680px', margin: 'var(--space-2xl) auto 0' }}>
+          <div className="curiosity-title">Did you know?</div>
+          <p className="curiosity-fact">
+            Istanbul is the only city in the world that spans two continents &mdash; Europe and Asia, divided by the Bosphorus strait.
+          </p>
+          <p className="curiosity-fact">
+            Turkey consumes more tea per capita than any other country &mdash; roughly 3.5 kg per person per year, far surpassing even the British.
+          </p>
+          <p className="curiosity-fact">
+            The Grand Bazaar in Istanbul, built in 1461, is one of the oldest and largest covered markets in the world with over 4,000 shops.
+          </p>
         </div>
       </div>
     </div>

@@ -101,16 +101,15 @@ function SearchContent() {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-              <span style={{ fontSize: '2em' }}>🇹🇷</span>
-              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
-            </Link>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/saved">Saved</Link>
           </div>
-        </header>
+        </nav>
         <div className="wiki-loading">
-          <div className="cdx-spinner"></div>
+          <div className="loading-story">Searching Wikipedia...</div>
         </div>
       </div>
     );
@@ -119,19 +118,18 @@ function SearchContent() {
   if (error) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-              <span style={{ fontSize: '2em' }}>🇹🇷</span>
-              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
-            </Link>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/saved">Saved</Link>
           </div>
-        </header>
+        </nav>
         <div className="content-wrapper">
           <div className="wiki-error">
             <div className="wiki-error-title">Error</div>
             <div className="typ-body">{error}</div>
-            <Link href="/" className="cdx-button" style={{ marginTop: '16px' }}>← Back</Link>
+            <Link href="/" className="back-link" style={{ marginTop: '16px' }}>Return home</Link>
           </div>
         </div>
       </div>
@@ -141,22 +139,20 @@ function SearchContent() {
   if (!mainArticle && (!articles || articles.length === 0)) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-              <span style={{ fontSize: '2em' }}>🇹🇷</span>
-              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
-            </Link>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/saved">Saved</Link>
           </div>
-        </header>
+        </nav>
         <div className="content-wrapper">
           <div className="wiki-article" style={{ textAlign: 'center', padding: '48px 32px' }}>
-            <div style={{ fontSize: '3em', marginBottom: '16px' }}>📜</div>
             <h2 className="typ-h2" style={{ marginBottom: '16px' }}>No Results Found</h2>
-            <p className="typ-italic" style={{ color: 'var(--wc-secondary)' }}>
+            <p className="typ-italic" style={{ color: 'var(--cumin)' }}>
               We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.
             </p>
-            <Link href="/" className="cdx-button" style={{ marginTop: '24px' }}>← Back</Link>
+            <Link href="/" className="back-link" style={{ marginTop: '24px' }}>Return home</Link>
           </div>
         </div>
       </div>
@@ -165,14 +161,13 @@ function SearchContent() {
 
   return (
     <div className="min-h-screen">
-      <header className="wiki-header">
-        <div className="wiki-content">
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-            <span style={{ fontSize: '2em' }}>🇹🇷</span>
-            <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
-          </Link>
+      <nav className="journey-nav">
+        <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+        <div className="journey-nav-links">
+          <Link href="/">Journey</Link>
+          <Link href="/saved">Saved</Link>
         </div>
-      </header>
+      </nav>
 
       <div className="content-wrapper">
         <Link href="/" className="cdx-button" style={{ marginBottom: '24px' }}>← Back</Link>

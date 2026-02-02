@@ -57,24 +57,15 @@ export default function SavedPage() {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-                <Link href="/" className="cdx-link">Home</Link>
-                <Link href="/about" className="cdx-link">About</Link>
-              </nav>
-            </div>
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <Link href="/">Journey</Link>
+            <Link href="/about">About</Link>
           </div>
-        </header>
+        </nav>
         <div className="wiki-loading">
-          <div className="cdx-spinner"></div>
+          <div className="loading-story">Loading your saved articles...</div>
         </div>
       </div>
     );
@@ -82,31 +73,20 @@ export default function SavedPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="wiki-header">
-        <div className="wiki-content">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-              <span style={{ fontSize: '2.5em' }}>🌍</span>
-              <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                WikiCurious
-              </h1>
-            </Link>
-            <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-              <Link href="/" className="cdx-link">Home</Link>
-              <Link href="/about" className="cdx-link">About</Link>
-            </nav>
-          </div>
+      <nav className="journey-nav">
+        <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+        <div className="journey-nav-links">
+          <Link href="/">Journey</Link>
+          <Link href="/about">About</Link>
         </div>
-      </header>
+      </nav>
 
       <main className="wiki-content" style={{ padding: '32px 20px' }}>
-        {/* Header */}
         <div className="typ-center" style={{ marginBottom: '40px' }}>
-          <h1 className="typ-h1" style={{ marginBottom: '8px', color: 'var(--wc-primary)' }}>
-            ⭐ Saved Articles
+          <h1 className="typ-h1" style={{ marginBottom: '8px' }}>
+            Saved Articles
           </h1>
-          <p className="typ-body-lg" style={{ color: 'var(--wc-secondary)' }}>
+          <p className="typ-body-lg" style={{ color: 'var(--cumin)' }}>
             {savedArticles.length > 0
               ? `You have ${savedArticles.length} saved article${savedArticles.length > 1 ? 's' : ''}`
               : 'Your saved articles will appear here'}
@@ -115,64 +95,57 @@ export default function SavedPage() {
 
         {savedArticles.length === 0 ? (
           <div className="wiki-article" style={{ textAlign: 'center', padding: '60px 40px' }}>
-            <div style={{ fontSize: '5em', marginBottom: '20px' }}>📚</div>
-            <h2 className="typ-h2" style={{ color: 'var(--wc-primary)', marginBottom: '16px' }}>No saved articles yet</h2>
-            <p className="typ-body-lg" style={{ color: 'var(--wc-secondary)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
-              Search for a topic and save articles to read them later during your trip!
+            <h2 className="typ-h2" style={{ marginBottom: '16px' }}>No saved articles yet</h2>
+            <p className="typ-body-lg" style={{ color: 'var(--cumin)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+              Explore the journey pages and save articles to read them later during your trip.
             </p>
-            <Link href="/" className="cdx-button cdx-button--action-primary" style={{ fontSize: '1.05em', padding: '14px 28px' }}>
-              🚀 Start Exploring
+            <Link href="/" className="journey-button" style={{ display: 'inline-block', opacity: 1, animation: 'none' }}>
+              Start Exploring
             </Link>
           </div>
         ) : (
           <>
-            {/* Articles Grid */}
             <div style={{ display: 'grid', gap: '20px', marginBottom: '48px' }}>
               {savedArticles.map((article, index) => (
                 <div key={index} className="wiki-card" style={{ padding: '24px' }}>
-                  <div className="flex flex-col md:flex-row gap-4">
+                  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     {article.thumbnail && (
                       <img
                         src={article.thumbnail.source}
-                        alt={article.title}
-                        style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }}
+                        alt={`${article.title} - from Wikipedia`}
+                        style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: 'var(--radius-md)', flexShrink: 0, border: '1px solid var(--ui-border)' }}
                       />
                     )}
-                    <div style={{ flex: 1 }}>
-                      <div className="flex justify-between items-start" style={{ marginBottom: '12px' }}>
+                    <div style={{ flex: 1, minWidth: '200px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px', gap: '12px', flexWrap: 'wrap' }}>
                         <Link
                           href={`/article/${encodeURIComponent(article.title)}`}
-                          className="cdx-link"
                           style={{ textDecoration: 'none' }}
                         >
-                          <h3 className="typ-h3" style={{ margin: 0, color: 'var(--wc-primary)' }}>
+                          <h3 className="typ-h3" style={{ margin: 0, color: 'var(--iznik-cobalt)' }}>
                             {article.title}
                           </h3>
                         </Link>
                         <button
                           onClick={() => handleRemove(article.title)}
-                          className="cdx-button"
+                          className="back-link"
                           style={{
-                            padding: '8px 16px',
-                            background: 'linear-gradient(135deg, #fee7e6 0%, #fec8c5 100%)',
-                            border: '1px solid var(--wc-error)',
-                            borderRadius: '8px',
-                            fontSize: '0.9em',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            cursor: 'pointer'
+                            padding: '4px 12px',
+                            fontSize: 'var(--font-sm)',
+                            margin: 0,
+                            borderColor: 'var(--ottoman-crimson)',
+                            color: 'var(--ottoman-crimson)',
                           }}
                         >
-                          ✕ Remove
+                          Remove
                         </button>
                       </div>
                       {article.description && (
-                        <div className="wiki-infobox" style={{ marginBottom: '12px', padding: '12px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)' }}>
-                          <div className="typ-body-sm" style={{ color: 'var(--wc-secondary)' }}>{article.description}</div>
+                        <div className="wiki-infobox" style={{ marginBottom: '12px', padding: '12px' }}>
+                          <div className="typ-body-sm" style={{ color: 'var(--cumin)' }}>{article.description}</div>
                         </div>
                       )}
-                      <p className="typ-body" style={{ color: 'var(--wc-text)', margin: 0 }}>
+                      <p className="typ-body" style={{ margin: 0 }}>
                         {article.extract?.substring(0, 200)}...
                       </p>
                     </div>
@@ -181,12 +154,11 @@ export default function SavedPage() {
               ))}
             </div>
 
-            {/* Export Section */}
             <div className="wiki-infobox" style={{ padding: '32px', textAlign: 'center' }}>
               <div className="wiki-infobox-title" style={{ justifyContent: 'center', marginBottom: '16px' }}>
-                📥 Export Your Articles
+                Export Your Articles
               </div>
-              <p className="typ-body" style={{ marginBottom: '24px', color: 'var(--wc-secondary)' }}>
+              <p className="typ-body" style={{ marginBottom: '24px', color: 'var(--cumin)' }}>
                 Save your articles as Markdown to read offline during your trip
               </p>
               <button
@@ -200,10 +172,10 @@ export default function SavedPage() {
                   a.click();
                   URL.revokeObjectURL(url);
                 }}
-                className="cdx-button cdx-button--action-primary"
-                style={{ fontSize: '1.05em', padding: '14px 28px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                className="journey-button"
+                style={{ display: 'inline-block', opacity: 1, animation: 'none' }}
               >
-                📄 Download as Markdown
+                Download as Markdown
               </button>
             </div>
           </>
