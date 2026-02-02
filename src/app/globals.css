@@ -1,13 +1,12 @@
-/* TurkeyCurious - Paper-like aesthetic */
+/* TurkeyCurious - Immersive storytelling experience */
 
 :root {
-  --wc-primary: #2c5282;
-  --wc-secondary: #4a5568;
-  --wc-paper: #faf9f7;
-  --wc-paper-dark: #f5f3f0;
-  --wc-ink: #1a202c;
-  --wc-border: #d1d5db;
-  --wc-shadow: rgba(0, 0, 0, 0.08);
+  --ink: #2d2a26;
+  --paper-warm: #f5f2ed;
+  --paper-cream: #ebe8e2;
+  --sepia: #8b7355;
+  --accent: #c9a66b;
+  --subtle: #b0a898;
 }
 
 * {
@@ -17,13 +16,14 @@
 body {
   margin: 0;
   padding: 0;
-  background: #e8e4df;
-  color: var(--wc-ink);
+  background: var(--paper-warm);
+  color: var(--ink);
   min-height: 100vh;
   font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.7;
 }
 
-/* Paper texture effect */
+/* Subtle paper texture */
 body::before {
   content: '';
   position: fixed;
@@ -31,302 +31,413 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    linear-gradient(90deg, transparent 95%, rgba(0,0,0,0.02) 95%),
-    linear-gradient(transparent 95%, rgba(0,0,0,0.02) 95%);
-  background-size: 20px 20px;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
 }
 
-/* Hero Section - Like a letterhead */
-.hero-section {
-  background: var(--wc-paper);
-  color: var(--wc-ink);
-  padding: 48px 40px;
-  text-align: center;
-  border-bottom: 1px solid var(--wc-border);
-  box-shadow: 0 1px 3px var(--wc-shadow);
+/* Full screen story container */
+.story-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   z-index: 1;
 }
 
-.hero-section h2 {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 2em;
-  margin: 0 0 8px 0;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-  color: var(--wc-ink);
-}
-
-.hero-section p {
-  margin: 0;
-  font-style: italic;
-  color: var(--wc-secondary);
-}
-
-/* Search Box - Like writing on paper */
-.search-box {
-  max-width: 480px;
-  margin: 24px auto 0;
-  position: relative;
-}
-
-.search-box input {
-  width: 100%;
-  padding: 14px 50px 14px 20px;
-  font-size: 16px;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  background: white;
-  border: 1px solid var(--wc-border);
-  border-radius: 2px;
-  box-shadow: inset 0 1px 3px var(--wc-shadow), 0 2px 4px var(--wc-shadow);
-}
-
-.search-box input:focus {
-  outline: none;
-  border-color: var(--wc-primary);
-}
-
-.search-box input::placeholder {
-  color: #a0aec0;
-  font-style: italic;
-}
-
-.search-box button {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  color: var(--wc-secondary);
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 8px;
-  transition: color 0.2s;
-}
-
-.search-box button:hover {
-  color: var(--wc-primary);
-}
-
-/* Paper card */
-.paper-card {
-  background: var(--wc-paper);
-  border: 1px solid var(--wc-border);
-  padding: 20px 24px;
-  margin: 0 8px 8px 0;
-  box-shadow: 0 1px 3px var(--wc-shadow);
-  transition: all 0.2s;
-  display: inline-flex;
+/* Opening scene */
+.opening-scene {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--wc-ink);
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.paper-card:hover {
-  box-shadow: 0 4px 8px var(--wc-shadow);
-  transform: translateY(-1px);
-  border-color: var(--wc-primary);
+.opening-title {
+  font-size: 2.5em;
+  margin: 0 0 16px 0;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: var(--ink);
 }
 
-/* Article - Like a document */
-.wiki-article {
-  background: var(--wc-paper);
-  padding: 32px 40px;
-  margin: 0 0 24px 0;
-  border: 1px solid var(--wc-border);
-  box-shadow: 0 2px 6px var(--wc-shadow);
+.opening-subtitle {
+  font-size: 1.2em;
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0 0 60px 0;
+  max-width: 500px;
+}
+
+/* Journey button */
+.journey-button {
+  background: var(--paper-cream);
+  border: 1px solid var(--subtle);
+  padding: 16px 48px;
+  font-size: 1.1em;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  letter-spacing: 1px;
   position: relative;
-  z-index: 1;
 }
 
-.wiki-article::before {
+.journey-button::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: -3px;
+  bottom: -3px;
+  border: 1px solid var(--subtle);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.journey-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+}
+
+.journey-button:hover::before {
+  top: 5px;
+  left: 5px;
+  right: -5px;
+  bottom: -5px;
+}
+
+/* Scene header */
+.scene-header {
+  font-size: 3em;
+  font-weight: normal;
+  margin: 0 0 24px 0;
+  color: var(--ink);
+  text-align: center;
+}
+
+.scene-subtitle {
+  font-size: 1.4em;
+  font-style: italic;
+  color: var(--sepia);
+  text-align: center;
+  margin: 0 0 60px 0;
+}
+
+/* Story sections */
+.story-section {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+
+.story-paragraph {
+  font-size: 1.15em;
+  line-height: 1.9;
+  margin: 0 0 32px 0;
+  text-align: justify;
+  text-indent: 2em;
+}
+
+/* Era cards */
+.era-card {
+  background: var(--paper-cream);
+  border: 1px solid var(--subtle);
+  padding: 32px;
+  margin: 24px 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.era-card::before {
   content: '';
   position: absolute;
   top: 4px;
   left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border: 1px solid rgba(0,0,0,0.03);
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--subtle);
+  opacity: 0.3;
+  transition: all 0.4s ease;
   pointer-events: none;
 }
 
-.wiki-article h1,
-.wiki-article h2,
-.wiki-article h3 {
-  font-family: 'Georgia', 'Times New Roman', serif;
+.era-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 16px rgba(0,0,0,0.1);
+}
+
+.era-card:hover::before {
+  top: 7px;
+  left: 7px;
+  right: -7px;
+  bottom: -7px;
+}
+
+.era-title {
+  font-size: 1.6em;
+  margin: 0 0 12px 0;
   font-weight: normal;
-  border-bottom: 2px solid var(--wc-border);
-  padding-bottom: 8px;
-  margin-top: 1.5em;
-  margin-bottom: 0.8em;
-  color: var(--wc-primary);
+  color: var(--ink);
 }
 
-.wiki-article h1 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-bottom: 12px;
-}
-
-.wiki-article h2 {
-  font-size: 1.5em;
-}
-
-.wiki-article h3 {
-  font-size: 1.3em;
-  border-bottom: none;
-}
-
-.wiki-article p {
+.era-description {
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
   font-size: 1.05em;
-  line-height: 1.8;
-  margin-bottom: 1.2em;
-  text-align: justify;
 }
 
-.wiki-article p::first-letter {
-  font-size: 2em;
-  font-weight: bold;
-  float: left;
-  line-height: 1;
-  margin-right: 6px;
-}
-
-.wiki-article img {
-  border: 1px solid var(--wc-border);
-  padding: 4px;
-  background: white;
-  box-shadow: 0 2px 4px var(--wc-shadow);
-}
-
-/* Section header */
-.section-header {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.3em;
-  margin-bottom: 16px;
-  color: var(--wc-ink);
-  font-weight: normal;
-  border-bottom: 2px solid var(--wc-border);
-  padding-bottom: 8px;
-}
-
-/* Header - Minimal paper header */
-header {
-  background: var(--wc-paper);
-  border-bottom: 1px solid var(--wc-border);
-  padding: 16px 20px;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 1px 2px var(--wc-shadow);
-}
-
-/* Main content area */
-.content-wrapper {
-  max-width: 720px;
+/* Timeline */
+.timeline {
+  max-width: 700px;
   margin: 0 auto;
-  padding: 32px 20px 60px;
+  padding: 40px 20px 80px;
   position: relative;
-  z-index: 1;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--subtle);
+  opacity: 0.4;
+}
+
+.timeline-item {
+  padding: 30px;
+  margin: 40px 0;
+  width: 45%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.timeline-item:nth-child(odd) {
+  margin-left: 10%;
+  text-align: left;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 45%;
+  text-align: right;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--paper-cream);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  top: 40px;
+}
+
+.timeline-item:nth-child(odd)::before {
+  right: -36px;
+}
+
+.timeline-item:nth-child(even)::before {
+  left: -36px;
+}
+
+.timeline-year {
+  font-size: 1.8em;
+  font-weight: normal;
+  margin: 0 0 12px 0;
+  color: var(--accent);
+}
+
+.timeline-title {
+  font-size: 1.3em;
+  margin: 0 0 12px 0;
+  font-weight: normal;
+}
+
+.timeline-text {
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
+}
+
+/* Minimal header */
+.header-minimal {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.header-minimal a {
+  color: var(--subtle);
+  text-decoration: none;
+  font-size: 0.95em;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.header-minimal a:hover {
+  color: var(--ink);
+}
+
+/* Place card */
+.place-card {
+  max-width: 600px;
+  margin: 0 auto 32px;
+  padding: 40px;
+  background: var(--paper-cream);
+  border: 1px solid var(--subtle);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.place-card::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--subtle);
+  opacity: 0.3;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.place-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 16px rgba(0,0,0,0.1);
+}
+
+.place-card:hover::before {
+  top: 7px;
+  left: 7px;
+  right: -7px;
+  bottom: -7px;
+}
+
+.place-emoji {
+  font-size: 3em;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.place-name {
+  font-size: 2em;
+  margin: 0 0 12px 0;
+  font-weight: normal;
+}
+
+.place-invitation {
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
 }
 
 /* Loading */
-.wiki-loading {
+.loading-story {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px;
+  min-height: 100vh;
+  font-style: italic;
+  color: var(--sepia);
+  font-size: 1.2em;
 }
 
-.cdx-spinner {
-  width: 36px !important;
-  height: 36px !important;
-  border: 3px solid var(--wc-border) !important;
-  border-top-color: var(--wc-primary) !important;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+/* Article view */
+.article-view {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 60px 30px 80px;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.article-view h1 {
+  font-size: 2.4em;
+  font-weight: normal;
+  margin: 0 0 32px 0;
+  color: var(--ink);
+  line-height: 1.2;
 }
 
-/* Error */
-.wiki-error {
-  background: var(--wc-paper);
-  border: 1px solid #feb2b2;
-  padding: 24px;
-  margin: 24px 0;
-  position: relative;
-  z-index: 1;
-}
-
-.wiki-error-title {
-  font-weight: bold;
-  color: #c53030;
+.article-view p {
   font-size: 1.1em;
-  margin-bottom: 8px;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.9;
+  margin: 0 0 24px 0;
+  text-align: justify;
 }
 
-/* Buttons */
-.cdx-button {
-  padding: 10px 24px;
-  border: 1px solid var(--wc-border);
-  background: var(--wc-paper);
-  color: var(--wc-ink);
-  border-radius: 2px;
-  font-size: 15px;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  transition: all 0.2s;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.article-view p:first-of-type::first-letter {
+  font-size: 3em;
+  float: left;
+  line-height: 1;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.article-image {
+  width: 100%;
+  max-width: 320px;
+  margin: 24px auto;
+  display: block;
+  border: 1px solid var(--subtle);
+  padding: 6px;
+  background: var(--paper-cream);
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--sepia);
   text-decoration: none;
-  box-shadow: 0 1px 2px var(--wc-shadow);
+  font-style: italic;
+  margin-bottom: 40px;
+  transition: color 0.3s;
 }
 
-.cdx-button:hover {
-  background: var(--wc-paper-dark);
-  border-color: var(--wc-primary);
-  box-shadow: 0 2px 4px var(--wc-shadow);
+.back-link:hover {
+  color: var(--ink);
 }
 
-/* Links */
-.cdx-link {
-  color: var(--wc-primary);
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-
-.cdx-link:hover {
-  color: #2c5282;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 32px 20px;
+  .opening-title {
+    font-size: 1.8em;
   }
 
-  .hero-section h2 {
-    font-size: 1.5em;
+  .scene-header {
+    font-size: 2em;
   }
 
-  .wiki-article {
-    padding: 24px 20px;
+  .timeline {
+    padding: 30px 16px 60px;
   }
 
-  .wiki-article h1 {
-    font-size: 1.6em;
+  .timeline::before {
+    left: 20px;
   }
 
-  .content-wrapper {
-    padding: 24px 16px 48px;
+  .timeline-item {
+    width: calc(100% - 60px);
+    margin-left: 50px !important;
+    text-align: left !important;
+  }
+
+  .timeline-item::before {
+    left: -38px !important;
+    right: auto !important;
+  }
+
+  .article-view {
+    padding: 40px 20px 60px;
   }
 }

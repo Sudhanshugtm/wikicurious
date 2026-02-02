@@ -4,101 +4,69 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [started, setStarted] = useState(false);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
-    }
-  };
+  if (!started) {
+    return (
+      <div className="story-container">
+        <header className="header-minimal">
+          <Link href="/saved">saved</Link>
+        </header>
 
-  const turkeyDestinations = [
-    { name: 'Istanbul', emoji: '🕌' },
-    { name: 'Cappadocia', emoji: '🎈' },
-    { name: 'Ephesus', emoji: '🏛️' },
-    { name: 'Pamukkale', emoji: '🏊' },
-    { name: 'Ankara', emoji: '🏛️' },
-    { name: 'Antalya', emoji: '🏖️' },
-    { name: 'Bodrum', emoji: '⚓' },
-    { name: 'Konya', emoji: '💫' },
-  ];
-
-  const turkeyTopics = [
-    { name: 'Ottoman Empire', emoji: '👑' },
-    { name: 'Turkish Cuisine', emoji: '🥙' },
-    { name: 'Turkish Tea', emoji: '☕' },
-    { name: 'Hagia Sophia', emoji: '⛪' },
-    { name: 'Turkish Coffee', emoji: '☕' },
-    { name: 'Turkish Bath', emoji: '🛁' },
-    { name: 'Bosphorus', emoji: '🌊' },
-    { name: 'Grand Bazaar', emoji: '🛍️' },
-  ];
+        <div className="opening-scene">
+          <h1 className="opening-title">TURKEY</h1>
+          <p className="opening-subtitle">A journey through time, across two continents</p>
+          <button className="journey-button" onClick={() => setStarted(true)}>
+            Begin the journey →
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen">
-      {/* Simple Header */}
-      <header>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-            <span style={{ fontSize: '1.8em' }}>🇹🇷</span>
-            <span style={{ fontSize: '1.3em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>TurkeyCurious</span>
-          </Link>
-          <Link href="/saved" style={{ textDecoration: 'none', color: 'var(--wc-secondary)', fontSize: '0.95em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>Saved</Link>
-        </div>
+    <div className="story-container">
+      <header className="header-minimal">
+        <Link href="/">home</Link>
       </header>
 
-      {/* Hero Section - Letterhead style */}
-      <section className="hero-section">
-        <h2>Discover Turkey Through Wikipedia</h2>
-        <p>Explore history, culture, and hidden gems</p>
+      <div style={{ flex: 1, padding: '60px 20px' }}>
+        <h2 className="scene-header">Where would you like to begin?</h2>
+        <p className="scene-subtitle">Choose your path through Turkey's story</p>
 
-        <form onSubmit={handleSearch} className="search-box">
-          <input
-            type="search"
-            placeholder="Search anything about Turkey..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button type="submit">🔍</button>
-        </form>
-      </section>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          <Link href="/journey/istanbul" style={{ textDecoration: 'none' }}>
+            <div className="place-card">
+              <span className="place-emoji">🕌</span>
+              <h3 className="place-name">Istanbul</h3>
+              <p className="place-invitation">The city that straddles two worlds</p>
+            </div>
+          </Link>
 
-      {/* Content */}
-      <div className="content-wrapper">
-        {/* Turkish Destinations */}
-        <section style={{ marginBottom: '40px' }}>
-          <h3 className="section-header">Destinations</h3>
-          <div>
-            {turkeyDestinations.map((dest) => (
-              <Link
-                key={dest.name}
-                href={`/search?q=${encodeURIComponent(dest.name)}`}
-                className="paper-card"
-              >
-                <span>{dest.emoji}</span>
-                <span>{dest.name}</span>
-              </Link>
-            ))}
-          </div>
-        </section>
+          <Link href="/journey/history" style={{ textDecoration: 'none' }}>
+            <div className="place-card">
+              <span className="place-emoji">📜</span>
+              <h3 className="place-name">Through Time</h3>
+              <p className="place-invitation">From Byzantium to the Republic</p>
+            </div>
+          </Link>
 
-        {/* Turkish Topics */}
-        <section>
-          <h3 className="section-header">Culture & History</h3>
-          <div>
-            {turkeyTopics.map((topic) => (
-              <Link
-                key={topic.name}
-                href={`/search?q=${encodeURIComponent(topic.name)}`}
-                className="paper-card"
-              >
-                <span>{topic.emoji}</span>
-                <span>{topic.name}</span>
-              </Link>
-            ))}
-          </div>
-        </section>
+          <Link href="/journey/destinations" style={{ textDecoration: 'none' }}>
+            <div className="place-card">
+              <span className="place-emoji">🗺️</span>
+              <h3 className="place-name">The Land</h3>
+              <p className="place-invitation">Mountains, coasts, and fairy chimneys</p>
+            </div>
+          </Link>
+
+          <Link href="/journey/culture" style={{ textDecoration: 'none' }}>
+            <div className="place-card">
+              <span className="place-emoji">☕</span>
+              <h3 className="place-name">The People</h3>
+              <p className="place-invitation">Tea, hospitality, and traditions</p>
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );
