@@ -20,11 +20,6 @@ interface WikiArticle {
   content_urls?: { desktop: { page: string } };
 }
 
-interface WikiSection {
-  title: string;
-  content: string;
-}
-
 function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
@@ -41,7 +36,6 @@ function SearchContent() {
       setError(null);
 
       try {
-        // Try to get main article summary first
         const summaryResponse = await fetch(
           `/api/wikipedia?action=summary&title=${encodeURIComponent(query)}`
         );
@@ -53,7 +47,6 @@ function SearchContent() {
           }
         }
 
-        // Try to get related articles
         const relatedResponse = await fetch(
           `/api/wikipedia?action=related&title=${encodeURIComponent(query)}`
         );
@@ -65,7 +58,6 @@ function SearchContent() {
           }
         }
 
-        // If no related pages, try search API
         if (!mainArticle && (!articles || articles.length === 0)) {
           const searchResponse = await fetch(
             `/api/wikipedia?action=search&q=${encodeURIComponent(query)}`
@@ -74,7 +66,6 @@ function SearchContent() {
           if (searchResponse.ok) {
             const searchData = await searchResponse.json();
             if (searchData.query?.search?.length > 0) {
-              // Get summaries for top results
               const summaries = await Promise.all(
                 searchData.query.search.slice(0, 6).map(async (result: any) => {
                   const summaryRes = await fetch(
@@ -90,7 +81,6 @@ function SearchContent() {
               const validSummaries = summaries.filter(Boolean);
               setArticles(validSummaries);
 
-              // Set first result as main article if we don't have one
               if (!mainArticle && validSummaries[0]) {
                 setMainArticle(validSummaries[0]);
               }
@@ -111,21 +101,11 @@ function SearchContent() {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-                <Link href="/" className="cdx-link">Home</Link>
-                <Link href="/saved" className="cdx-link">Saved</Link>
-              </nav>
-            </div>
-          </div>
+        <header style={{ padding: '16px 20px', borderBottom: '1px solid var(--wc-border)' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>TurkeyCurious</span>
+          </Link>
         </header>
         <div className="wiki-loading">
           <div className="cdx-spinner"></div>
@@ -137,31 +117,21 @@ function SearchContent() {
   if (error) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-                <Link href="/" className="cdx-link">Home</Link>
-                <Link href="/saved" className="cdx-link">Saved</Link>
-              </nav>
-            </div>
-          </div>
+        <header style={{ padding: '16px 20px', borderBottom: '1px solid var(--wc-border)' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>TurkeyCurious</span>
+          </Link>
         </header>
-        <main className="wiki-content" style={{ padding: '40px 20px' }}>
+        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '40px 20px' }}>
           <div className="wiki-error">
             <div className="wiki-error-title">Oops! Something went wrong</div>
             <div>{error}</div>
-            <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px', display: 'inline-block' }}>
-              ← Back to home
+            <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px' }}>
+              ← Back
             </Link>
           </div>
-        </main>
+        </div>
       </div>
     );
   }
@@ -169,166 +139,121 @@ function SearchContent() {
   if (!mainArticle && (!articles || articles.length === 0)) {
     return (
       <div className="min-h-screen">
-        <header className="wiki-header">
-          <div className="wiki-content">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-                <span style={{ fontSize: '2.5em' }}>🌍</span>
-                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                  WikiCurious
-                </h1>
-              </Link>
-              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-                <Link href="/" className="cdx-link">Home</Link>
-                <Link href="/saved" className="cdx-link">Saved</Link>
-              </nav>
-            </div>
-          </div>
+        <header style={{ padding: '16px 20px', borderBottom: '1px solid var(--wc-border)' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>TurkeyCurious</span>
+          </Link>
         </header>
-        <main className="wiki-content" style={{ padding: '40px 20px' }}>
-          <div className="wiki-article" style={{ textAlign: 'center', padding: '48px' }}>
-            <div style={{ fontSize: '4em', marginBottom: '16px' }}>🔍</div>
+        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '40px 20px' }}>
+          <div className="wiki-article" style={{ textAlign: 'center', padding: '40px' }}>
+            <div style={{ fontSize: '3em', marginBottom: '16px' }}>🔍</div>
             <h2 style={{ color: 'var(--wc-primary)', marginBottom: '16px' }}>No Results Found</h2>
-            <p style={{ fontSize: '1.1em', color: 'var(--wc-secondary)', marginBottom: '24px' }}>
+            <p style={{ color: 'var(--wc-secondary)', marginBottom: '24px' }}>
               We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.
             </p>
-            <p style={{ color: 'var(--wc-secondary)', marginBottom: '32px' }}>
-              Try searching for a different term or checking the spelling.
-            </p>
-            <Link href="/" className="cdx-button cdx-button--action-primary">
-              ← Back to search
+            <Link href="/" className="cdx-button cdx-button--action-secondary">
+              ← Back
             </Link>
           </div>
-        </main>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="wiki-header">
-        <div className="wiki-content">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-              <span style={{ fontSize: '2.5em' }}>🌍</span>
-              <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                WikiCurious
-              </h1>
-            </Link>
-            <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-              <Link href="/" className="cdx-link">Home</Link>
-              <Link href="/saved" className="cdx-link">Saved</Link>
-            </nav>
-          </div>
-        </div>
+      <header style={{ padding: '16px 20px', borderBottom: '1px solid var(--wc-border)' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+          <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
+          <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>TurkeyCurious</span>
+        </Link>
       </header>
 
-      <main className="wiki-content" style={{ padding: '32px 20px' }}>
-        {/* Search Bar */}
-        <div style={{ marginBottom: '24px' }}>
-          <Link
-            href="/"
-            className="cdx-button cdx-button--action-secondary"
-          >
-            ← Back to search
-          </Link>
-        </div>
+      <div style={{ maxWidth: '960px', margin: '0 auto', padding: '24px 20px 60px' }}>
+        <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginBottom: '24px' }}>
+          ← Back
+        </Link>
 
-        {/* Results Header */}
-        <div style={{ marginBottom: '32px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2em', marginBottom: '8px', color: 'var(--wc-primary)' }}>
-            Results for &quot;{query}&quot;
-          </h2>
-          <p style={{ color: 'var(--wc-secondary)' }}>
-            {articles?.length || 0} related articles found
-          </p>
-        </div>
+        <h2 style={{ fontSize: '1.8em', marginBottom: '24px', color: 'var(--wc-primary)' }}>
+          &quot;{query}&quot;
+        </h2>
 
-        {/* Main Article */}
         {mainArticle && (
-          <article className="wiki-article fade-in">
-            <div className="flex flex-col md:flex-row gap-6" style={{ marginBottom: '24px' }}>
+          <article className="wiki-article">
+            <div className="flex flex-col md:flex-row gap-4" style={{ marginBottom: '24px' }}>
               {mainArticle.thumbnail && (
                 <img
                   src={mainArticle.thumbnail.source}
                   alt={mainArticle.title}
-                  style={{ maxWidth: '320px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                  style={{ maxWidth: '280px', borderRadius: '6px' }}
                 />
               )}
               <div>
                 <h1>{mainArticle.title}</h1>
                 {mainArticle.description && (
-                  <div className="wiki-infobox" style={{ marginBottom: '20px', padding: '16px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)' }}>
-                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>📝 Description</div>
-                    <div>{mainArticle.description}</div>
-                  </div>
+                  <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', marginBottom: '12px' }}>
+                    {mainArticle.description}
+                  </p>
                 )}
-                <p style={{ fontSize: '1.05em', lineHeight: '1.8' }}>{mainArticle.extract}</p>
+                <p style={{ lineHeight: '1.7' }}>{mainArticle.extract}</p>
                 <a
                   href={mainArticle.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(mainArticle.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cdx-button cdx-button--action-primary"
-                  style={{ marginTop: '20px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                  className="cdx-link"
                 >
-                  Read full article on Wikipedia <span>↗</span>
+                  Read full article on Wikipedia →
                 </a>
-              </div>
-            </div>
-
-            {/* Quick Facts Section */}
-            <div className="wiki-fact-card">
-              <div className="wiki-fact-label">💡 Did you know?</div>
-              <div className="wiki-fact-value">
-                {mainArticle.extract?.substring(0, 250)}...
               </div>
             </div>
           </article>
         )}
 
-        {/* Related Articles */}
         {articles && articles.length > 1 && (
-          <section style={{ marginTop: '48px' }}>
-            <h3 style={{ fontSize: '1.5em', marginBottom: '24px', color: 'var(--wc-primary)', textAlign: 'center' }}>
-              🔗 Related Articles
+          <div style={{ marginTop: '40px' }}>
+            <h3 style={{ fontSize: '1.3em', marginBottom: '16px', color: 'var(--wc-primary)' }}>
+              Related
             </h3>
-            <div style={{ display: 'grid', gap: '16px' }}>
+            <div style={{ display: 'grid', gap: '12px' }}>
               {articles.map((article, index) => (
                 article && article.title !== mainArticle?.title && (
                   <Link
                     key={index}
                     href={`/article/${encodeURIComponent(article.title)}`}
-                    className="wiki-card"
-                    style={{ textDecoration: 'none', display: 'flex', gap: '16px' }}
+                    style={{
+                      display: 'flex',
+                      gap: '12px',
+                      padding: '16px',
+                      background: 'white',
+                      border: '1px solid var(--wc-border)',
+                      borderRadius: '8px',
+                      textDecoration: 'none',
+                      color: 'var(--wc-text)',
+                    }}
                   >
                     {article.thumbnail && (
                       <img
                         src={article.thumbnail.source}
                         alt={article.title}
-                        style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }}
+                        style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }}
                       />
                     )}
-                    <div style={{ flex: 1 }}>
-                      <h4 style={{ margin: '0 0 8px 0', color: 'var(--wc-primary)', fontSize: '1.2em' }}>
+                    <div>
+                      <h4 style={{ margin: '0 0 6px 0', color: 'var(--wc-primary)', fontSize: '1.1em' }}>
                         {article.title}
                       </h4>
-                      {article.description && (
-                        <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', fontSize: '0.9em', marginBottom: '8px' }}>
-                          {article.description}
-                        </p>
-                      )}
-                      <p style={{ color: 'var(--wc-text)', fontSize: '0.95em', lineHeight: '1.6', margin: 0 }}>
-                        {article.extract?.substring(0, 180)}...
+                      <p style={{ color: 'var(--wc-secondary)', fontSize: '0.9em', margin: 0 }}>
+                        {article.extract?.substring(0, 120)}...
                       </p>
                     </div>
                   </Link>
                 )
               ))}
             </div>
-          </section>
+          </div>
         )}
-      </main>
+      </div>
     </div>
   );
 }

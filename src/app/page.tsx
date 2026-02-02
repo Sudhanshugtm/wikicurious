@@ -37,28 +37,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="wiki-header">
-        <div className="wiki-content">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
-              <span style={{ fontSize: '2.5em' }}>🇹🇷</span>
-              <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
-                TurkeyCurious
-              </h1>
-            </Link>
-            <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
-              <Link href="/saved" className="cdx-link">Saved</Link>
-              <Link href="/about" className="cdx-link">About</Link>
-            </nav>
-          </div>
+      {/* Simple Header - Just logo and saved link */}
+      <header style={{ padding: '20px 20px 0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '960px', margin: '0 auto' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <span style={{ fontSize: '2em' }}>🇹🇷</span>
+            <span style={{ fontSize: '1.4em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>TurkeyCurious</span>
+          </Link>
+          <Link href="/saved" style={{ color: 'var(--wc-secondary)', textDecoration: 'none', fontSize: '0.95em' }}>Saved</Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <h2>Discover Turkey Through Wikipedia</h2>
-        <p>Explore the rich history, culture, and hidden gems of Turkey - from Istanbul to Cappadocia</p>
+      {/* Hero Section - Simplified */}
+      <section className="hero-section" style={{ borderRadius: '0 0 16px 16px', margin: '20px auto 40px', maxWidth: '960px' }}>
+        <h2 style={{ fontSize: '2em', margin: '0 0 12px 0' }}>Discover Turkey Through Wikipedia</h2>
+        <p style={{ margin: '0 0 24px', opacity: 0.95 }}>Explore rich history, culture, and hidden gems</p>
 
         {/* Search Form */}
         <form onSubmit={handleSearch} className="search-box">
@@ -69,25 +62,37 @@ export default function Home() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button type="submit" className="search-button">
-            🔍 Explore
+            🔍
           </button>
         </form>
       </section>
 
-      <main className="wiki-content">
-        {/* Popular Destinations in Turkey */}
+      {/* Content */}
+      <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 20px 60px' }}>
+        {/* Turkish Destinations */}
         <section style={{ marginBottom: '48px' }}>
-          <h3 className="section-title">🏛️ Explore Turkish Destinations</h3>
-          <div className="flex flex-wrap justify-center" style={{ margin: '0 -8px' }}>
+          <h3 style={{ fontSize: '1.3em', marginBottom: '20px', color: 'var(--wc-primary)' }}>🏛️ Destinations</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             {turkeyDestinations.map((dest) => (
               <Link
                 key={dest.name}
                 href={`/search?q=${encodeURIComponent(dest.name)}`}
-                className="destination-card"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 20px',
+                  background: 'white',
+                  border: '1px solid var(--wc-border)',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  color: 'var(--wc-text)',
+                  transition: 'all 0.2s',
+                }}
                 title={dest.description}
               >
-                <span className="emoji">{dest.emoji}</span>
-                <span className="name">{dest.name}</span>
+                <span>{dest.emoji}</span>
+                <span>{dest.name}</span>
               </Link>
             ))}
           </div>
@@ -95,115 +100,33 @@ export default function Home() {
 
         {/* Turkish Topics */}
         <section style={{ marginBottom: '48px' }}>
-          <h3 className="section-title">📚 Turkish Culture & History</h3>
-          <div className="flex flex-wrap justify-center" style={{ margin: '0 -8px' }}>
+          <h3 style={{ fontSize: '1.3em', marginBottom: '20px', color: 'var(--wc-primary)' }}>📚 Culture & History</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             {turkeyTopics.map((topic) => (
               <Link
                 key={topic.name}
                 href={`/search?q=${encodeURIComponent(topic.name)}`}
-                className="destination-card"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 20px',
+                  background: 'white',
+                  border: '1px solid var(--wc-border)',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  color: 'var(--wc-text)',
+                  transition: 'all 0.2s',
+                }}
                 title={topic.description}
               >
-                <span className="emoji">{topic.emoji}</span>
-                <span className="name">{topic.name}</span>
+                <span>{topic.emoji}</span>
+                <span>{topic.name}</span>
               </Link>
             ))}
           </div>
         </section>
-
-        {/* Feature Cards */}
-        <section style={{ marginBottom: '48px' }}>
-          <h3 className="section-title">🎯 Why Explore Turkey?</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-            <div className="feature-card">
-              <div className="icon">🏛️</div>
-              <h4>Ancient History</h4>
-              <p>From Byzantine to Ottoman empires, Turkey has been at the crossroads of civilizations for millennia.</p>
-            </div>
-            <div className="feature-card">
-              <div className="icon">🌍</div>
-              <h4>Two Continents</h4>
-              <p>Istanbul bridges Europe and Asia, making it one of the world's most unique cities.</p>
-            </div>
-            <div className="feature-card">
-              <div className="icon">🥙</div>
-              <h4>Rich Cuisine</h4>
-              <p>Discover delicious Turkish food, from kebabs to baklava, that spans centuries of culinary tradition.</p>
-            </div>
-            <div className="feature-card">
-              <div className="icon">💫</div>
-              <h4>Cultural Heritage</h4>
-              <p>Experience the whirling dervishes, Turkish baths, tea culture, and timeless traditions.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="wiki-infobox" style={{ marginBottom: '48px' }}>
-          <h3 style={{ color: 'var(--wc-primary)', marginBottom: '20px', fontSize: '1.5em' }}>
-            🚀 How It Works
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', textAlign: 'center' }}>
-            <div>
-              <div style={{ fontSize: '3em', marginBottom: '12px' }}>🔍</div>
-              <h4 style={{ margin: '0 0 8px 0' }}>Search</h4>
-              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Enter any Turkish destination or topic</p>
-            </div>
-            <div>
-              <div style={{ fontSize: '3em', marginBottom: '12px' }}>📚</div>
-              <h4 style={{ margin: '0 0 8px 0' }}>Explore</h4>
-              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Browse Wikipedia articles and facts</p>
-            </div>
-            <div>
-              <div style={{ fontSize: '3em', marginBottom: '12px' }}>⭐</div>
-              <h4 style={{ margin: '0 0 8px 0' }}>Save</h4>
-              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Save articles to read during your trip</p>
-            </div>
-            <div>
-              <div style={{ fontSize: '3em', marginBottom: '12px' }}>📥</div>
-              <h4 style={{ margin: '0 0 8px 0' }}>Export</h4>
-              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Download as Markdown for offline use</p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section style={{ textAlign: 'center', padding: '40px 20px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)', borderRadius: '16px', marginBottom: '48px' }}>
-          <h3 style={{ fontSize: '1.8em', marginBottom: '16px', color: 'var(--wc-primary)' }}>
-            Ready to discover Turkey? 🇹🇷
-          </h3>
-          <p style={{ fontSize: '1.1em', color: 'var(--wc-secondary)', marginBottom: '24px', maxWidth: '600px', margin: '0 auto 24px' }}>
-            Start exploring the fascinating history and culture of this beautiful country
-          </p>
-          <form onSubmit={handleSearch} className="search-box">
-            <input
-              type="search"
-              placeholder="What are you curious about in Turkey?"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="search-button">
-              🚀 Start Exploring
-            </button>
-          </form>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="wiki-footer">
-        <div className="wiki-content">
-          <p style={{ fontSize: '1.1em', marginBottom: '8px' }}>
-            🇹🇷 <strong>TurkeyCurious</strong> • Explore Turkey Through Wikipedia
-          </p>
-          <p style={{ opacity: 0.9, fontSize: '0.95em' }}>
-            Powered by <a href="https://en.wikipedia.org" target="_blank" rel="noopener noreferrer">Wikipedia</a> • 
-            Built with <a href="https://doc.wikimedia.org/codex/" target="_blank" rel="noopener noreferrer">Wikimedia Codex</a>
-          </p>
-          <p style={{ opacity: 0.7, fontSize: '0.85em', marginTop: '16px' }}>
-            Made with ❤️ in Istanbul
-          </p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
