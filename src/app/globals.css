@@ -1,89 +1,155 @@
-/* WikiCurious - Immersive storytelling experience */
+/* WikiCurious - Turkey-Inspired Immersive Storytelling */
 
 /* ============================================
-   DESIGN TOKENS & COLOR PALETTE
+   TURKEY DESIGN SYSTEM
+   Colors inspired by Ottoman art, Iznik tiles, Spice bazaar
    ============================================ */
 
 :root {
-  /* --- Primary Colors --- */
-  /* Vintage/Story Mode - Rich, warm, elegant */
-  --ink: #1a1a1a;
-  --paper-warm: #f7f3e8;
-  --paper-cream: #f0ebe3;
-  --sepia: #6b4423;
-  --sepia-dark: #4a3728;
-  --accent: #d4a574;
-  --accent-dark: #b04050;
-  --accent-light: #f5e1d9;
-  --subtle: #a8a085;
-  --subtle-light: #c9b696;
+  /* --- TURKEY COLOR PALETTE --- */
 
-  /* Gold/Bronze accents for premium feel */
-  --gold: #c9a227;
-  --gold-light: #e8c87b;
-  --gold-dark: #a67c00;
+  /* Iznik Tiles - The famous Ottoman tiles */
+  --iznik-cobalt: #1E3A8A;      /* Deep blue from Topkapi */
+  --iznik-turquoise: #40E0D0;     /* Iconic turquoise */
+  --iznik-light: #5B9BD6;         /* Soft blue */
 
-  /* Deep red/burgundy for buttons */
-  --burgundy: #9c1c31;
-  --burgundy-dark: #6d1219;
-  --burgundy-light: #c4485d;
+  /* Ottoman Palace - Topkapi and Dolmabahçe */
+  --ottoman-crimson: #8B0000;      /* Imperial red */
+  --ottoman-maroon: #660000;       /* Deep palace red */
+  --imperial-gold: #D4AF37;        /* Royal gold */
+  --antique-gold: #C5A059;        /* Aged gold */
+  --marble-white: #F5F5DC;         /* Palace marble */
+  --ottoman-purple: #4B0082;       /* Rich purple */
 
-  /* Wiki/Modern Mode - Clean, premium */
-  --wc-primary: #1a1a1a;
-  --wc-secondary: #4a5568;
-  --wc-ink: #202122;
-  --wc-paper: #fafbfc;
-  --wc-paper-alt: #f0f3f5;
-  --wc-border: #d0d7de;
-  --wc-shadow-sm: rgba(0, 0, 0, 0.06);
-  --wc-shadow-md: rgba(0, 0, 0, 0.1);
-  --wc-shadow-lg: rgba(0, 0, 0, 0.15);
-  --wc-error: #d33;
-  --wc-success: #14866d;
-  --wc-blue: #06c;
-  --wc-blue-light: #36c;
+  /* Turkish Carpets - Handwoven art */
+  --carpet-red: #C41E3A;            /* Deep crimson */
+  --carpet-rust: #A83226;           /* Aged red */
+  --carpet-indigo: #1E3A8A;         /* Night sky blue */
+  --carpet-gold: #C5A059;           /* Metallic gold */
 
-  /* --- Gradients --- */
-  --gradient-paper: linear-gradient(135deg, #f7f3e8 0%, #f0ebe3 50%, #e8ddd8 100%);
-  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f7f3e8 100%);
-  --gradient-card-hover: linear-gradient(145deg, #f7f3e8 0%, #f0ebe3 100%);
-  --gradient-gold: linear-gradient(135deg, #e8c87b 0%, #c9a227 50%, #a67c00 100%);
-  --gradient-burgundy: linear-gradient(135deg, #c4485d 0%, #9c1c31 50%, #6d1219 100%);
-  --gradient-accent: linear-gradient(135deg, #f5e1d9 0%, #d4a574 50%, #b04050 100%);
-  --gradient-subtle: linear-gradient(135deg, #fafbfc 0%, #f0f3f5 100%);
+  /* Spice Bazaar - Grand Bazaar atmosphere */
+  --saffron: #E4A010;                /* Precious saffron */
+  --turmeric: #FFC125;                /* Bright turmeric */
+  --cumin: #8B5A2B;                  /* Earthy cumin */
+  --paprika: #C73E3A;                /* Red paprika */
+  --clove: #6B3FA0;                  /* Dark clove */
 
-  /* --- Shadows --- */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.12);
-  --shadow-glow: 0 0 20px rgba(212, 165, 116, 0.3);
-  --shadow-gold: 0 4px 12px rgba(201, 162, 39, 0.15);
-  --shadow-accent: 0 4px 12px rgba(212, 165, 116, 0.25);
-  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  /* Turkish Coffee & Tea Culture */
+  --turkish-coffee: #3D2314;          /* Dark roast */
+  --turkish-tea: #C8102E;            /* Tea glass red */
+  --copper-pot: #B87333;              /* Traditional copper */
 
-  /* --- Font Families --- */
+  /* Paper & Manuscript - Aged, warm, storytelling */
+  --manuscript-cream: #F7F0E3;       /* Old paper */
+  --manuscript-warm: #F0DCB8;        /* Aged warmth */
+  --manuscript-edge: #E8C9A8;        /* Worn edges */
+  --ink-brown: #2D1B1B;              /* Old ink */
+  --ink-black: #1A1818;              /* Fresh ink */
+  --gold-leaf: #D4AF37;              /* Gilded letters */
+
+  /* UI Colors - Functional but themed */
+  --ui-bg: #FDF8F3;                   /* Warm white */
+  --ui-border: #D4C4A8;               /* Subtle border */
+  --ui-shadow: rgba(45, 27, 27, 0.08);   /* Warm shadow */
+
+  /* --- GRADIENTS (Turkey-Inspired) --- */
+  
+  /* Iznik Tile Gradient */
+  --gradient-iznik: linear-gradient(135deg, var(--iznik-cobalt) 0%, var(--iznik-turquoise) 100%);
+  
+  /* Ottoman Palace Gradient */
+  --gradient-palace: linear-gradient(145deg, var(--ottoman-crimson) 0%, var(--ottoman-maroon) 100%);
+  
+  /* Imperial Gold Gradient */
+  --gradient-gold: linear-gradient(135deg, #FFE5A0 0%, var(--imperial-gold) 50%, var(--antique-gold) 100%);
+  
+  /* Spice Market Gradient */
+  --gradient-spice: linear-gradient(135deg, var(--saffron) 0%, var(--turmeric) 50%, #F4D03F 100%);
+  
+  /* Carpet Pattern Gradient */
+  --gradient-carpet: linear-gradient(145deg, var(--carpet-red) 0%, var(--carpet-rust) 100%);
+  
+  /* Manuscript Paper Gradient */
+  --gradient-paper: linear-gradient(135deg, var(--manuscript-cream) 0%, var(--manuscript-warm) 50%, var(--manuscript-edge) 100%);
+  
+  /* Coffee Gradient */
+  --gradient-coffee: linear-gradient(135deg, #4A2C2A 0%, var(--turkish-coffee) 100%);
+  
+  /* Tea Gradient */
+  --gradient-tea: linear-gradient(135deg, #E84D4D 0%, var(--turkish-tea) 100%);
+
+  /* --- TURKISH PATTERNS (SVG Data URIs) --- */
+  
+  /* Ottoman Geometric Star Pattern */
+  --pattern-ottoman: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='ottoman-star' patternUnits='userSpaceOnUse' width='40' height='40'%3E%3Cpath d='M20 5 L35 12.5 L35 27.5 L20 20 L5 27.5 L5 12.5 Z' fill='none' stroke='%23D4AF37' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23ottoman-star)'/%3E%3C/svg%3E");
+  
+  /* Iznik Tile Border Pattern */
+  --pattern-tile-border: url("data:image/svg+xml,%3Csvg width='8' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='tile-border' patternUnits='userSpaceOnUse' width='8' height='8'%3E%3Crect x='0' y='0' width='8' height='8' fill='none' stroke='%2340E0D0' stroke-width='0.5'/%3E%3Ccircle cx='4' cy='4' r='1' fill='%23D4AF37' opacity='0.15'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23tile-border)'/%3E%3C/svg%3E");
+  
+  /* Islamic Geometric Pattern */
+  --pattern-geometric: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='geometric' patternUnits='userSpaceOnUse' width='60' height='60'%3E%3Cpath d='M0 0 L60 0 L60 60 L0 60 Z' fill='none' stroke='%238B0000' stroke-width='0.3' opacity='0.08'/%3E%3Cpath d='M0 60 L60 0 M0 0 L60 60' stroke='%23D4AF37' stroke-width='0.3' opacity='0.08'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23geometric)'/%3E%3C/svg%3E");
+
+  /* Manuscript Corner Decoration */
+  --pattern-corner: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q20 0 40 20 Q20 20 20 40' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Cpath d='M80 20 Q100 0 120 20 Q100 20 100 40' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Cpath d='M20 80 Q20 100 40 80 Q40 100 40 80' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Cpath d='M80 80 Q80 100 100 80 Q100 100 80 80' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");
+
+  /* --- SHADOWS (Crafted, Handmade Feel) --- */
+  
+  /* Soft handmade shadows */
+  --shadow-soft: 0 2px 8px rgba(45, 27, 27, 0.08), 0 1px 3px rgba(45, 27, 27, 0.06);
+  --shadow-medium: 0 4px 16px rgba(45, 27, 27, 0.1), 0 2px 6px rgba(45, 27, 27, 0.08);
+  --shadow-deep: 0 8px 32px rgba(45, 27, 27, 0.12), 0 4px 12px rgba(45, 27, 27, 0.1);
+  --shadow-elevated: 0 16px 48px rgba(45, 27, 27, 0.15), 0 8px 24px rgba(45, 27, 27, 0.12);
+  
+  /* Gold glow for precious elements */
+  --shadow-gold-glow: 0 4px 20px rgba(212, 175, 55, 0.3), 0 2px 8px rgba(212, 175, 55, 0.2);
+  --shadow-gold-soft: 0 2px 12px rgba(212, 175, 55, 0.2);
+  
+  /* Ottoman crimson glow */
+  --shadow-crimson-glow: 0 4px 20px rgba(139, 0, 0, 0.25), 0 2px 8px rgba(139, 0, 0, 0.15);
+  
+  /* Iznik blue glow */
+  --shadow-blue-glow: 0 4px 20px rgba(30, 58, 138, 0.25), 0 2px 8px rgba(30, 58, 138, 0.15);
+  
+  /* Inner shadows for depth */
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+
+  /* --- BORDERS (Ottoman/Manuscript Inspired) --- */
+  
+  /* Ottoman arch border */
+  --border-ottoman: 3px solid var(--ottoman-crimson);
+  
+  /* Gold accent border */
+  --border-gold: 2px solid var(--imperial-gold);
+  
+  /* Manuscript border */
+  --border-manuscript: 1px solid var(--manuscript-edge);
+  
+  /* Iznik tile border */
+  --border-iznik: 2px solid var(--iznik-cobalt);
+
+  /* --- FONT FAMILIES --- */
   --font-display: var(--font-baskerville), 'Georgia', serif;
   --font-body: var(--font-lora), 'Georgia', serif;
   --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
-  /* --- Type Scale (Minor Third) --- */
-  --font-hero: 3.5rem;      /* 56px - Opening title */
-  --font-h1: 2.625rem;      /* 42px - Main page titles */
-  --font-h2: 2rem;          /* 32px - Section headings */
-  --font-h3: 1.5rem;        /* 24px - Card titles */
-  --font-h4: 1.25rem;       /* 20px - Small headings */
-  --font-lg: 1.125rem;      /* 18px - Story paragraphs */
-  --font-base: 1rem;        /* 16px - Wiki body */
-  --font-sm: 0.875rem;      /* 14px - Metadata */
+  /* --- TYPE SCALE (Minor Third - Manuscript Feel) --- */
+  --font-hero: 3.5rem;         /* 56px - Epic titles */
+  --font-display: 2.75rem;      /* 44px - Grand headings */
+  --font-h1: 2.25rem;          /* 36px - Main titles */
+  --font-h2: 1.75rem;          /* 28px - Section heads */
+  --font-h3: 1.375rem;         /* 22px - Subsections */
+  --font-h4: 1.125rem;         /* 18px - Small heads */
+  --font-lg: 1.125rem;         /* 18px - Story text */
+  --font-base: 1rem;           /* 16px - Wiki body */
+  --font-sm: 0.875rem;         /* 14px - Metadata */
 
-  /* --- Line Heights --- */
-  --lh-tight: 1.15;         /* Headings */
-  --lh-normal: 1.3;         /* Subheadings */
-  --lh-relaxed: 1.75;       /* Story paragraphs */
-  --lh-comfortable: 1.65;   /* Wiki articles */
+  /* --- LINE HEIGHTS --- */
+  --lh-tight: 1.15;           /* Headings */
+  --lh-normal: 1.3;           /* Subheadings */
+  --lh-relaxed: 1.8;          /* Story paragraphs */
+  --lh-comfortable: 1.7;      /* Wiki articles */
 
-  /* --- Spacing Scale --- */
+  /* --- SPACING --- */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -92,27 +158,21 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
   --space-4xl: 96px;
+  --space-5xl: 128px;
 
-  /* --- Letter Spacing --- */
-  --letter-tight: -0.02em;
-  --letter-snug: -0.01em;
-  --letter-normal: 0;
-  --letter-wide: 0.05em;
-  --letter-wider: 0.1em;
-
-  /* --- Border Radius --- */
+  /* --- BORDER RADIUS --- */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-2xl: 24px;
-  --radius-full: 9999px;
+  --radius-3xl: 32px;
 
-  /* --- Transitions --- */
-  --transition-fast: 150ms ease;
+  /* --- TRANSITIONS --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
@@ -132,7 +192,11 @@ body {
   margin: 0;
   padding: 0;
   background: var(--gradient-paper);
-  color: var(--ink);
+  background-image:
+    var(--pattern-ottoman),
+    var(--gradient-paper);
+  background-blend-mode: multiply;
+  color: var(--ink-brown);
   min-height: 100vh;
   font-family: var(--font-body);
   line-height: var(--lh-comfortable);
@@ -140,7 +204,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle paper texture with improved effect */
+/* Aged paper texture overlay */
 body::before {
   content: '';
   position: fixed;
@@ -148,13 +212,14 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.35;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.3'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
+  mix-blend-mode: multiply;
 }
 
-/* Vignette effect for focus */
+/* Manuscript vignette for focus */
 body::after {
   content: '';
   position: fixed;
@@ -162,49 +227,38 @@ body::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.03) 70%, rgba(0, 0, 0, 0.08) 100%);
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(45, 27, 27, 0.02) 60%, rgba(45, 27, 27, 0.06) 100%);
   pointer-events: none;
   z-index: 1;
 }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS (Crafted, Deliberate)
    ============================================ */
 
-@keyframes fadeIn {
+@keyframes manuscriptReveal {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) rotateX(-10deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotateX(0);
   }
 }
 
-@keyframes slideUp {
+@keyframes tileUnfold {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: scale(0.8) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes shimmer {
+@keyframes goldShimmer {
   0% {
     background-position: -200% center;
   }
@@ -213,158 +267,245 @@ body::after {
   }
 }
 
-@keyframes pulse {
+@keyframes pulseGentle {
   0%, 100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.85;
   }
 }
 
-@keyframes float {
+@keyframes floatSoft {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes illuminate {
+  0% {
+    text-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(212, 175, 55, 0);
   }
 }
 
 /* ============================================
-   TYPOGRAPHY UTILITIES
+   TYPOGRAPHY (Manuscript & Ottoman Inspired)
    ============================================ */
 
-/* Headings */
+/* Epic hero title - Like illuminated manuscripts */
 .typ-hero {
   font-family: var(--font-display);
   font-size: var(--font-hero);
   font-weight: 700;
   line-height: var(--lh-tight);
-  letter-spacing: var(--letter-tight);
-  margin: 0 0 var(--space-md) 0;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--ink) 0%, var(--sepia-dark) 100%);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--ink-black);
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--ottoman-crimson) 0%, var(--ottoman-maroon) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 2px 8px rgba(139, 0, 0, 0.2);
+  padding: var(--space-md) var(--space-xl);
+  border: 3px solid var(--imperial-gold);
+  border-radius: var(--radius-2xl);
+  background-image: var(--pattern-corner);
+  background-size: 100% 100%;
 }
 
+.typ-hero::before {
+  content: '✦';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-size: 0.6em;
+  color: var(--imperial-gold);
+  opacity: 0.8;
+}
+
+.typ-hero::after {
+  content: '✦';
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  font-size: 0.6em;
+  color: var(--imperial-gold);
+  opacity: 0.8;
+}
+
+/* Grand display headings */
+.typ-display {
+  font-family: var(--font-display);
+  font-size: var(--font-display);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--ink-black);
+}
+
+/* Main headings */
 .typ-h1 {
   font-family: var(--font-display);
   font-size: var(--font-h1);
   font-weight: 600;
   line-height: var(--lh-tight);
-  letter-spacing: var(--letter-snug);
+  letter-spacing: -0.01em;
   margin: 0 0 var(--space-lg) 0;
-  color: var(--ink);
-}
-
-.typ-h2 {
-  font-family: var(--font-display);
-  font-size: var(--font-h2);
-  font-weight: 600;
-  line-height: var(--lh-tight);
-  letter-spacing: var(--letter-snug);
-  margin: 0 0 var(--space-md) 0;
-  color: var(--ink);
+  color: var(--ottoman-crimson);
   position: relative;
-  display: inline-block;
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--imperial-gold);
 }
 
-.typ-h2::after {
+.typ-h1::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
-  width: 60px;
+  width: 80px;
   height: 3px;
   background: var(--gradient-gold);
   border-radius: var(--radius-full);
 }
 
+/* Section headings */
+.typ-h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: 0;
+  margin: 0 0 var(--space-md) 0;
+  color: var(--iznik-cobalt);
+  position: relative;
+  display: inline-block;
+}
+
+.typ-h2::before {
+  content: '۞';
+  position: absolute;
+  left: -1.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--imperial-gold);
+  font-size: 1.2em;
+  opacity: 0.7;
+}
+
+/* Subsection headings */
 .typ-h3 {
   font-family: var(--font-display);
   font-size: var(--font-h3);
   font-weight: 500;
   line-height: var(--lh-normal);
-  letter-spacing: var(--letter-normal);
+  letter-spacing: 0.01em;
   margin: 0 0 var(--space-sm) 0;
-  color: var(--ink);
+  color: var(--ink-black);
+  position: relative;
+  padding-left: var(--space-md);
 }
 
+.typ-h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--ottoman-crimson);
+  border-radius: var(--radius-sm);
+}
+
+/* Small headings */
 .typ-h4 {
   font-family: var(--font-body);
   font-size: var(--font-h4);
   font-weight: 500;
   line-height: 1.4;
-  letter-spacing: var(--letter-normal);
+  letter-spacing: 0.02em;
   margin: 0 0 var(--space-sm) 0;
-  color: var(--ink);
+  color: var(--cumin);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* Body text */
+/* Body text - Story paragraphs */
 .typ-body-lg {
   font-family: var(--font-body);
   font-size: var(--font-lg);
   line-height: var(--lh-relaxed);
-  margin-bottom: var(--space-lg);
-  color: var(--ink);
+  margin-bottom: var(--space-xl);
+  color: var(--ink-brown);
 }
 
+/* Standard body */
 .typ-body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   line-height: var(--lh-comfortable);
-  margin-bottom: var(--space-md);
-  color: var(--ink);
+  margin-bottom: var(--space-lg);
+  color: var(--ink-black);
 }
 
+/* Small body */
 .typ-body-sm {
   font-family: var(--font-body);
   font-size: var(--font-sm);
-  line-height: 1.5;
-  color: var(--ink);
+  line-height: 1.6;
+  color: var(--cumin);
 }
 
-/* Special text styles */
+/* Special: Subtitle - Ottoman style */
 .typ-subtitle {
   font-family: var(--font-display);
   font-size: var(--font-h4);
   font-weight: 400;
   font-style: italic;
   line-height: var(--lh-normal);
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   margin: 0 0 var(--space-xl) 0;
+  position: relative;
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(75, 0, 130, 0.05);
+  border-left: 3px solid var(--imperial-gold);
+  border-radius: 0 var(--radius-md);
 }
 
-.typ-lead {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 400;
-  line-height: 1.5;
-  font-style: italic;
-  color: var(--sepia);
-}
-
-.typ-italic {
-  font-style: italic;
-  color: var(--sepia);
-}
-
-/* Drop cap for story opening */
+/* Illuminated drop cap - Like old manuscripts */
 .typ-dropcap::first-letter {
   float: left;
-  font-size: 3.8em;
+  font-size: 4em;
   line-height: 0.85;
-  margin-right: 0.12em;
+  margin-right: 0.15em;
   font-family: var(--font-display);
   font-weight: 700;
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  padding-right: 0.05em;
+  padding: 0.1em;
+  border: 2px solid var(--imperial-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-gold-soft);
+}
+
+/* Italic - Sepia toned */
+.typ-italic {
+  font-style: italic;
+  color: var(--ottoman-purple);
 }
 
 /* Text alignment */
@@ -380,7 +521,7 @@ body::after {
    LAYOUT COMPONENTS
    ============================================ */
 
-/* Full screen story container */
+/* Story container */
 .story-container {
   min-height: 100vh;
   display: flex;
@@ -389,16 +530,16 @@ body::after {
   z-index: 2;
 }
 
-/* Opening scene */
+/* Opening scene - Grand introduction */
 .opening-scene {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  padding: var(--space-3xl) var(--space-xl);
   text-align: center;
-  animation: fadeIn 800ms ease-out;
+  animation: manuscriptReveal 1s ease-out;
 }
 
 .opening-title {
@@ -406,47 +547,60 @@ body::after {
   font-size: var(--font-hero);
   font-weight: 700;
   line-height: var(--lh-tight);
-  letter-spacing: var(--letter-wide);
-  margin: 0 0 var(--space-md) 0;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--ink) 0%, var(--sepia-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--ottoman-crimson);
+  text-transform: uppercase;
+  position: relative;
+  animation: illuminate 3s ease-in-out infinite;
+}
+
+/* Ottoman-style border frame */
+.opening-title::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border: 2px solid var(--imperial-gold);
+  border-radius: var(--radius-3xl);
+  z-index: -1;
+  opacity: 0.3;
 }
 
 .opening-subtitle {
   font-family: var(--font-display);
-  font-size: var(--font-lg);
+  font-size: var(--font-h2);
   font-weight: 400;
   font-style: italic;
   line-height: var(--lh-normal);
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   margin: 0 0 var(--space-3xl) 0;
-  max-width: 500px;
+  max-width: 600px;
   opacity: 0;
-  animation: fadeIn 800ms ease-out 200ms both;
+  animation: manuscriptReveal 800ms ease-out 300ms both;
 }
 
-/* Journey button - Premium design */
+/* Journey button - Ottoman style */
 .journey-button {
-  background: var(--gradient-burgundy);
-  border: none;
-  padding: 16px 56px;
-  font-family: var(--font-body);
+  background: var(--gradient-palace);
+  border: 3px solid var(--imperial-gold);
+  padding: var(--space-md) var(--space-2xl);
+  font-family: var(--font-display);
   font-size: var(--font-lg);
-  font-weight: 500;
+  font-weight: 600;
   color: #ffffff;
   cursor: pointer;
   transition: var(--transition-slow);
-  letter-spacing: var(--letter-wide);
+  letter-spacing: 0.15em;
   position: relative;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 16px rgba(156, 28, 49, 0.3), 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-deep), var(--shadow-crimson-glow);
   overflow: hidden;
+  text-transform: uppercase;
   opacity: 0;
-  animation: slideUp 800ms ease-out 400ms both;
+  animation: tileUnfold 800ms ease-out 600ms both;
 }
 
 .journey-button::before {
@@ -456,14 +610,25 @@ body::after {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 600ms ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 800ms ease;
+}
+
+.journey-button::after {
+  content: '۞';
+  position: absolute;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: var(--imperial-gold);
+  opacity: 0.7;
 }
 
 .journey-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(156, 28, 49, 0.4), 0 12px 32px rgba(0, 0, 0, 0.12);
-  background: linear-gradient(135deg, #c4485d 0%, #9c1c31 100%);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-elevated), var(--shadow-crimson-glow);
+  border-color: var(--antique-gold);
 }
 
 .journey-button:hover::before {
@@ -471,7 +636,7 @@ body::after {
 }
 
 .journey-button:active {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1);
 }
 
 /* Scene header */
@@ -480,10 +645,33 @@ body::after {
   font-size: var(--font-hero);
   font-weight: 600;
   line-height: var(--lh-tight);
-  margin: 0 0 var(--space-lg) 0;
-  color: var(--ink);
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--ottoman-crimson);
   text-align: center;
-  animation: fadeIn 600ms ease-out;
+  animation: manuscriptReveal 600ms ease-out;
+  position: relative;
+}
+
+.scene-header::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: var(--gradient-gold);
+}
+
+.scene-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: var(--gradient-gold);
 }
 
 .scene-subtitle {
@@ -492,133 +680,157 @@ body::after {
   font-weight: 400;
   font-style: italic;
   line-height: var(--lh-normal);
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   text-align: center;
   margin: 0 0 var(--space-2xl) 0;
   opacity: 0;
-  animation: fadeIn 600ms ease-out 200ms both;
+  animation: manuscriptReveal 600ms ease-out 200ms both;
 }
 
 /* Story sections */
 .story-section {
   max-width: 680px;
   margin: 0 auto;
-  padding: 40px 30px;
+  padding: var(--space-2xl) var(--space-xl);
 }
 
 .story-paragraph {
   font-family: var(--font-body);
   font-size: var(--font-lg);
   line-height: var(--lh-relaxed);
-  margin: 0 0 var(--space-lg) 0;
+  margin: 0 0 var(--space-xl) 0;
   text-align: justify;
   text-indent: 2em;
-  color: var(--ink);
+  color: var(--ink-brown);
 }
 
 /* ============================================
-   PREMIUM CARD DESIGNS
+   TURKISH-INSPIRED CARDS
    ============================================ */
 
-/* Era cards - Premium vintage style */
+/* Era cards - Ottoman palace style */
 .era-card {
-  background: var(--gradient-card);
-  border: 1px solid var(--subtle);
+  background: linear-gradient(145deg, var(--marble-white) 0%, var(--manuscript-cream) 100%);
+  border: 2px solid var(--ottoman-crimson);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
   margin: var(--space-lg) 0;
   cursor: pointer;
   transition: var(--transition-slow);
   position: relative;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-medium);
   overflow: hidden;
-  animation: slideUp 600ms ease-out both;
+  animation: tileUnfold 600ms ease-out both;
+  background-image: var(--pattern-tile-border);
 }
 
+/* Ottoman arch top decoration */
 .era-card::before {
   content: '';
   position: absolute;
   top: 0;
+  left: 20px;
+  right: 20px;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 12px solid var(--ottoman-crimson);
+  opacity: 0.8;
+  transition: all var(--transition-base);
+}
+
+.era-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 4px;
   background: var(--gradient-gold);
   transform: scaleX(0);
   transition: transform var(--transition-base);
-  transform-origin: left;
-}
-
-.era-card::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: -4px;
-  bottom: -4px;
-  border: 2px solid var(--gold);
-  border-radius: var(--radius-xl);
-  opacity: 0;
-  transition: all var(--transition-base);
-  pointer-events: none;
-  z-index: -1;
+  transform-origin: center;
 }
 
 .era-card:hover {
-  transform: translateY(-6px) translateX(4px);
-  box-shadow: var(--shadow-xl), var(--shadow-gold);
-  background: var(--gradient-card-hover);
-  border-color: var(--gold);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-elevated), var(--shadow-crimson-glow);
+  border-color: var(--ottoman-maroon);
 }
 
 .era-card:hover::before {
-  transform: scaleX(1);
+  border-top-color: var(--ottoman-maroon);
+  opacity: 1;
 }
 
 .era-card:hover::after {
-  opacity: 0.5;
-  top: 8px;
-  left: 8px;
-  right: -8px;
-  bottom: -8px;
+  transform: scaleX(1);
 }
 
-/* Place cards - Premium elevated design */
+.era-title {
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ottoman-crimson);
+  position: relative;
+  padding-top: var(--space-md);
+}
+
+.era-description {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--ottoman-purple);
+  margin: 0;
+  font-size: var(--font-base);
+}
+
+/* Place cards - Turkish carpet style */
 .place-card {
   max-width: 600px;
   margin: 0 auto var(--space-xl);
   padding: var(--space-xl);
-  background: linear-gradient(145deg, #ffffff 0%, var(--paper-cream) 100%);
-  border: 1px solid var(--subtle-light);
+  background: linear-gradient(145deg, var(--manuscript-cream) 0%, var(--manuscript-warm) 100%);
+  border: 2px solid var(--imperial-gold);
   border-radius: var(--radius-2xl);
   cursor: pointer;
   transition: var(--transition-slow);
   position: relative;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-medium), var(--shadow-gold-soft);
   overflow: hidden;
-  animation: slideUp 600ms ease-out both;
+  animation: tileUnfold 600ms ease-out both;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(212, 175, 55, 0.03) 10px,
+      rgba(212, 175, 55, 0.03) 20px
+    );
 }
 
+/* Gold ornate corners */
 .place-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid var(--imperial-gold);
+  border-radius: var(--radius-lg);
+  opacity: 0.5;
+  transition: all var(--transition-base);
+}
+
+.place-card::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--gradient-accent);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-  z-index: 0;
-}
-
-.place-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
@@ -630,39 +842,43 @@ body::after {
 }
 
 .place-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl), var(--shadow-accent);
-  border-color: var(--accent);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: var(--shadow-elevated), var(--shadow-gold-glow);
+  border-color: var(--antique-gold);
 }
 
 .place-card:hover::before {
-  opacity: 0.05;
+  opacity: 1;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
 }
 
 .place-card:hover::after {
   opacity: 1;
-  animation: float 3s ease-in-out infinite;
 }
 
 .place-emoji {
-  font-size: 3.5em;
+  font-size: 4em;
   margin-bottom: var(--space-md);
   display: block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-  transition: transform var(--transition-base);
+  filter: drop-shadow(0 4px 8px rgba(45, 27, 27, 0.2));
+  transition: all var(--transition-base);
 }
 
 .place-card:hover .place-emoji {
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.1) rotate(-5deg);
+  filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.4));
 }
 
 .place-name {
   font-family: var(--font-display);
-  font-size: var(--font-hero);
-  font-weight: 500;
+  font-size: var(--font-display);
+  font-weight: 600;
   margin: 0 0 var(--space-sm) 0;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--ink) 0%, var(--sepia-dark) 100%);
+  color: var(--ottoman-crimson);
+  background: linear-gradient(135deg, var(--ottoman-crimson) 0%, var(--ottoman-maroon) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -670,7 +886,7 @@ body::after {
 }
 
 .place-card:hover .place-name {
-  background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--ottoman-maroon) 0%, var(--ottoman-crimson) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -679,17 +895,17 @@ body::after {
 .place-invitation {
   font-family: var(--font-body);
   font-style: italic;
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   margin: 0;
   transition: color var(--transition-base);
 }
 
 .place-card:hover .place-invitation {
-  color: var(--accent-dark);
+  color: var(--iznik-cobalt);
 }
 
 /* ============================================
-   TIMELINE - Premium Design
+   TIMELINE - Ottoman Chronology
    ============================================ */
 
 .timeline {
@@ -699,17 +915,17 @@ body::after {
   position: relative;
 }
 
+/* Gold central line */
 .timeline::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: 4px;
   background: var(--gradient-gold);
   border-radius: var(--radius-full);
-  opacity: 0.4;
-  box-shadow: 0 0 10px var(--gold);
+  box-shadow: var(--shadow-gold-soft);
 }
 
 .timeline-item {
@@ -732,46 +948,47 @@ body::after {
   text-align: right;
 }
 
+/* Ottoman-style markers */
 .timeline-item::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--gradient-paper);
-  border: 3px solid var(--accent);
+  width: 24px;
+  height: 24px;
+  background: var(--gradient-gold);
+  border: 3px solid var(--ottoman-crimson);
   border-radius: 50%;
   top: 40px;
-  box-shadow: 0 0 0 4px var(--paper-warm), 0 4px 8px rgba(212, 165, 116, 0.3);
+  box-shadow: var(--shadow-gold-soft), var(--shadow-crimson-glow);
   transition: all var(--transition-base);
 }
 
 .timeline-item:nth-child(odd)::before {
-  right: -40px;
+  right: -48px;
 }
 
 .timeline-item:nth-child(even)::before {
-  left: -40px;
+  left: -48px;
 }
 
 .timeline-item:hover {
-  background: var(--gradient-card);
-  box-shadow: var(--shadow-lg);
+  background: var(--manuscript-cream);
+  box-shadow: var(--shadow-medium);
   transform: scale(1.02);
 }
 
 .timeline-item:hover::before {
-  background: var(--accent);
-  transform: scale(1.2);
-  box-shadow: 0 0 0 6px var(--paper-warm), var(--shadow-accent);
+  background: var(--ottoman-crimson);
+  transform: scale(1.3);
+  box-shadow: var(--shadow-glow-gold), var(--shadow-crimson-glow);
 }
 
 .timeline-year {
   font-family: var(--font-display);
-  font-size: var(--font-h2);
-  font-weight: 600;
-  margin: 0 0 var(--space-sm) 0;
-  color: var(--accent-dark);
-  background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+  font-size: var(--font-display);
+  font-weight: 700;
+  margin: 0 0 var(--space-md) 0;
+  color: var(--ottoman-crimson);
+  background: linear-gradient(135deg, var(--ottoman-crimson) 0%, var(--ottoman-maroon) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -782,13 +999,13 @@ body::after {
   font-size: var(--font-h3);
   font-weight: 500;
   margin: 0 0 var(--space-sm) 0;
-  color: var(--ink);
+  color: var(--ink-black);
 }
 
 .timeline-text {
   font-family: var(--font-body);
   font-style: italic;
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   margin: 0;
 }
 
@@ -804,42 +1021,58 @@ body::after {
   transform: translateX(-50%);
   z-index: 100;
   opacity: 0;
-  animation: fadeIn 600ms ease-out both;
+  animation: manuscriptReveal 600ms ease-out both;
 }
 
 .header-minimal a {
-  color: var(--subtle);
+  color: var(--cumin);
   text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 0.95em;
-  letter-spacing: var(--letter-wide);
+  font-family: var(--font-display);
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
   transition: all var(--transition-base);
-  padding: 8px 16px;
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid transparent;
   border-radius: var(--radius-full);
+  text-transform: uppercase;
 }
 
 .header-minimal a:hover {
-  color: var(--ink);
-  background: rgba(0, 0, 0, 0.04);
+  color: var(--ottoman-crimson);
+  background: rgba(139, 0, 0, 0.08);
+  border-color: var(--ottoman-crimson);
 }
 
 /* Back link */
 .back-link {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: var(--font-base);
   font-style: italic;
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   text-decoration: none;
   margin-bottom: 40px;
   transition: all var(--transition-base);
-  padding: 8px 16px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--ottoman-purple);
   border-radius: var(--radius-md);
+  position: relative;
+}
+
+.back-link::before {
+  content: '←';
+  margin-right: var(--space-sm);
+  transition: all var(--transition-base);
 }
 
 .back-link:hover {
-  color: var(--accent-dark);
-  background: rgba(212, 165, 116, 0.1);
+  color: var(--ottoman-crimson);
+  background: rgba(139, 0, 0, 0.05);
+  border-color: var(--ottoman-crimson);
+  transform: translateX(-4px);
+}
+
+.back-link:hover::before {
   transform: translateX(-4px);
 }
 
@@ -854,13 +1087,13 @@ body::after {
   min-height: 100vh;
   font-family: var(--font-body);
   font-style: italic;
-  color: var(--sepia);
+  color: var(--ottoman-purple);
   font-size: var(--font-lg);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulseGentle 2s ease-in-out infinite;
 }
 
 /* ============================================
-   ARTICLE VIEW (Wiki Mode)
+   WIKI MODE (Clean but Themed)
    ============================================ */
 
 .article-view {
@@ -874,9 +1107,8 @@ body::after {
   font-size: var(--font-h1);
   font-weight: 600;
   line-height: var(--lh-tight);
-  letter-spacing: var(--letter-snug);
   margin: 0 0 var(--space-xl) 0;
-  color: var(--wc-primary);
+  color: var(--iznik-cobalt);
 }
 
 .article-view p {
@@ -886,7 +1118,7 @@ body::after {
   margin: 0 0 var(--space-lg) 0;
   text-align: left;
   max-width: 65ch;
-  color: var(--wc-primary);
+  color: var(--ink-black);
 }
 
 .article-view p:first-of-type::first-letter {
@@ -896,7 +1128,7 @@ body::after {
   margin-right: 0.1em;
   font-family: var(--font-display);
   font-weight: 700;
-  background: linear-gradient(135deg, var(--wc-blue) 0%, var(--wc-blue-light) 100%);
+  background: var(--gradient-iznik);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -907,206 +1139,17 @@ body::after {
   max-width: 320px;
   margin: var(--space-lg) auto;
   display: block;
-  border: 2px solid var(--subtle-light);
+  border: 2px solid var(--imperial-gold);
   padding: 8px;
   background: #ffffff;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-medium);
   transition: var(--transition-base);
 }
 
 .article-image:hover {
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-elevated);
   transform: scale(1.02);
-}
-
-/* ============================================
-   WIKI COMPONENTS - Premium Design
-   ============================================ */
-
-.wiki-header {
-  background: linear-gradient(180deg, var(--wc-paper-alt) 0%, var(--wc-paper) 100%);
-  border-bottom: 1px solid var(--wc-border);
-  padding: var(--space-lg) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
-  background: rgba(250, 251, 252, 0.9);
-}
-
-.wiki-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-}
-
-.wiki-article {
-  background: #ffffff;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-2xl);
-  margin-bottom: var(--space-lg);
-  animation: slideUp 500ms ease-out;
-  border: 1px solid var(--wc-border);
-}
-
-.wiki-article h1 {
-  font-family: var(--font-display);
-  font-size: var(--font-hero);
-  font-weight: 600;
-  line-height: var(--lh-tight);
-  letter-spacing: var(--letter-snug);
-  margin: 0 0 var(--space-lg) 0;
-  color: var(--wc-primary);
-  background: linear-gradient(135deg, var(--wc-primary) 0%, var(--wc-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.wiki-article h2,
-.wiki-article h3,
-.wiki-article h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  margin-top: var(--space-2xl);
-  margin-bottom: var(--space-md);
-  color: var(--wc-primary);
-}
-
-.wiki-article h2 {
-  font-size: var(--font-h2);
-  line-height: var(--lh-tight);
-  position: relative;
-  padding-bottom: var(--space-sm);
-}
-
-.wiki-article h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: var(--wc-blue);
-  border-radius: var(--radius-full);
-}
-
-.wiki-article h3 {
-  font-size: var(--font-h3);
-  line-height: var(--lh-normal);
-}
-
-.wiki-article h4 {
-  font-size: var(--font-h4);
-  line-height: 1.4;
-}
-
-.wiki-article p {
-  font-family: var(--font-body);
-  font-size: var(--font-base);
-  line-height: var(--lh-comfortable);
-  margin-bottom: var(--space-lg);
-  color: var(--wc-primary);
-}
-
-.wiki-card {
-  background: #ffffff;
-  border: 1px solid var(--wc-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-base);
-  overflow: hidden;
-}
-
-.wiki-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--wc-blue);
-  transform: scaleX(0);
-  transition: transform var(--transition-base);
-  transform-origin: left;
-}
-
-.wiki-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-  border-color: var(--wc-blue);
-}
-
-.wiki-card:hover::before {
-  transform: scaleX(1);
-}
-
-.wiki-infobox {
-  background: linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%);
-  border-left: 4px solid #0969da;
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  box-shadow: var(--shadow-sm);
-}
-
-.wiki-infobox-title {
-  font-family: var(--font-display);
-  font-size: var(--font-h4);
-  font-weight: 600;
-  color: var(--wc-primary);
-  margin-bottom: var(--space-sm);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.wiki-fact-card {
-  background: linear-gradient(135deg, #fef7e0 0%, #fef0c4 100%);
-  border: 1px solid #e8c97a;
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  margin-bottom: var(--space-lg);
-  box-shadow: var(--shadow-sm);
-}
-
-.wiki-fact-label {
-  font-family: var(--font-display);
-  font-size: var(--font-sm);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: var(--letter-wide);
-  color: #613d00;
-  margin-bottom: var(--space-sm);
-}
-
-.wiki-fact-value {
-  font-family: var(--font-body);
-  font-size: var(--font-base);
-  line-height: var(--lh-comfortable);
-  color: var(--wc-primary);
-}
-
-.wiki-loading,
-.wiki-error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  text-align: center;
-  padding: var(--space-2xl);
-}
-
-.wiki-error-title {
-  font-family: var(--font-display);
-  font-size: var(--font-h2);
-  font-weight: 600;
-  color: var(--wc-error);
-  margin-bottom: var(--space-md);
 }
 
 /* ============================================
@@ -1115,11 +1158,11 @@ body::after {
 
 @media (max-width: 768px) {
   :root {
-    --font-hero: 2.25rem;    /* 36px */
-    --font-h1: 1.75rem;      /* 28px */
-    --font-h2: 1.5rem;       /* 24px */
-    --font-h3: 1.25rem;      /* 20px */
-    --font-lg: 1rem;         /* 16px */
+    --font-hero: 2.5rem;       /* 40px */
+    --font-display: 2rem;      /* 32px */
+    --font-h1: 1.5rem;         /* 24px */
+    --font-h2: 1.25rem;        /* 20px */
+    --font-h3: 1.125rem;       /* 18px */
   }
 
   .opening-title {
@@ -1127,7 +1170,7 @@ body::after {
   }
 
   .scene-header {
-    font-size: var(--font-h2);
+    font-size: var(--font-h1);
   }
 
   .timeline {
@@ -1154,12 +1197,8 @@ body::after {
     padding: 40px 20px 60px;
   }
 
-  .wiki-content {
-    padding: 0 var(--space-md);
-  }
-
   .journey-button {
-    padding: 14px 40px;
+    padding: var(--space-sm) var(--space-lg);
     font-size: var(--font-base);
   }
 }
@@ -1227,8 +1266,8 @@ body::after {
   font-size: var(--font-h2);
   font-weight: 600;
   margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--subtle);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--ottoman-crimson);
   position: relative;
 }
 
@@ -1238,14 +1277,14 @@ body::after {
   bottom: -2px;
   left: 0;
   width: 60px;
-  height: 2px;
+  height: 3px;
   background: var(--gradient-gold);
 }
 
 .fade-in {
-  animation: fadeIn 500ms ease-out;
+  animation: manuscriptReveal 500ms ease-out;
 }
 
 .slide-up {
-  animation: slideUp 600ms ease-out;
+  animation: tileUnfold 600ms ease-out;
 }
