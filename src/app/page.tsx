@@ -38,7 +38,7 @@ export default function Home() {
           <Link href="/journey/istanbul" style={{ textDecoration: 'none' }}>
             <div className="place-card">
               <span className="place-emoji">🕌</span>
-              <h3 className="place-name">Istanbul</h3>
+              <h3 className="typ-h1 place-name">Istanbul</h3>
               <p className="place-invitation">The city that straddles two worlds</p>
             </div>
           </Link>
@@ -46,7 +46,7 @@ export default function Home() {
           <Link href="/journey/history" style={{ textDecoration: 'none' }}>
             <div className="place-card">
               <span className="place-emoji">📜</span>
-              <h3 className="place-name">Through Time</h3>
+              <h3 className="typ-h1 place-name">Through Time</h3>
               <p className="place-invitation">From Byzantium to the Republic</p>
             </div>
           </Link>
@@ -54,7 +54,7 @@ export default function Home() {
           <Link href="/journey/destinations" style={{ textDecoration: 'none' }}>
             <div className="place-card">
               <span className="place-emoji">🗺️</span>
-              <h3 className="place-name">The Land</h3>
+              <h3 className="typ-h1 place-name">The Land</h3>
               <p className="place-invitation">Mountains, coasts, and fairy chimneys</p>
             </div>
           </Link>
@@ -62,7 +62,7 @@ export default function Home() {
           <Link href="/journey/culture" style={{ textDecoration: 'none' }}>
             <div className="place-card">
               <span className="place-emoji">☕</span>
-              <h3 className="place-name">The People</h3>
+              <h3 className="typ-h1 place-name">The People</h3>
               <p className="place-invitation">Tea, hospitality, and traditions</p>
             </div>
           </Link>

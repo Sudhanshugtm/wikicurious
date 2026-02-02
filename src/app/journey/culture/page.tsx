@@ -21,14 +21,14 @@ export default function CultureJourney() {
 
             {selectedTopic === 'tea' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Turkish Tea
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   More than a drink — a way of life
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   In every village, every city square, every home across Turkey, you'll find it. The tulip-shaped glass. The crimson liquid. The tiny saucer. Turkish tea (çay) is not merely a beverage — it's a ritual of hospitality that welcomes strangers and binds communities.
                 </p>
 
@@ -44,15 +44,15 @@ export default function CultureJourney() {
 
             {selectedTopic === 'hospitality' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Misafirperverlik
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   The art of welcoming strangers
                 </p>
 
-                <p className="story-paragraph">
-                  Knock on a door in rural Turkey, and you might be invited in for dinner before you've explained who you are. This is misafirperverlik — the Turkish tradition of hospitality, deeply rooted in both Islamic teaching and nomadic culture where shelter was given to travelers regardless of who they were.
+                <p className="story-paragraph typ-dropcap">
+                  Knock on a door in rural Turkey, and you might be invited in for dinner before you've explained who you are. This is misafirperverlik — Turkish tradition of hospitality, deeply rooted in both Islamic teaching and nomadic culture where shelter was given to travelers regardless of who they were.
                 </p>
 
                 <p className="story-paragraph">
@@ -67,14 +67,14 @@ export default function CultureJourney() {
 
             {selectedTopic === 'coffee' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Turkish Coffee
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   Fortune in a cup
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   Unlike tea, which flows freely and abundantly, Turkish coffee is something to savor. Made in a copper pot called a cezve, with very finely ground coffee, water, and sugar (optional), it's brewed slowly over sand or embers. The result is thick, strong, and unmistakable.
                 </p>
 
@@ -107,17 +107,17 @@ export default function CultureJourney() {
 
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
           <div className="era-card" onClick={() => setSelectedTopic('tea')}>
-            <h3 className="era-title">☕ Tea Culture</h3>
+            <h3 className="typ-h3 era-title">☕ Tea Culture</h3>
             <p className="era-description">A ritual of hospitality and connection</p>
           </div>
 
           <div className="era-card" onClick={() => setSelectedTopic('hospitality')}>
-            <h3 className="era-title">🤝 Misafirperverlik</h3>
+            <h3 className="typ-h3 era-title">🤝 Misafirperverlik</h3>
             <p className="era-description">The sacred duty of welcoming guests</p>
           </div>
 
           <div className="era-card" onClick={() => setSelectedTopic('coffee')}>
-            <h3 className="era-title">☕ Turkish Coffee</h3>
+            <h3 className="typ-h3 era-title">☕ Turkish Coffee</h3>
             <p className="era-description">Fortune-telling and slow conversation</p>
           </div>
         </div>

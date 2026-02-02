@@ -102,12 +102,12 @@ export default function SavedPage() {
 
       <main className="wiki-content" style={{ padding: '32px 20px' }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '2.2em', marginBottom: '8px', color: 'var(--wc-primary)' }}>
+        <div className="typ-center" style={{ marginBottom: '40px' }}>
+          <h1 className="typ-h1" style={{ marginBottom: '8px', color: 'var(--wc-primary)' }}>
             ⭐ Saved Articles
           </h1>
-          <p style={{ color: 'var(--wc-secondary)', fontSize: '1.1em' }}>
-            {savedArticles.length > 0 
+          <p className="typ-body-lg" style={{ color: 'var(--wc-secondary)' }}>
+            {savedArticles.length > 0
               ? `You have ${savedArticles.length} saved article${savedArticles.length > 1 ? 's' : ''}`
               : 'Your saved articles will appear here'}
           </p>
@@ -116,8 +116,8 @@ export default function SavedPage() {
         {savedArticles.length === 0 ? (
           <div className="wiki-article" style={{ textAlign: 'center', padding: '60px 40px' }}>
             <div style={{ fontSize: '5em', marginBottom: '20px' }}>📚</div>
-            <h2 style={{ color: 'var(--wc-primary)', marginBottom: '16px' }}>No saved articles yet</h2>
-            <p style={{ fontSize: '1.1em', color: 'var(--wc-secondary)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+            <h2 className="typ-h2" style={{ color: 'var(--wc-primary)', marginBottom: '16px' }}>No saved articles yet</h2>
+            <p className="typ-body-lg" style={{ color: 'var(--wc-secondary)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
               Search for a topic and save articles to read them later during your trip!
             </p>
             <Link href="/" className="cdx-button cdx-button--action-primary" style={{ fontSize: '1.05em', padding: '14px 28px' }}>
@@ -145,7 +145,7 @@ export default function SavedPage() {
                           className="cdx-link"
                           style={{ textDecoration: 'none' }}
                         >
-                          <h3 style={{ margin: 0, color: 'var(--wc-primary)', fontSize: '1.4em' }}>
+                          <h3 className="typ-h3" style={{ margin: 0, color: 'var(--wc-primary)' }}>
                             {article.title}
                           </h3>
                         </Link>
@@ -169,10 +169,10 @@ export default function SavedPage() {
                       </div>
                       {article.description && (
                         <div className="wiki-infobox" style={{ marginBottom: '12px', padding: '12px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)' }}>
-                          <div style={{ fontSize: '0.95em', color: 'var(--wc-secondary)' }}>{article.description}</div>
+                          <div className="typ-body-sm" style={{ color: 'var(--wc-secondary)' }}>{article.description}</div>
                         </div>
                       )}
-                      <p style={{ color: 'var(--wc-text)', fontSize: '1em', lineHeight: '1.6', margin: 0 }}>
+                      <p className="typ-body" style={{ color: 'var(--wc-text)', margin: 0 }}>
                         {article.extract?.substring(0, 200)}...
                       </p>
                     </div>
@@ -186,7 +186,7 @@ export default function SavedPage() {
               <div className="wiki-infobox-title" style={{ justifyContent: 'center', marginBottom: '16px' }}>
                 📥 Export Your Articles
               </div>
-              <p style={{ marginBottom: '24px', fontSize: '1.05em', color: 'var(--wc-secondary)' }}>
+              <p className="typ-body" style={{ marginBottom: '24px', color: 'var(--wc-secondary)' }}>
                 Save your articles as Markdown to read offline during your trip
               </p>
               <button

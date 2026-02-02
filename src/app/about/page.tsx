@@ -104,6 +104,19 @@ export default function AboutPage() {
             </p>
           </div>
 
+          <h2>Licensing & Attribution 📜</h2>
+          <div className="wiki-infobox" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', borderLeftColor: '#b89700' }}>
+            <p style={{ margin: '0 0 12px 0' }}>
+              All Wikipedia content is available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer" style={{ color: '#b89700', textDecoration: 'underline' }}>Creative Commons Attribution-ShareAlike 3.0 License</a>.
+            </p>
+            <p style={{ margin: '0 0 12px 0' }}>
+              Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc.
+            </p>
+            <p style={{ margin: '0', fontSize: '0.95em', opacity: 0.9 }}>
+              When using content from WikiCurious, please attribute the original Wikipedia article and include a link to the license.
+            </p>
+          </div>
+
           <div className="wiki-fact-card">
             <div className="wiki-fact-label">🌟 Fun Fact</div>
             <div className="wiki-fact-value">

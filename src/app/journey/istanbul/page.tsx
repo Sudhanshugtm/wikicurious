@@ -50,10 +50,10 @@ export default function IstanbulJourney() {
         <div className="story-section">
           <Link href="/" className="back-link">← Return to journey</Link>
 
-          <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.8em' }}>
+          <h1 className="typ-h1" style={{ textAlign: 'left' }}>
             Istanbul
           </h1>
-          <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+          <p className="typ-subtitle" style={{ textAlign: 'left' }}>
             Where continents meet and civilizations merge
           </p>
 
@@ -67,7 +67,7 @@ export default function IstanbulJourney() {
                 />
               )}
 
-              <p className="story-paragraph">
+              <p className="story-paragraph typ-dropcap">
                 You stand at the edge of the Golden Horn. The air carries the scent of sea salt, roasted chestnuts, and coffee. Before you, the Bosphorus Strait divides two continents — Europe to your left, Asia to your right. Ferries crisscross the dark blue water like stitching on a great coat.
               </p>
 
@@ -76,8 +76,8 @@ export default function IstanbulJourney() {
               </p>
 
               {article.description && (
-                <div style={{ padding: '24px', margin: '24px 0', background: 'var(--paper-cream)', borderLeft: '3px solid var(--accent)' }}>
-                  <em>{article.description}</em>
+                <div className="wiki-infobox" style={{ margin: '24px 0' }}>
+                  <p className="typ-italic">{article.description}</p>
                 </div>
               )}
 
@@ -88,27 +88,27 @@ export default function IstanbulJourney() {
           )}
 
           <div style={{ marginTop: '48px' }}>
-            <h2 style={{ fontSize: '1.5em', fontWeight: 'normal', marginBottom: '24px', textAlign: 'center' }}>
+            <h2 className="typ-h2 typ-center">
               Explore deeper
             </h2>
 
             <Link href="/article/Hagia%20Sophia" style={{ textDecoration: 'none' }}>
               <div className="era-card">
-                <h3 className="era-title">⛪ Hagia Sophia</h3>
+                <h3 className="typ-h3 era-title">⛪ Hagia Sophia</h3>
                 <p className="era-description">The architectural wonder that defied time</p>
               </div>
             </Link>
 
             <Link href="/article/Grand%20Bazaar" style={{ textDecoration: 'none' }}>
               <div className="era-card">
-                <h3 className="era-title">🛍️ Grand Bazaar</h3>
+                <h3 className="typ-h3 era-title">🛍️ Grand Bazaar</h3>
                 <p className="era-description">One of the oldest covered markets in the world</p>
               </div>
             </Link>
 
             <Link href="/article/Topkapi%20Palace" style={{ textDecoration: 'none' }}>
               <div className="era-card">
-                <h3 className="era-title">👑 Topkapi Palace</h3>
+                <h3 className="typ-h3 era-title">👑 Topkapi Palace</h3>
                 <p className="era-description">Where Ottoman sultans ruled an empire</p>
               </div>
             </Link>

@@ -21,15 +21,15 @@ export default function DestinationsJourney() {
 
             {selectedPlace === 'cappadocia' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Cappadocia
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   Land of fairy chimneys and underground cities
                 </p>
 
-                <p className="story-paragraph">
-                  Imagine waking up before dawn in a room carved into soft volcanic rock. Outside, the sky is still dark, but already the sound reaches you — the rhythmic whoosh of flames. You step outside. Across the valley, dozens of hot air balloons are being inflated, their colorful fabric catching the first light of day.
+                <p className="story-paragraph typ-dropcap">
+                  Imagine waking up before dawn in a room carved into soft volcanic rock. Outside, sky is still dark, but already sound reaches you — rhythmic whoosh of flames. You step outside. Across the valley, dozens of hot air balloons are being inflated, their colorful fabric catching first light of day.
                 </p>
 
                 <p className="story-paragraph">
@@ -48,14 +48,14 @@ export default function DestinationsJourney() {
 
             {selectedPlace === 'pamukkale' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Pamukkale
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   Cotton castles of travertine
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   From a distance, they look like snowfields. Or perhaps a frozen waterfall cascading down a green hillside. But as you draw closer, you realize what you're seeing is impossible — white terraces of mineral-rich water, stretching as far as the eye can see.
                 </p>
 
@@ -75,14 +75,14 @@ export default function DestinationsJourney() {
 
             {selectedPlace === 'ephesus' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Ephesus
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   Where the Greeks and Romans walked
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   Walk down Curetes Street and listen. The marble under your feet is the same marble walked by Cleopatra, Mark Antony, Saint Paul. This was once the second-largest city in the Roman Empire, home to 250,000 people. Now, it's one of the best-preserved ancient cities in the Mediterranean.
                 </p>
 
@@ -119,17 +119,17 @@ export default function DestinationsJourney() {
 
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
           <div className="era-card" onClick={() => setSelectedPlace('cappadocia')}>
-            <h3 className="era-title">🎈 Cappadocia</h3>
+            <h3 className="typ-h3 era-title">🎈 Cappadocia</h3>
             <p className="era-description">Fairy chimneys and underground cities</p>
           </div>
 
           <div className="era-card" onClick={() => setSelectedPlace('pamukkale')}>
-            <h3 className="era-title">🏊 Pamukkale</h3>
+            <h3 className="typ-h3 era-title">🏊 Pamukkale</h3>
             <p className="era-description">White travertine terraces and Roman ruins</p>
           </div>
 
           <div className="era-card" onClick={() => setSelectedPlace('ephesus')}>
-            <h3 className="era-title">🏛️ Ephesus</h3>
+            <h3 className="typ-h3 era-title">🏛️ Ephesus</h3>
             <p className="era-description">Ancient Greek and Roman city</p>
           </div>
         </div>

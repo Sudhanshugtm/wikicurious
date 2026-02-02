@@ -101,11 +101,13 @@ function SearchContent() {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <header>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
-            <span style={{ fontSize: '1.2em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>TurkeyCurious</span>
-          </Link>
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
+              <span style={{ fontSize: '2em' }}>🇹🇷</span>
+              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
+            </Link>
+          </div>
         </header>
         <div className="wiki-loading">
           <div className="cdx-spinner"></div>
@@ -117,16 +119,18 @@ function SearchContent() {
   if (error) {
     return (
       <div className="min-h-screen">
-        <header>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
-            <span style={{ fontSize: '1.2em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>TurkeyCurious</span>
-          </Link>
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
+              <span style={{ fontSize: '2em' }}>🇹🇷</span>
+              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
+            </Link>
+          </div>
         </header>
         <div className="content-wrapper">
           <div className="wiki-error">
             <div className="wiki-error-title">Error</div>
-            <div>{error}</div>
+            <div className="typ-body">{error}</div>
             <Link href="/" className="cdx-button" style={{ marginTop: '16px' }}>← Back</Link>
           </div>
         </div>
@@ -137,17 +141,19 @@ function SearchContent() {
   if (!mainArticle && (!articles || articles.length === 0)) {
     return (
       <div className="min-h-screen">
-        <header>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-            <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
-            <span style={{ fontSize: '1.2em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>TurkeyCurious</span>
-          </Link>
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
+              <span style={{ fontSize: '2em' }}>🇹🇷</span>
+              <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
+            </Link>
+          </div>
         </header>
         <div className="content-wrapper">
           <div className="wiki-article" style={{ textAlign: 'center', padding: '48px 32px' }}>
             <div style={{ fontSize: '3em', marginBottom: '16px' }}>📜</div>
-            <h2 style={{ marginBottom: '16px' }}>No Results Found</h2>
-            <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)' }}>
+            <h2 className="typ-h2" style={{ marginBottom: '16px' }}>No Results Found</h2>
+            <p className="typ-italic" style={{ color: 'var(--wc-secondary)' }}>
               We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.
             </p>
             <Link href="/" className="cdx-button" style={{ marginTop: '24px' }}>← Back</Link>
@@ -159,17 +165,19 @@ function SearchContent() {
 
   return (
     <div className="min-h-screen">
-      <header>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
-          <span style={{ fontSize: '1.5em' }}>🇹🇷</span>
-          <span style={{ fontSize: '1.2em', fontFamily: "'Georgia', 'Times New Roman', serif" }}>TurkeyCurious</span>
-        </Link>
+      <header className="wiki-header">
+        <div className="wiki-content">
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--wc-ink)' }}>
+            <span style={{ fontSize: '2em' }}>🇹🇷</span>
+            <span className="typ-h3" style={{ margin: 0 }}>TurkeyCurious</span>
+          </Link>
+        </div>
       </header>
 
       <div className="content-wrapper">
         <Link href="/" className="cdx-button" style={{ marginBottom: '24px' }}>← Back</Link>
 
-        <h2 style={{ fontSize: '2em', marginBottom: '32px', fontFamily: "'Georgia', 'Times New Roman', serif", fontWeight: 'normal', color: 'var(--wc-primary)' }}>
+        <h2 className="typ-h1" style={{ marginBottom: '32px' }}>
           &quot;{query}&quot;
         </h2>
 
@@ -180,23 +188,23 @@ function SearchContent() {
                 <img
                   src={mainArticle.thumbnail.source}
                   alt={mainArticle.title}
-                  style={{ maxWidth: '260px', float: 'none', margin: '0 auto 16px' }}
+                  style={{ maxWidth: '260px', float: 'none', margin: '0 auto 16px', borderRadius: '8px', boxShadow: '0 2px 8px var(--wc-shadow)' }}
                 />
               )}
               <div>
-                <h1>{mainArticle.title}</h1>
+                <h1 className="typ-h1">{mainArticle.title}</h1>
                 {mainArticle.description && (
-                  <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', marginBottom: '16px' }}>
+                  <p className="typ-italic" style={{ color: 'var(--wc-secondary)', marginBottom: '16px' }}>
                     {mainArticle.description}
                   </p>
                 )}
-                <p>{mainArticle.extract}</p>
+                <p className="typ-body">{mainArticle.extract}</p>
                 <a
                   href={mainArticle.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(mainArticle.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cdx-link"
-                  style={{ fontStyle: 'italic' }}
+                  style={{ fontStyle: 'italic', fontFamily: 'var(--font-body)' }}
                 >
                   Read full article on Wikipedia →
                 </a>
@@ -223,20 +231,22 @@ function SearchContent() {
                       textDecoration: 'none',
                       color: 'var(--wc-ink)',
                       boxShadow: '0 1px 3px var(--wc-shadow)',
+                      borderRadius: '8px',
+                      transition: 'all 0.2s ease',
                     }}
                   >
                     {article.thumbnail && (
                       <img
                         src={article.thumbnail.source}
                         alt={article.title}
-                        style={{ width: '80px', height: '80px', objectFit: 'cover', border: '1px solid var(--wc-border)', padding: '3px' }}
+                        style={{ width: '80px', height: '80px', objectFit: 'cover', border: '1px solid var(--wc-border)', padding: '3px', borderRadius: '4px' }}
                       />
                     )}
                     <div>
-                      <h4 style={{ margin: '0 0 8px 0', color: 'var(--wc-primary)', fontSize: '1.2em', fontFamily: "'Georgia', 'Times New Roman', serif", fontWeight: 'normal' }}>
+                      <h4 className="typ-h4" style={{ margin: '0 0 8px 0', color: 'var(--wc-primary)', fontWeight: '500' }}>
                         {article.title}
                       </h4>
-                      <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em', fontStyle: 'italic', margin: 0 }}>
+                      <p className="typ-body-sm" style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', margin: 0 }}>
                         {article.extract?.substring(0, 150)}...
                       </p>
                     </div>

@@ -1,16 +1,74 @@
-/* TurkeyCurious - Immersive storytelling experience */
+/* WikiCurious - Immersive storytelling experience */
+
+/* ============================================
+   TYPOGRAPHY SYSTEM
+   ============================================ */
 
 :root {
+  /* --- Colors --- */
   --ink: #2d2a26;
   --paper-warm: #f5f2ed;
   --paper-cream: #ebe8e2;
   --sepia: #8b7355;
   --accent: #c9a66b;
   --subtle: #b0a898;
+
+  /* Wiki mode colors */
+  --wc-primary: #202122;
+  --wc-secondary: #54595d;
+  --wc-ink: #202122;
+  --wc-paper: #f8f9fa;
+  --wc-border: #a2a9b1;
+  --wc-shadow: rgba(0, 0, 0, 0.08);
+  --wc-error: #d33;
+
+  /* --- Font Families --- */
+  --font-display: var(--font-baskerville), 'Georgia', serif;
+  --font-body: var(--font-lora), 'Georgia', serif;
+  --font-ui: system-ui, -apple-system, sans-serif;
+
+  /* --- Type Scale (Minor Third) --- */
+  --font-hero: 3.5rem;      /* 56px - Opening title */
+  --font-h1: 2.625rem;      /* 42px - Main page titles */
+  --font-h2: 2rem;          /* 32px - Section headings */
+  --font-h3: 1.5rem;        /* 24px - Card titles */
+  --font-h4: 1.25rem;       /* 20px - Small headings */
+  --font-lg: 1.125rem;      /* 18px - Story paragraphs */
+  --font-base: 1rem;        /* 16px - Wiki body */
+  --font-sm: 0.875rem;      /* 14px - Metadata */
+
+  /* --- Line Heights --- */
+  --lh-tight: 1.15;         /* Headings */
+  --lh-normal: 1.3;         /* Subheadings */
+  --lh-relaxed: 1.75;       /* Story paragraphs */
+  --lh-comfortable: 1.65;   /* Wiki articles */
+
+  /* --- Spacing Scale --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* --- Letter Spacing --- */
+  --letter-tight: -0.02em;
+  --letter-snug: -0.01em;
+  --letter-normal: 0;
+  --letter-wide: 0.05em;
 }
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
@@ -19,8 +77,10 @@ body {
   background: var(--paper-warm);
   color: var(--ink);
   min-height: 100vh;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  line-height: 1.7;
+  font-family: var(--font-body);
+  line-height: var(--lh-comfortable);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Subtle paper texture */
@@ -36,6 +96,133 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+/* Headings */
+.typ-hero {
+  font-family: var(--font-display);
+  font-size: var(--font-hero);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-tight);
+  margin: 0 0 var(--space-md) 0;
+  color: var(--ink);
+}
+
+.typ-h1 {
+  font-family: var(--font-display);
+  font-size: var(--font-h1);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-snug);
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--ink);
+}
+
+.typ-h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-snug);
+  margin: 0 0 var(--space-md) 0;
+  color: var(--ink);
+}
+
+.typ-h3 {
+  font-family: var(--font-display);
+  font-size: var(--font-h3);
+  font-weight: 500;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--letter-normal);
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ink);
+}
+
+.typ-h4 {
+  font-family: var(--font-body);
+  font-size: var(--font-h4);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: var(--letter-normal);
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ink);
+}
+
+/* Body text */
+.typ-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--font-lg);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-lg);
+  color: var(--ink);
+}
+
+.typ-body {
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  line-height: var(--lh-comfortable);
+  margin-bottom: var(--space-md);
+  color: var(--ink);
+}
+
+.typ-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Special text styles */
+.typ-subtitle {
+  font-family: var(--font-display);
+  font-size: var(--font-h4);
+  font-weight: 400;
+  font-style: italic;
+  line-height: var(--lh-normal);
+  color: var(--sepia);
+  margin: 0 0 var(--space-xl) 0;
+}
+
+.typ-lead {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--sepia);
+}
+
+.typ-italic {
+  font-style: italic;
+  color: var(--sepia);
+}
+
+/* Drop cap for story opening */
+.typ-dropcap::first-letter {
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.85;
+  margin-right: 0.1em;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Text alignment */
+.typ-center {
+  text-align: center;
+}
+
+.typ-justify {
+  text-align: justify;
+}
+
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
 
 /* Full screen story container */
 .story-container {
@@ -58,18 +245,23 @@ body::before {
 }
 
 .opening-title {
-  font-size: 2.5em;
-  margin: 0 0 16px 0;
-  font-weight: normal;
-  letter-spacing: 2px;
+  font-family: var(--font-display);
+  font-size: var(--font-hero);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-wide);
+  margin: 0 0 var(--space-md) 0;
   color: var(--ink);
 }
 
 .opening-subtitle {
-  font-size: 1.2em;
+  font-family: var(--font-display);
+  font-size: var(--font-lg);
+  font-weight: 400;
   font-style: italic;
+  line-height: var(--lh-normal);
   color: var(--sepia);
-  margin: 0 0 60px 0;
+  margin: 0 0 var(--space-3xl) 0;
   max-width: 500px;
 }
 
@@ -77,13 +269,13 @@ body::before {
 .journey-button {
   background: var(--paper-cream);
   border: 1px solid var(--subtle);
-  padding: 16px 48px;
-  font-size: 1.1em;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  padding: var(--space-md) var(--space-2xl);
+  font-family: var(--font-body);
+  font-size: var(--font-lg);
   color: var(--ink);
   cursor: pointer;
   transition: all 0.4s ease;
-  letter-spacing: 1px;
+  letter-spacing: var(--letter-wide);
   position: relative;
 }
 
@@ -101,7 +293,7 @@ body::before {
 
 .journey-button:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .journey-button:hover::before {
@@ -113,19 +305,24 @@ body::before {
 
 /* Scene header */
 .scene-header {
-  font-size: 3em;
-  font-weight: normal;
-  margin: 0 0 24px 0;
+  font-family: var(--font-display);
+  font-size: var(--font-hero);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-lg) 0;
   color: var(--ink);
   text-align: center;
 }
 
 .scene-subtitle {
-  font-size: 1.4em;
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 400;
   font-style: italic;
+  line-height: var(--lh-normal);
   color: var(--sepia);
   text-align: center;
-  margin: 0 0 60px 0;
+  margin: 0 0 var(--space-2xl) 0;
 }
 
 /* Story sections */
@@ -136,19 +333,25 @@ body::before {
 }
 
 .story-paragraph {
-  font-size: 1.15em;
-  line-height: 1.9;
-  margin: 0 0 32px 0;
+  font-family: var(--font-body);
+  font-size: var(--font-lg);
+  line-height: var(--lh-relaxed);
+  margin: 0 0 var(--space-lg) 0;
   text-align: justify;
   text-indent: 2em;
+  color: var(--ink);
 }
+
+/* ============================================
+   CARDS
+   ============================================ */
 
 /* Era cards */
 .era-card {
   background: var(--paper-cream);
   border: 1px solid var(--subtle);
-  padding: 32px;
-  margin: 24px 0;
+  padding: var(--space-xl);
+  margin: var(--space-lg) 0;
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
@@ -169,7 +372,7 @@ body::before {
 
 .era-card:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 16px rgba(0,0,0,0.1);
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .era-card:hover::before {
@@ -180,20 +383,83 @@ body::before {
 }
 
 .era-title {
-  font-size: 1.6em;
-  margin: 0 0 12px 0;
-  font-weight: normal;
+  font-family: var(--font-display);
+  font-size: var(--font-h3);
+  font-weight: 500;
+  margin: 0 0 var(--space-sm) 0;
   color: var(--ink);
 }
 
 .era-description {
+  font-family: var(--font-body);
   font-style: italic;
   color: var(--sepia);
   margin: 0;
-  font-size: 1.05em;
+  font-size: var(--font-base);
 }
 
-/* Timeline */
+/* Place card */
+.place-card {
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-xl);
+  background: var(--paper-cream);
+  border: 1px solid var(--subtle);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.place-card::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--subtle);
+  opacity: 0.3;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.place-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.place-card:hover::before {
+  top: 7px;
+  left: 7px;
+  right: -7px;
+  bottom: -7px;
+}
+
+.place-emoji {
+  font-size: 3em;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.place-name {
+  font-family: var(--font-display);
+  font-size: var(--font-hero);
+  font-weight: 500;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ink);
+}
+
+.place-invitation {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+
 .timeline {
   max-width: 700px;
   margin: 0 auto;
@@ -251,28 +517,36 @@ body::before {
 }
 
 .timeline-year {
-  font-size: 1.8em;
-  font-weight: normal;
-  margin: 0 0 12px 0;
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 400;
+  margin: 0 0 var(--space-sm) 0;
   color: var(--accent);
 }
 
 .timeline-title {
-  font-size: 1.3em;
-  margin: 0 0 12px 0;
-  font-weight: normal;
+  font-family: var(--font-display);
+  font-size: var(--font-h3);
+  font-weight: 500;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ink);
 }
 
 .timeline-text {
+  font-family: var(--font-body);
   font-style: italic;
   color: var(--sepia);
   margin: 0;
 }
 
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
 /* Minimal header */
 .header-minimal {
   position: absolute;
-  top: 24px;
+  top: var(--space-lg);
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -281,8 +555,9 @@ body::before {
 .header-minimal a {
   color: var(--subtle);
   text-decoration: none;
+  font-family: var(--font-body);
   font-size: 0.95em;
-  letter-spacing: 1px;
+  letter-spacing: var(--letter-wide);
   transition: color 0.3s;
 }
 
@@ -290,117 +565,14 @@ body::before {
   color: var(--ink);
 }
 
-/* Place card */
-.place-card {
-  max-width: 600px;
-  margin: 0 auto 32px;
-  padding: 40px;
-  background: var(--paper-cream);
-  border: 1px solid var(--subtle);
-  cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.place-card::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: -4px;
-  bottom: -4px;
-  border: 1px solid var(--subtle);
-  opacity: 0.3;
-  pointer-events: none;
-  transition: all 0.4s ease;
-}
-
-.place-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 16px rgba(0,0,0,0.1);
-}
-
-.place-card:hover::before {
-  top: 7px;
-  left: 7px;
-  right: -7px;
-  bottom: -7px;
-}
-
-.place-emoji {
-  font-size: 3em;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.place-name {
-  font-size: 2em;
-  margin: 0 0 12px 0;
-  font-weight: normal;
-}
-
-.place-invitation {
-  font-style: italic;
-  color: var(--sepia);
-  margin: 0;
-}
-
-/* Loading */
-.loading-story {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-style: italic;
-  color: var(--sepia);
-  font-size: 1.2em;
-}
-
-/* Article view */
-.article-view {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 60px 30px 80px;
-}
-
-.article-view h1 {
-  font-size: 2.4em;
-  font-weight: normal;
-  margin: 0 0 32px 0;
-  color: var(--ink);
-  line-height: 1.2;
-}
-
-.article-view p {
-  font-size: 1.1em;
-  line-height: 1.9;
-  margin: 0 0 24px 0;
-  text-align: justify;
-}
-
-.article-view p:first-of-type::first-letter {
-  font-size: 3em;
-  float: left;
-  line-height: 1;
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.article-image {
-  width: 100%;
-  max-width: 320px;
-  margin: 24px auto;
-  display: block;
-  border: 1px solid var(--subtle);
-  padding: 6px;
-  background: var(--paper-cream);
-}
-
+/* Back link */
 .back-link {
   display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  font-style: italic;
   color: var(--sepia);
   text-decoration: none;
-  font-style: italic;
   margin-bottom: 40px;
   transition: color 0.3s;
 }
@@ -409,13 +581,247 @@ body::before {
   color: var(--ink);
 }
 
+/* ============================================
+   LOADING
+   ============================================ */
+
+.loading-story {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--sepia);
+  font-size: var(--font-lg);
+}
+
+/* ============================================
+   ARTICLE VIEW (Wiki Mode)
+   ============================================ */
+
+.article-view {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 60px 30px 80px;
+}
+
+.article-view h1 {
+  font-family: var(--font-display);
+  font-size: var(--font-h1);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-snug);
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--wc-primary);
+}
+
+.article-view p {
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  line-height: var(--lh-comfortable);
+  margin: 0 0 var(--space-lg) 0;
+  text-align: left;
+  max-width: 65ch;
+  color: var(--wc-primary);
+}
+
+.article-view p:first-of-type::first-letter {
+  font-size: 3.5em;
+  float: left;
+  line-height: 0.85;
+  margin-right: 0.1em;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.article-image {
+  width: 100%;
+  max-width: 320px;
+  margin: var(--space-lg) auto;
+  display: block;
+  border: 1px solid var(--subtle);
+  padding: 6px;
+  background: var(--paper-cream);
+}
+
+/* ============================================
+   WIKI COMPONENTS
+   ============================================ */
+
+.wiki-header {
+  background: linear-gradient(180deg, var(--wc-paper) 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--wc-border);
+  padding: var(--space-lg) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.wiki-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.wiki-article {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--wc-shadow);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wiki-article h1 {
+  font-family: var(--font-display);
+  font-size: var(--font-hero);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-snug);
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--wc-primary);
+}
+
+.wiki-article h2,
+.wiki-article h3,
+.wiki-article h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+  color: var(--wc-primary);
+}
+
+.wiki-article h2 {
+  font-size: var(--font-h2);
+  line-height: var(--lh-tight);
+}
+
+.wiki-article h3 {
+  font-size: var(--font-h3);
+  line-height: var(--lh-normal);
+}
+
+.wiki-article h4 {
+  font-size: var(--font-h4);
+  line-height: 1.4;
+}
+
+.wiki-article p {
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  line-height: var(--lh-comfortable);
+  margin-bottom: var(--space-lg);
+  color: var(--wc-primary);
+}
+
+.wiki-card {
+  background: #ffffff;
+  border: 1px solid var(--wc-border);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--wc-shadow);
+  transition: all 0.2s ease;
+}
+
+.wiki-card:hover {
+  box-shadow: 0 4px 12px var(--wc-shadow);
+  transform: translateY(-2px);
+}
+
+.wiki-infobox {
+  background: linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%);
+  border-left: 4px solid #0969da;
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.wiki-infobox-title {
+  font-family: var(--font-display);
+  font-size: var(--font-h4);
+  font-weight: 600;
+  color: var(--wc-primary);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.wiki-fact-card {
+  background: linear-gradient(135deg, #fef7e0 0%, #fef0c4 100%);
+  border: 1px solid #e8c97a;
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.wiki-fact-label {
+  font-family: var(--font-display);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-wide);
+  color: #613d00;
+  margin-bottom: var(--space-sm);
+}
+
+.wiki-fact-value {
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  line-height: var(--lh-comfortable);
+  color: var(--wc-primary);
+}
+
+.wiki-loading,
+.wiki-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: var(--space-2xl);
+}
+
+.wiki-error-title {
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  color: var(--wc-error);
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
 @media (max-width: 768px) {
+  :root {
+    --font-hero: 2.25rem;    /* 36px */
+    --font-h1: 1.75rem;      /* 28px */
+    --font-h2: 1.5rem;       /* 24px */
+    --font-h3: 1.25rem;      /* 20px */
+    --font-lg: 1rem;         /* 16px */
+  }
+
   .opening-title {
-    font-size: 1.8em;
+    font-size: var(--font-h1);
   }
 
   .scene-header {
-    font-size: 2em;
+    font-size: var(--font-h2);
   }
 
   .timeline {
@@ -437,7 +843,83 @@ body::before {
     right: auto !important;
   }
 
-  .article-view {
+  .article-view,
+  .wiki-article {
     padding: 40px 20px 60px;
   }
+
+  .wiki-content {
+    padding: 0 var(--space-md);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: var(--space-sm);
+}
+
+.gap-3 {
+  gap: var(--space-md);
+}
+
+.gap-4 {
+  gap: var(--space-lg);
+}
+
+.gap-6 {
+  gap: var(--space-xl);
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.section-header {
+  font-family: var(--font-display);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--subtle);
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
 }

@@ -21,14 +21,14 @@ export default function HistoryJourney() {
 
             {selectedEra === 'byzantine' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Byzantine Era
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   330–1453 AD • Constantinople, the New Rome
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   In 330 AD, Emperor Constantine made a fateful decision. He moved the capital of Rome eastward, to a city called Byzantium. He renamed it Constantinople — the city of Constantine. For over a thousand years, this would be the beating heart of the Eastern Roman Empire.
                 </p>
 
@@ -44,14 +44,14 @@ export default function HistoryJourney() {
 
             {selectedEra === 'ottoman' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Ottoman Empire
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   1299–1922 • From a beylik to a world power
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   In the rugged hills of northwestern Anatolia, a small Turkish tribe led by Osman Bey began building something that would reshape the world. They were the Ottomans, and for six centuries, their empire would stretch from Budapest to Baghdad, from Crimea to Algeria.
                 </p>
 
@@ -67,14 +67,14 @@ export default function HistoryJourney() {
 
             {selectedEra === 'republic' && (
               <>
-                <h1 className="scene-header" style={{ textAlign: 'left', fontSize: '2.2em' }}>
+                <h1 className="typ-h1" style={{ textAlign: 'left' }}>
                   Turkish Republic
                 </h1>
-                <p className="scene-subtitle" style={{ textAlign: 'left' }}>
+                <p className="typ-subtitle" style={{ textAlign: 'left' }}>
                   1923–present • A nation reborn
                 </p>
 
-                <p className="story-paragraph">
+                <p className="story-paragraph typ-dropcap">
                   After the First World War, the Ottoman Empire collapsed. Allied forces occupied Istanbul. The Sultanate was abolished. From the ashes of empire, a military officer named Mustafa Kemal — later given the name Atatürk, "Father of the Turks" — led a war of independence.
                 </p>
 
