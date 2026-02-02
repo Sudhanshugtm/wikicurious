@@ -10,13 +10,6 @@ interface WikiArticle {
   thumbnail?: { source: string };
   description?: string;
   content_urls?: { desktop: { page: string } };
-  sections?: WikiSection[];
-}
-
-interface WikiSection {
-  title: string;
-  level: number;
-  line: string;
 }
 
 function ArticleContent() {
@@ -33,14 +26,18 @@ function ArticleContent() {
       setError(null);
 
       try {
-        // Get article summary
+        // Get article summary from our API
         const summaryRes = await fetch(
-          `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
+          `/api/wikipedia?action=summary&title=${encodeURIComponent(title)}`
         );
 
         if (summaryRes.ok) {
           const summaryData = await summaryRes.json();
-          setArticle(summaryData);
+          if (summaryData.title) {
+            setArticle(summaryData);
+          } else {
+            setError('Article not found');
+          }
         } else {
           setError('Article not found');
         }
@@ -50,7 +47,7 @@ function ArticleContent() {
         setSaved(savedArticles.includes(title));
       } catch (err) {
         setError('Failed to fetch article. Please try again.');
-        console.error(err);
+        console.error('Fetch error:', err);
       } finally {
         setLoading(false);
       }
@@ -145,7 +142,7 @@ function ArticleContent() {
                 <h1>{article.title}</h1>
                 {article.description && (
                   <div className="wiki-infobox" style={{ marginBottom: '16px' }}>
-                    <div className="wiki-infobox-label" style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
                       Description
                     </div>
                     <div>{article.description}</div>
@@ -169,7 +166,7 @@ function ArticleContent() {
 
             {/* External Link */}
             <div className="wiki-infobox" style={{ marginTop: '24px' }}>
-              <div className="wiki-infobox-title">Read More</div>
+              <div style={{ fontWeight: 'bold', marginBottom: '12px' }}>Read More</div>
               <p style={{ marginBottom: '8px' }}>
                 This is a summary from Wikipedia. For the full article with citations and more details:
               </p>

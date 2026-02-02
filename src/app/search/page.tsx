@@ -9,7 +9,7 @@ interface WikiSummary {
   extract: string;
   thumbnail?: { source: string };
   description?: string;
-  content_urls: { desktop: { page: string } };
+  content_urls?: { desktop: { page: string } };
 }
 
 interface WikiArticle {
@@ -18,7 +18,6 @@ interface WikiArticle {
   thumbnail?: { source: string };
   description?: string;
   content_urls?: { desktop: { page: string } };
-  sections?: WikiSection[];
 }
 
 interface WikiSection {
@@ -42,38 +41,44 @@ function SearchContent() {
       setError(null);
 
       try {
-        // First, search for articles
-        const searchResponse = await fetch(
-          `https://en.wikipedia.org/api/rest_v1/page/related/${encodeURIComponent(query)}`
+        // Try to get main article summary first
+        const summaryResponse = await fetch(
+          `/api/wikipedia?action=summary&title=${encodeURIComponent(query)}`
         );
 
-        if (searchResponse.ok) {
-          const searchData = await searchResponse.json();
-          setArticles(searchData.pages || []);
-
-          // Get the main article summary
-          const mainResponse = await fetch(
-            `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`
-          );
-
-          if (mainResponse.ok) {
-            const mainData = await mainResponse.json();
+        if (summaryResponse.ok) {
+          const mainData = await summaryResponse.json();
+          if (mainData.title) {
             setMainArticle(mainData);
           }
-        } else {
-          // If related pages fails, try search API
-          const wikiSearchResponse = await fetch(
-            `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&format=json&origin=*`
+        }
+
+        // Try to get related articles
+        const relatedResponse = await fetch(
+          `/api/wikipedia?action=related&title=${encodeURIComponent(query)}`
+        );
+
+        if (relatedResponse.ok) {
+          const relatedData = await relatedResponse.json();
+          if (relatedData.pages) {
+            setArticles(relatedData.pages);
+          }
+        }
+
+        // If no related pages, try search API
+        if (!mainArticle && (!articles || articles.length === 0)) {
+          const searchResponse = await fetch(
+            `/api/wikipedia?action=search&q=${encodeURIComponent(query)}`
           );
 
-          if (wikiSearchResponse.ok) {
-            const wikiSearchData = await wikiSearchResponse.json();
-            if (wikiSearchData.query?.search?.length > 0) {
+          if (searchResponse.ok) {
+            const searchData = await searchResponse.json();
+            if (searchData.query?.search?.length > 0) {
               // Get summaries for top results
               const summaries = await Promise.all(
-                wikiSearchData.query.search.slice(0, 6).map(async (result: any) => {
+                searchData.query.search.slice(0, 6).map(async (result: any) => {
                   const summaryRes = await fetch(
-                    `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(result.title)}`
+                    `/api/wikipedia?action=summary&title=${encodeURIComponent(result.title)}`
                   );
                   if (summaryRes.ok) {
                     return summaryRes.json();
@@ -81,18 +86,20 @@ function SearchContent() {
                   return null;
                 })
               );
-              setArticles(summaries.filter(Boolean));
 
-              // Set first result as main article
-              if (summaries[0]) {
-                setMainArticle(summaries[0]);
+              const validSummaries = summaries.filter(Boolean);
+              setArticles(validSummaries);
+
+              // Set first result as main article if we don't have one
+              if (!mainArticle && validSummaries[0]) {
+                setMainArticle(validSummaries[0]);
               }
             }
           }
         }
       } catch (err) {
         setError('Failed to fetch content. Please try again.');
-        console.error(err);
+        console.error('Fetch error:', err);
       } finally {
         setLoading(false);
       }
@@ -120,6 +127,19 @@ function SearchContent() {
       <div className="wiki-error">
         <div className="wiki-error-title">Error</div>
         <div>{error}</div>
+      </div>
+    );
+  }
+
+  if (!mainArticle && (!articles || articles.length === 0)) {
+    return (
+      <div className="wiki-article">
+        <h2>No Results Found</h2>
+        <p>We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.</p>
+        <p>Try searching for a different term or checking the spelling.</p>
+        <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px' }}>
+          ← Back to search
+        </Link>
       </div>
     );
   }
@@ -196,13 +216,13 @@ function SearchContent() {
           )}
 
           {/* Related Articles */}
-          {articles.length > 1 && (
+          {articles && articles.length > 1 && (
             <div>
               <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>
                 Related Articles
               </h3>
               <div style={{ display: 'grid', gap: '16px' }}>
-                {articles.slice(1).map((article, index) => (
+                {articles.map((article, index) => (
                   article && article.title !== mainArticle?.title && (
                     <Link
                       key={index}

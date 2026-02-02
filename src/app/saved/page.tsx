@@ -27,10 +27,13 @@ export default function SavedPage() {
         const summaries = await Promise.all(
           savedTitles.map(async (title: string) => {
             const res = await fetch(
-              `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
+              `/api/wikipedia?action=summary&title=${encodeURIComponent(title)}`
             );
             if (res.ok) {
-              return res.json();
+              const data = await res.json();
+              if (data.title) {
+                return data;
+              }
             }
             return null;
           })
@@ -123,13 +126,13 @@ export default function SavedPage() {
                         style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '2px' }}
                       />
                     )}
-                    <div className="cdx-card__text" style={{ flex: 1 }}>
+                    <div style={{ flex: 1 }}>
                       <div className="flex justify-between items-start">
                         <Link
                           href={`/article/${encodeURIComponent(article.title)}`}
                           className="cdx-link"
                         >
-                          <h3 className="cdx-card__title" style={{ marginBottom: '8px' }}>
+                          <h3 style={{ marginBottom: '8px' }}>
                             {article.title}
                           </h3>
                         </Link>
@@ -159,7 +162,7 @@ export default function SavedPage() {
           {/* Export Section */}
           {savedArticles.length > 0 && (
             <div className="wiki-infobox" style={{ marginTop: '32px' }}>
-              <div className="wiki-infobox-title">Export Articles</div>
+              <div style={{ fontWeight: 'bold', marginBottom: '12px' }}>Export Articles</div>
               <p style={{ marginBottom: '16px' }}>Save your articles for offline reading:</p>
               <button
                 onClick={() => {
