@@ -110,13 +110,25 @@ function SearchContent() {
 
   if (loading) {
     return (
-      <div className="wiki-loading">
-        <div className="cdx-spinner" style={{ width: '48px', height: '48px', border: '4px solid #c8ccd1', borderTopColor: '#3366cc', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }}>
-          <style jsx>{`
-            @keyframes spin {
-              to { transform: rotate(360deg); }
-            }
-          `}</style>
+      <div className="min-h-screen">
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+                <span style={{ fontSize: '2.5em' }}>🌍</span>
+                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
+                  WikiCurious
+                </h1>
+              </Link>
+              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
+                <Link href="/" className="cdx-link">Home</Link>
+                <Link href="/saved" className="cdx-link">Saved</Link>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <div className="wiki-loading">
+          <div className="cdx-spinner"></div>
         </div>
       </div>
     );
@@ -124,22 +136,70 @@ function SearchContent() {
 
   if (error) {
     return (
-      <div className="wiki-error">
-        <div className="wiki-error-title">Error</div>
-        <div>{error}</div>
+      <div className="min-h-screen">
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+                <span style={{ fontSize: '2.5em' }}>🌍</span>
+                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
+                  WikiCurious
+                </h1>
+              </Link>
+              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
+                <Link href="/" className="cdx-link">Home</Link>
+                <Link href="/saved" className="cdx-link">Saved</Link>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <main className="wiki-content" style={{ padding: '40px 20px' }}>
+          <div className="wiki-error">
+            <div className="wiki-error-title">Oops! Something went wrong</div>
+            <div>{error}</div>
+            <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px', display: 'inline-block' }}>
+              ← Back to home
+            </Link>
+          </div>
+        </main>
       </div>
     );
   }
 
   if (!mainArticle && (!articles || articles.length === 0)) {
     return (
-      <div className="wiki-article">
-        <h2>No Results Found</h2>
-        <p>We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.</p>
-        <p>Try searching for a different term or checking the spelling.</p>
-        <Link href="/" className="cdx-button cdx-button--action-secondary" style={{ marginTop: '16px' }}>
-          ← Back to search
-        </Link>
+      <div className="min-h-screen">
+        <header className="wiki-header">
+          <div className="wiki-content">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+                <span style={{ fontSize: '2.5em' }}>🌍</span>
+                <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
+                  WikiCurious
+                </h1>
+              </Link>
+              <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
+                <Link href="/" className="cdx-link">Home</Link>
+                <Link href="/saved" className="cdx-link">Saved</Link>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <main className="wiki-content" style={{ padding: '40px 20px' }}>
+          <div className="wiki-article" style={{ textAlign: 'center', padding: '48px' }}>
+            <div style={{ fontSize: '4em', marginBottom: '16px' }}>🔍</div>
+            <h2 style={{ color: 'var(--wc-primary)', marginBottom: '16px' }}>No Results Found</h2>
+            <p style={{ fontSize: '1.1em', color: 'var(--wc-secondary)', marginBottom: '24px' }}>
+              We couldn&apos;t find any Wikipedia articles for &quot;{query}&quot;.
+            </p>
+            <p style={{ color: 'var(--wc-secondary)', marginBottom: '32px' }}>
+              Try searching for a different term or checking the spelling.
+            </p>
+            <Link href="/" className="cdx-button cdx-button--action-primary">
+              ← Back to search
+            </Link>
+          </div>
+        </main>
       </div>
     );
   }
@@ -150,108 +210,124 @@ function SearchContent() {
       <header className="wiki-header">
         <div className="wiki-content">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-decoration-none">
-              <span className="text-2xl">🌍</span>
-              <h1 className="m-0 text-xl font-bold">WikiCurious</h1>
+            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+              <span style={{ fontSize: '2.5em' }}>🌍</span>
+              <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
+                WikiCurious
+              </h1>
             </Link>
-            <nav className="flex gap-4 text-sm">
-              <Link href="/" className="text-decoration-none cdx-link">Home</Link>
+            <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
+              <Link href="/" className="cdx-link">Home</Link>
+              <Link href="/saved" className="cdx-link">Saved</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      <main className="wiki-content">
-        <div style={{ padding: '24px 0' }}>
-          {/* Search Bar */}
+      <main className="wiki-content" style={{ padding: '32px 20px' }}>
+        {/* Search Bar */}
+        <div style={{ marginBottom: '24px' }}>
           <Link
             href="/"
             className="cdx-button cdx-button--action-secondary"
-            style={{ marginBottom: '24px' }}
           >
             ← Back to search
           </Link>
+        </div>
 
-          <h2 style={{ fontSize: '2em', marginBottom: '16px' }}>
+        {/* Results Header */}
+        <div style={{ marginBottom: '32px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2em', marginBottom: '8px', color: 'var(--wc-primary)' }}>
             Results for &quot;{query}&quot;
           </h2>
-
-          {mainArticle && (
-            <div className="wiki-article">
-              <div className="flex flex-col md:flex-row gap-4" style={{ marginBottom: '24px' }}>
-                {mainArticle.thumbnail && (
-                  <img
-                    src={mainArticle.thumbnail.source}
-                    alt={mainArticle.title}
-                    style={{ maxWidth: '300px', borderRadius: '2px' }}
-                  />
-                )}
-                <div>
-                  <h1>{mainArticle.title}</h1>
-                  {mainArticle.description && (
-                    <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', marginBottom: '16px' }}>
-                      {mainArticle.description}
-                    </p>
-                  )}
-                  <p>{mainArticle.extract}</p>
-                  <a
-                    href={mainArticle.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(mainArticle.title)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cdx-link"
-                  >
-                    Read full article on Wikipedia →
-                  </a>
-                </div>
-              </div>
-
-              {/* Quick Facts Section */}
-              <div className="wiki-fact-card">
-                <div className="wiki-fact-label">💡 Did you know?</div>
-                <div className="wiki-fact-value">
-                  {mainArticle.extract?.substring(0, 200)}...
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Related Articles */}
-          {articles && articles.length > 1 && (
-            <div>
-              <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>
-                Related Articles
-              </h3>
-              <div style={{ display: 'grid', gap: '16px' }}>
-                {articles.map((article, index) => (
-                  article && article.title !== mainArticle?.title && (
-                    <Link
-                      key={index}
-                      href={`/article/${encodeURIComponent(article.title)}`}
-                      className="cdx-card"
-                      style={{ textDecoration: 'none', display: 'flex', gap: '16px' }}
-                    >
-                      {article.thumbnail && (
-                        <img
-                          src={article.thumbnail.source}
-                          alt={article.title}
-                          style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '2px' }}
-                        />
-                      )}
-                      <div className="cdx-card__text" style={{ flex: 1 }}>
-                        <h4 className="cdx-card__title" style={{ marginBottom: '8px', color: 'var(--wc-text)' }}>
-                          {article.title}
-                        </h4>
-                        <p className="cdx-card__text" style={{ color: 'var(--wc-secondary)', fontSize: '0.9em' }}>
-                          {article.extract?.substring(0, 150)}...
-                        </p>
-                      </div>
-                    </Link>
-                  )
-                ))}
-              </div>
-            </div>
-          )}
+          <p style={{ color: 'var(--wc-secondary)' }}>
+            {articles?.length || 0} related articles found
+          </p>
         </div>
+
+        {/* Main Article */}
+        {mainArticle && (
+          <article className="wiki-article fade-in">
+            <div className="flex flex-col md:flex-row gap-6" style={{ marginBottom: '24px' }}>
+              {mainArticle.thumbnail && (
+                <img
+                  src={mainArticle.thumbnail.source}
+                  alt={mainArticle.title}
+                  style={{ maxWidth: '320px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                />
+              )}
+              <div>
+                <h1>{mainArticle.title}</h1>
+                {mainArticle.description && (
+                  <div className="wiki-infobox" style={{ marginBottom: '20px', padding: '16px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)' }}>
+                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>📝 Description</div>
+                    <div>{mainArticle.description}</div>
+                  </div>
+                )}
+                <p style={{ fontSize: '1.05em', lineHeight: '1.8' }}>{mainArticle.extract}</p>
+                <a
+                  href={mainArticle.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(mainArticle.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cdx-button cdx-button--action-primary"
+                  style={{ marginTop: '20px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                >
+                  Read full article on Wikipedia <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Facts Section */}
+            <div className="wiki-fact-card">
+              <div className="wiki-fact-label">💡 Did you know?</div>
+              <div className="wiki-fact-value">
+                {mainArticle.extract?.substring(0, 250)}...
+              </div>
+            </div>
+          </article>
+        )}
+
+        {/* Related Articles */}
+        {articles && articles.length > 1 && (
+          <section style={{ marginTop: '48px' }}>
+            <h3 style={{ fontSize: '1.5em', marginBottom: '24px', color: 'var(--wc-primary)', textAlign: 'center' }}>
+              🔗 Related Articles
+            </h3>
+            <div style={{ display: 'grid', gap: '16px' }}>
+              {articles.map((article, index) => (
+                article && article.title !== mainArticle?.title && (
+                  <Link
+                    key={index}
+                    href={`/article/${encodeURIComponent(article.title)}`}
+                    className="wiki-card"
+                    style={{ textDecoration: 'none', display: 'flex', gap: '16px' }}
+                  >
+                    {article.thumbnail && (
+                      <img
+                        src={article.thumbnail.source}
+                        alt={article.title}
+                        style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }}
+                      />
+                    )}
+                    <div style={{ flex: 1 }}>
+                      <h4 style={{ margin: '0 0 8px 0', color: 'var(--wc-primary)', fontSize: '1.2em' }}>
+                        {article.title}
+                      </h4>
+                      {article.description && (
+                        <p style={{ fontStyle: 'italic', color: 'var(--wc-secondary)', fontSize: '0.9em', marginBottom: '8px' }}>
+                          {article.description}
+                        </p>
+                      )}
+                      <p style={{ color: 'var(--wc-text)', fontSize: '0.95em', lineHeight: '1.6', margin: 0 }}>
+                        {article.extract?.substring(0, 180)}...
+                      </p>
+                    </div>
+                  </Link>
+                )
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
@@ -259,7 +335,7 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="wiki-loading">Loading...</div>}>
+    <Suspense fallback={<div className="wiki-loading"><div className="cdx-spinner"></div></div>}>
       <SearchContent />
     </Suspense>
   );

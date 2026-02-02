@@ -1,11 +1,16 @@
-/* WikiCurious - Custom styles for Wikimedia Codex */
+/* WikiCurious - Enhanced styling with Wikimedia Codex */
 
 :root {
   --wc-primary: #3366cc;
+  --wc-primary-hover: #2a4f8f;
   --wc-secondary: #54595d;
   --wc-background: #f8f9fa;
   --wc-border: #a2a9b1;
   --wc-text: #202122;
+  --wc-link-blue: #0645ad;
+  --wc-success: #14866d;
+  --wc-warning: #202122;
+  --wc-error: #d33;
 }
 
 * {
@@ -15,33 +20,139 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--wc-background);
+  background: linear-gradient(135deg, #f8f9fa 0%, #eaecf0 100%);
   color: var(--wc-text);
   min-height: 100vh;
 }
 
+/* Enhanced Header */
+.wiki-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 2px solid var(--wc-border);
+  padding: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
 /* Wikipedia-style content layout */
+.wiki-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Enhanced Header styling */
 .wiki-content {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
-/* Header styling */
-.wiki-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--wc-border);
-  padding: 12px 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--wc-primary) 0%, #4479d1 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(51, 102, 204, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.hero-section h2 {
+  font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+  font-size: 2.5em;
+  margin: 0 0 16px 0;
+  font-weight: 400;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section p {
+  font-size: 1.2em;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Search Box */
+.search-box {
+  max-width: 600px;
+  margin: 32px auto 0;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  box-shadow: 0 6px 24px rgba(51, 102, 204, 0.3);
+  transform: translateY(-2px);
+}
+
+.search-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--wc-primary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background: var(--wc-primary-hover);
+  transform: translateY(-50%) scale(1.05);
 }
 
 /* Article content styling */
 .wiki-article {
   background: #ffffff;
-  padding: 24px;
-  margin: 16px 0;
+  padding: 32px;
+  margin: 24px 0;
   border: 1px solid var(--wc-border);
-  border-radius: 2px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.wiki-article:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .wiki-article h1,
@@ -49,77 +160,106 @@ body {
 .wiki-article h3 {
   font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
   font-weight: 400;
-  border-bottom: 1px solid var(--wc-border);
-  padding-bottom: 4px;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  border-bottom: 2px solid var(--wc-border);
+  padding-bottom: 8px;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  color: var(--wc-text);
 }
 
 .wiki-article h1 {
-  font-size: 1.8em;
+  font-size: 2.2em;
   margin-top: 0;
+  color: var(--wc-primary);
 }
 
 .wiki-article h2 {
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 .wiki-article h3 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   border-bottom: none;
+  margin-top: 1.2em;
 }
 
 .wiki-article p {
-  font-size: 0.95em;
-  line-height: 1.6;
-  margin-bottom: 1em;
+  font-size: 1em;
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+  color: var(--wc-text);
 }
 
 .wiki-article ul,
 .wiki-article ol {
-  margin-bottom: 1em;
+  margin-bottom: 1.2em;
+  padding-left: 24px;
 }
 
 .wiki-article li {
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+}
+
+/* Enhanced Cards */
+.wiki-card {
+  background: #ffffff;
+  border: 1px solid var(--wc-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.wiki-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  border-color: var(--wc-primary);
 }
 
 /* Infobox style */
 .wiki-infobox {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa 0%, #eaecf0 100%);
   border: 1px solid var(--wc-border);
-  padding: 16px;
-  margin: 16px 0;
-  font-size: 0.9em;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  font-size: 0.95em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .wiki-infobox-title {
   font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--wc-border);
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--wc-primary);
+  color: var(--wc-primary);
 }
 
 /* Fact card */
 .wiki-fact-card {
-  background: #e8f4f8;
+  background: linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%);
   border-left: 4px solid var(--wc-primary);
-  padding: 12px 16px;
-  margin: 12px 0;
-  border-radius: 0 2px 2px 0;
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(51, 102, 204, 0.1);
 }
 
 .wiki-fact-label {
   font-weight: bold;
-  color: var(--wc-secondary);
-  font-size: 0.85em;
+  color: var(--wc-primary);
+  font-size: 0.9em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
 .wiki-fact-value {
-  margin-top: 4px;
+  font-size: 1.05em;
+  line-height: 1.6;
 }
 
 /* Loading spinner */
@@ -127,39 +267,249 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 48px;
+  padding: 80px;
+}
+
+.cdx-spinner {
+  width: 60px !important;
+  height: 60px !important;
+  border: 5px solid #c8ccd1 !important;
+  border-top-color: var(--wc-primary) !important;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Error message */
 .wiki-error {
-  background: #fee7e6;
-  border: 1px solid #d33;
-  padding: 16px;
-  margin: 16px 0;
-  border-radius: 2px;
+  background: linear-gradient(135deg, #fee7e6 0%, #fec8c5 100%);
+  border: 2px solid var(--wc-error);
+  padding: 24px;
+  margin: 24px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(211, 51, 51, 0.1);
 }
 
 .wiki-error-title {
   font-weight: bold;
-  color: #d33;
-  margin-bottom: 8px;
+  color: var(--wc-error);
+  font-size: 1.3em;
+  margin-bottom: 12px;
+}
+
+/* Popular Destination Cards */
+.destination-card {
+  background: #ffffff;
+  border: 1px solid var(--wc-border);
+  border-radius: 12px;
+  padding: 20px 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px;
+  text-decoration: none !important;
+  color: var(--wc-text);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.destination-card:hover {
+  box-shadow: 0 8px 24px rgba(51, 102, 204, 0.2);
+  transform: translateY(-4px);
+  border-color: var(--wc-primary);
+  color: var(--wc-primary);
+}
+
+.destination-card .emoji {
+  font-size: 2em;
+}
+
+.destination-card .name {
+  font-weight: 600;
+  font-size: 1.05em;
+}
+
+.destination-card .country {
+  color: var(--wc-secondary);
+  font-size: 0.9em;
+  margin-left: 4px;
+}
+
+/* Feature Cards */
+.feature-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid var(--wc-border);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: var(--wc-primary);
+}
+
+.feature-card .icon {
+  font-size: 2.5em;
+  margin-bottom: 16px;
+}
+
+.feature-card h4 {
+  font-size: 1.4em;
+  margin: 0 0 12px 0;
+  color: var(--wc-primary);
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--wc-secondary);
+  line-height: 1.6;
+}
+
+/* Buttons */
+.cdx-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.cdx-button--action-primary {
+  background: var(--wc-primary);
+  color: white;
+  border: none;
+}
+
+.cdx-button--action-primary:hover {
+  background: var(--wc-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(51, 102, 204, 0.3);
+}
+
+.cdx-button--action-secondary {
+  background: #eaecf0;
+  color: var(--wc-text);
+  border: 1px solid var(--wc-border);
+}
+
+.cdx-button--action-secondary:hover {
+  background: #d4d7dc;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.cdx-link {
+  color: var(--wc-link-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cdx-link:hover {
+  color: var(--wc-primary);
+  text-decoration: underline;
+}
+
+/* Footer */
+.wiki-footer {
+  background: linear-gradient(135deg, var(--wc-secondary) 0%, #3d4246 100%);
+  color: white;
+  padding: 48px 20px;
+  margin-top: 64px;
+  text-align: center;
+}
+
+.wiki-footer a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.wiki-footer a:hover {
+  opacity: 0.8;
+}
+
+/* Breadcrumb */
+.cdx-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  color: var(--wc-secondary);
+  margin-bottom: 20px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .wiki-content {
-    padding: 0 12px;
+    padding: 0 16px;
   }
 
   .wiki-article {
-    padding: 16px;
+    padding: 24px 20px;
   }
 
   .wiki-article h1 {
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
 
   .wiki-article h2 {
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
+
+  .hero-section {
+    padding: 40px 16px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .hero-section h2 {
+    font-size: 1.8em;
+  }
+
+  .hero-section p {
+    font-size: 1em;
+  }
+
+  .search-box input {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .destination-card {
+    padding: 16px 20px;
+    margin: 6px;
+  }
+
+  .feature-card {
+    padding: 24px 20px;
+  }
+}
+
+/* Animation utilities */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--wc-secondary);
+  margin-bottom: 24px;
+  text-align: center;
 }

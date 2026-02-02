@@ -20,6 +20,8 @@ export default function Home() {
     { name: 'Rome', country: 'Italy', emoji: '🏛️' },
     { name: 'New York City', country: 'USA', emoji: '🗽' },
     { name: 'Cairo', country: 'Egypt', emoji: '🏺' },
+    { name: 'London', country: 'UK', emoji: '🎡' },
+    { name: 'Barcelona', country: 'Spain', emoji: '🏰' },
   ];
 
   return (
@@ -28,108 +30,150 @@ export default function Home() {
       <header className="wiki-header">
         <div className="wiki-content">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-decoration-none">
-              <span className="text-2xl">🌍</span>
-              <h1 className="m-0 text-xl font-bold">WikiCurious</h1>
+            <Link href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
+              <span style={{ fontSize: '2.5em' }}>🌍</span>
+              <h1 className="m-0" style={{ fontSize: '1.8em', fontWeight: 'bold', color: 'var(--wc-primary)' }}>
+                WikiCurious
+              </h1>
             </Link>
-            <nav className="flex gap-4 text-sm">
-              <Link href="/about" className="text-decoration-none cdx-link">About</Link>
+            <nav className="flex gap-4" style={{ fontSize: '0.95em' }}>
+              <Link href="/saved" className="cdx-link">Saved</Link>
+              <Link href="/about" className="cdx-link">About</Link>
             </nav>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <main className="wiki-content">
-        <section className="text-center" style={{ padding: '48px 0' }}>
-          <h2 className="text-3xl" style={{ fontFamily: "'Linux Libertine', 'Georgia', 'Times', serif", marginBottom: '16px' }}>
-            Explore Wikipedia, Curated for Travelers
-          </h2>
-          <p className="text-lg" style={{ color: 'var(--wc-secondary)', maxWidth: '600px', margin: '0 auto 32px' }}>
-            Discover fascinating history, culture, and hidden gems about your next destination
-          </p>
+      <section className="hero-section">
+        <h2>Explore Wikipedia, Curated for Travelers</h2>
+        <p>Discover fascinating history, culture, and hidden gems about your next destination</p>
 
-          {/* Search Form */}
-          <form onSubmit={handleSearch} className="max-w-xl mx-auto" style={{ marginBottom: '48px' }}>
-            <div className="cdx-text-input cdx-text-input--has-start-icon">
-              <input
-                type="search"
-                className="cdx-text-input__input"
-                placeholder="Search for a city, country, or topic..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ width: '100%', padding: '12px 16px', fontSize: '16px' }}
-              />
-              <span className="cdx-text-input__icon cdx-text-input__start-icon">🔍</span>
+        {/* Search Form */}
+        <form onSubmit={handleSearch} className="search-box">
+          <input
+            type="search"
+            placeholder="Search for a city, country, or topic..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button type="submit" className="search-button">
+            🔍 Explore
+          </button>
+        </form>
+      </section>
+
+      <main className="wiki-content">
+        {/* Popular Destinations */}
+        <section style={{ marginBottom: '48px' }}>
+          <h3 className="section-title">✨ Popular Destinations</h3>
+          <div className="flex flex-wrap justify-center" style={{ margin: '0 -8px' }}>
+            {popularDestinations.map((dest) => (
+              <Link
+                key={dest.name}
+                href={`/search?q=${encodeURIComponent(dest.name)}`}
+                className="destination-card"
+              >
+                <span className="emoji">{dest.emoji}</span>
+                <span className="name">{dest.name}</span>
+                <span className="country">({dest.country})</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Feature Cards */}
+        <section style={{ marginBottom: '48px' }}>
+          <h3 className="section-title">🎯 Why WikiCurious?</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+            <div className="feature-card">
+              <div className="icon">📜</div>
+              <h4>Rich History</h4>
+              <p>Dive deep into historical events, empires, and stories that shaped your destination. Every place has a story to tell.</p>
             </div>
-            <button
-              type="submit"
-              className="cdx-button cdx-button--action-primary cdx-button--weight-primary"
-              style={{ marginTop: '12px', padding: '12px 24px', fontSize: '16px' }}
-            >
-              Explore
+            <div className="feature-card">
+              <div className="icon">🏛️</div>
+              <h4>Landmarks & Culture</h4>
+              <p>Discover iconic landmarks, local traditions, and cultural insights that make each destination unique and memorable.</p>
+            </div>
+            <div className="feature-card">
+              <div className="icon">💡</div>
+              <h4>Curated Facts</h4>
+              <p>Get bite-sized interesting facts that make your travels more meaningful and give you conversation starters.</p>
+            </div>
+            <div className="feature-card">
+              <div className="icon">⭐</div>
+              <h4>Save & Export</h4>
+              <p>Save interesting articles to read later and export them as Markdown for offline reading during your trip.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="wiki-infobox" style={{ marginBottom: '48px' }}>
+          <h3 style={{ color: 'var(--wc-primary)', marginBottom: '20px', fontSize: '1.5em' }}>
+            🚀 How It Works
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', textAlign: 'center' }}>
+            <div>
+              <div style={{ fontSize: '3em', marginBottom: '12px' }}>🔍</div>
+              <h4 style={{ margin: '0 0 8px 0' }}>Search</h4>
+              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Enter any city, country, or topic you're curious about</p>
+            </div>
+            <div>
+              <div style={{ fontSize: '3em', marginBottom: '12px' }}>📚</div>
+              <h4 style={{ margin: '0 0 8px 0' }}>Explore</h4>
+              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Browse the main article and related content</p>
+            </div>
+            <div>
+              <div style={{ fontSize: '3em', marginBottom: '12px' }}>⭐</div>
+              <h4 style={{ margin: '0 0 8px 0' }}>Save</h4>
+              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Save articles to read later (stored in your browser)</p>
+            </div>
+            <div>
+              <div style={{ fontSize: '3em', marginBottom: '12px' }}>📥</div>
+              <h4 style={{ margin: '0 0 8px 0' }}>Export</h4>
+              <p style={{ color: 'var(--wc-secondary)', fontSize: '0.95em' }}>Download saved articles as Markdown for offline reading</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section style={{ textAlign: 'center', padding: '40px 20px', background: 'linear-gradient(135deg, #e8f4f8 0%, #d4eef7 100%)', borderRadius: '16px', marginBottom: '48px' }}>
+          <h3 style={{ fontSize: '1.8em', marginBottom: '16px', color: 'var(--wc-primary)' }}>
+            Ready to explore? 🌏
+          </h3>
+          <p style={{ fontSize: '1.1em', color: 'var(--wc-secondary)', marginBottom: '24px', maxWidth: '600px', margin: '0 auto 24px' }}>
+            Start discovering fascinating stories about your next travel destination
+          </p>
+          <form onSubmit={handleSearch} className="search-box">
+            <input
+              type="search"
+              placeholder="Where are you curious about?"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit" className="search-button">
+              🚀 Start Exploring
             </button>
           </form>
-
-          {/* Popular Destinations */}
-          <div style={{ marginBottom: '32px' }}>
-            <h3 className="text-xl" style={{ marginBottom: '16px', color: 'var(--wc-secondary)' }}>
-              Popular Destinations
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {popularDestinations.map((dest) => (
-                <Link
-                  key={dest.name}
-                  href={`/search?q=${encodeURIComponent(dest.name)}`}
-                  className="cdx-card cdx-card--title-only"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'inline-block',
-                    padding: '12px 20px',
-                    border: '1px solid var(--wc-border)',
-                    borderRadius: '2px',
-                    transition: 'box-shadow 0.1s ease',
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)'}
-                  onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
-                >
-                  <span className="text-2xl">{dest.emoji}</span>
-                  <span style={{ marginLeft: '8px', fontWeight: '500', color: 'var(--wc-text)' }}>{dest.name}</span>
-                  <span style={{ marginLeft: '4px', color: 'var(--wc-secondary)', fontSize: '0.9em' }}>({dest.country})</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Feature Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginTop: '48px' }}>
-            <div className="cdx-card">
-              <div className="cdx-card__text">
-                <h4 className="cdx-card__title">📜 Rich History</h4>
-                <p className="cdx-card__text">Dive deep into historical events, empires, and stories that shaped your destination.</p>
-              </div>
-            </div>
-            <div className="cdx-card">
-              <div className="cdx-card__text">
-                <h4 className="cdx-card__title">🏛️ Landmarks & Culture</h4>
-                <p className="cdx-card__text">Discover iconic landmarks, local traditions, and cultural insights.</p>
-              </div>
-            </div>
-            <div className="cdx-card">
-              <div className="cdx-card__text">
-                <h4 className="cdx-card__title">💡 Curated Facts</h4>
-                <p className="cdx-card__text">Get bite-sized interesting facts that make your travels more meaningful.</p>
-              </div>
-            </div>
-          </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="wiki-content" style={{ padding: '32px 0', borderTop: '1px solid var(--wc-border)', marginTop: '48px' }}>
-        <p style={{ textAlign: 'center', color: 'var(--wc-secondary)', fontSize: '0.9em' }}>
-          WikiCurious • Powered by <a href="https://en.wikipedia.org" className="cdx-link" target="_blank" rel="noopener noreferrer">Wikipedia</a> • Built with <a href="https://doc.wikimedia.org/codex/" className="cdx-link" target="_blank" rel="noopener noreferrer">Wikimedia Codex</a>
-        </p>
+      <footer className="wiki-footer">
+        <div className="wiki-content">
+          <p style={{ fontSize: '1.1em', marginBottom: '8px' }}>
+            🌍 <strong>WikiCurious</strong> • Explore Wikipedia Like Never Before
+          </p>
+          <p style={{ opacity: 0.9, fontSize: '0.95em' }}>
+            Powered by <a href="https://en.wikipedia.org" target="_blank" rel="noopener noreferrer">Wikipedia</a> • 
+            Built with <a href="https://doc.wikimedia.org/codex/" target="_blank" rel="noopener noreferrer">Wikimedia Codex</a>
+          </p>
+          <p style={{ opacity: 0.7, fontSize: '0.85em', marginTop: '16px' }}>
+            Made with ❤️ in Istanbul
+          </p>
+        </div>
       </footer>
     </div>
   );
