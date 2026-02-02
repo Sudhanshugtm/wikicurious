@@ -17,6 +17,7 @@ interface WikiArticle {
   extract: string;
   thumbnail?: { source: string };
   description?: string;
+  content_urls?: { desktop: { page: string } };
   sections?: WikiSection[];
 }
 
