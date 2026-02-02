@@ -65,7 +65,7 @@ export default function IstanbulJourney() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, padding: '40px 20px' }}>
+      <div className="page-body">
         <div className="story-section">
           <Link href="/" className="back-link">Return to journey</Link>
 

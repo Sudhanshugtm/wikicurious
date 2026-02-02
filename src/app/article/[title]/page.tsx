@@ -148,7 +148,7 @@ function ArticleContent() {
         {/* Main Article */}
         <article className="wiki-article fade-in">
           {/* Article Header */}
-          <div className="flex flex-col md:flex-row gap-6" style={{ marginBottom: '32px' }}>
+          <div className="article-header-layout" style={{ marginBottom: '32px' }}>
             {article.thumbnail && (
               <div className="hero-image-section" style={{ maxWidth: '400px' }}>
                 <img

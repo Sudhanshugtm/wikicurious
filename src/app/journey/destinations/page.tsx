@@ -32,7 +32,7 @@ export default function DestinationsJourney() {
           </div>
         </nav>
 
-        <div style={{ flex: 1, padding: '40px 20px' }}>
+        <div className="page-body">
           <div className="story-section">
             <button onClick={() => setSelectedPlace(null)} className="back-link">
               Back to the land
@@ -303,7 +303,7 @@ export default function DestinationsJourney() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, padding: '40px 20px' }}>
+      <div className="page-body">
         <Link href="/" className="back-link">Return to journey</Link>
 
         <h1 className="scene-header">The Land</h1>

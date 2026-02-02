@@ -31,7 +31,7 @@ export default function CultureJourney() {
           </div>
         </nav>
 
-        <div style={{ flex: 1, padding: '40px 20px' }}>
+        <div className="page-body">
           <div className="story-section">
             <button onClick={() => setSelectedTopic(null)} className="back-link">
               Back to traditions
@@ -251,7 +251,7 @@ export default function CultureJourney() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, padding: '40px 20px' }}>
+      <div className="page-body">
         <Link href="/" className="back-link">Return to journey</Link>
 
         <h1 className="scene-header">The People</h1>

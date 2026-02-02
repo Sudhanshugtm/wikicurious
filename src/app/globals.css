@@ -186,11 +186,13 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   background: var(--gradient-paper);
   background-image:
     var(--pattern-ottoman),
@@ -1251,6 +1253,17 @@ body::after {
   margin-bottom: 0;
 }
 
+.page-body {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+@media (max-width: 480px) {
+  .page-body {
+    padding: 20px 12px;
+  }
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1416,6 +1429,18 @@ body::after {
   margin-top: var(--space-3xl);
   position: relative;
   z-index: 2;
+}
+
+.article-header-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 640px) {
+  .article-header-layout {
+    flex-direction: row;
+  }
 }
 
 .wiki-footer a {
@@ -1798,30 +1823,115 @@ body::after {
    ============================================ */
 
 @media (max-width: 768px) {
+
+  /* --- NAV --- */
+  .journey-nav {
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .journey-nav-brand {
+    font-size: var(--font-sm) !important;
+    flex-shrink: 0;
+  }
+
+  .journey-nav-links {
+    gap: 2px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .journey-nav a {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+
+  /* --- TYPOGRAPHY DECORATIONS --- */
+  /* Hide ornamental glyph that overflows */
+  .typ-h2::before {
+    display: none;
+  }
+
+  /* Reduce h1 underline width */
+  .typ-h1::after {
+    width: 50px;
+  }
+
+  /* Remove text indent on mobile - wastes space */
+  .story-paragraph {
+    text-indent: 0;
+    text-align: left;
+  }
+
+  /* Tighten opening title frame */
+  .opening-title::before {
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+  }
+
+  /* --- CARDS & IMAGES --- */
   .image-card-img {
     height: 160px;
   }
 
-  .hero-image-section img {
-    height: 200px;
-  }
-
-  .explore-grid {
-    grid-template-columns: 1fr;
+  .image-card-body {
+    padding: var(--space-md) var(--space-lg);
   }
 
   .image-card-name {
     font-size: var(--font-h3);
   }
 
+  .hero-image-section img {
+    height: 200px;
+  }
+
+  .hero-image-section {
+    border-radius: var(--radius-lg);
+  }
+
+  .story-image {
+    padding: 4px;
+  }
+
+  /* --- CONTENT AREAS --- */
   .wiki-article {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .wiki-infobox {
+    padding: var(--space-md);
+  }
+
+  .wiki-fact-card {
     padding: var(--space-lg);
   }
 
-  .journey-nav {
+  .curiosity-box {
+    padding: var(--space-lg);
+  }
+
+  .curiosity-fact {
+    padding-left: var(--space-sm);
+  }
+
+  .story-section {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  /* --- GRIDS --- */
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .explore-link {
     padding: var(--space-sm) var(--space-md);
   }
 
+  /* --- SEARCH --- */
   .search-home form {
     flex-direction: column;
   }
@@ -1829,16 +1939,118 @@ body::after {
   .search-home button {
     width: 100%;
   }
+
+  .search-home input {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* --- ERA CARDS --- */
+  .era-card {
+    padding: var(--space-lg);
+  }
+
+  /* --- BACK LINK --- */
+  .back-link {
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  /* --- SCENE HEADERS --- */
+  .scene-header::before,
+  .scene-header::after {
+    width: 80px;
+  }
+
+  .scene-subtitle {
+    font-size: var(--font-base);
+  }
+
+  /* --- PLACE CARDS --- */
+  .place-card {
+    padding: var(--space-lg);
+  }
 }
 
 @media (max-width: 480px) {
+
+  /* Even tighter nav on very small phones */
+  .journey-nav {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .journey-nav a {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  .journey-nav-brand {
+    font-size: 0.8rem !important;
+  }
+
+  /* Stack explore links */
   .explore-link {
     flex-direction: column;
     text-align: center;
+    padding: var(--space-md);
   }
 
   .explore-link img {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
+  }
+
+  /* Smaller opening scene */
+  .opening-title {
+    font-size: 1.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .opening-subtitle {
+    font-size: var(--font-base);
+  }
+
+  .opening-scene {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  /* Tighter content */
+  .image-card-img {
+    height: 140px;
+  }
+
+  .image-card-body {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .image-card-name {
+    font-size: var(--font-h4);
+  }
+
+  .hero-image-section img {
+    height: 160px;
+  }
+
+  .wiki-content {
+    padding: 0 var(--space-md);
+  }
+
+  /* Timeline tighter */
+  .timeline-year {
+    font-size: var(--font-h2);
+  }
+
+  .timeline-item {
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  /* Scene headers */
+  .scene-header {
+    font-size: 1.25rem;
+  }
+
+  .scene-header::before,
+  .scene-header::after {
+    width: 60px;
   }
 }

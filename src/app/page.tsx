@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, padding: '40px 20px' }}>
+      <div className="page-body">
         <h2 className="scene-header">Where would you like to begin?</h2>
         <p className="scene-subtitle">Choose your path through Turkey&apos;s story</p>
 
