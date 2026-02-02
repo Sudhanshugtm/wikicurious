@@ -1,26 +1,165 @@
-@import "tailwindcss";
+/* WikiCurious - Custom styles for Wikimedia Codex */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --wc-primary: #3366cc;
+  --wc-secondary: #54595d;
+  --wc-background: #f8f9fa;
+  --wc-border: #a2a9b1;
+  --wc-text: #202122;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--wc-background);
+  color: var(--wc-text);
+  min-height: 100vh;
+}
+
+/* Wikipedia-style content layout */
+.wiki-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Header styling */
+.wiki-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--wc-border);
+  padding: 12px 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Article content styling */
+.wiki-article {
+  background: #ffffff;
+  padding: 24px;
+  margin: 16px 0;
+  border: 1px solid var(--wc-border);
+  border-radius: 2px;
+}
+
+.wiki-article h1,
+.wiki-article h2,
+.wiki-article h3 {
+  font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+  font-weight: 400;
+  border-bottom: 1px solid var(--wc-border);
+  padding-bottom: 4px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.wiki-article h1 {
+  font-size: 1.8em;
+  margin-top: 0;
+}
+
+.wiki-article h2 {
+  font-size: 1.5em;
+}
+
+.wiki-article h3 {
+  font-size: 1.2em;
+  border-bottom: none;
+}
+
+.wiki-article p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.wiki-article ul,
+.wiki-article ol {
+  margin-bottom: 1em;
+}
+
+.wiki-article li {
+  margin-bottom: 0.3em;
+}
+
+/* Infobox style */
+.wiki-infobox {
+  background: #f8f9fa;
+  border: 1px solid var(--wc-border);
+  padding: 16px;
+  margin: 16px 0;
+  font-size: 0.9em;
+}
+
+.wiki-infobox-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--wc-border);
+}
+
+/* Fact card */
+.wiki-fact-card {
+  background: #e8f4f8;
+  border-left: 4px solid var(--wc-primary);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 2px 2px 0;
+}
+
+.wiki-fact-label {
+  font-weight: bold;
+  color: var(--wc-secondary);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wiki-fact-value {
+  margin-top: 4px;
+}
+
+/* Loading spinner */
+.wiki-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+}
+
+/* Error message */
+.wiki-error {
+  background: #fee7e6;
+  border: 1px solid #d33;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 2px;
+}
+
+.wiki-error-title {
+  font-weight: bold;
+  color: #d33;
+  margin-bottom: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wiki-content {
+    padding: 0 12px;
+  }
+
+  .wiki-article {
+    padding: 16px;
+  }
+
+  .wiki-article h1 {
+    font-size: 1.5em;
+  }
+
+  .wiki-article h2 {
+    font-size: 1.3em;
+  }
 }
