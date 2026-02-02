@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@wikimedia/codex/codex.style.css";
+import "@wikimedia/codex/dist/codex.style.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
