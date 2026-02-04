@@ -106,6 +106,9 @@ function SearchContent() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <div className="wiki-loading">
@@ -122,6 +125,9 @@ function SearchContent() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <div className="content-wrapper">
@@ -142,6 +148,9 @@ function SearchContent() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <div className="content-wrapper">
@@ -163,6 +172,9 @@ function SearchContent() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+            <div className="nav-info-icon">ℹ</div>
+          </Link>
         </div>
       </nav>
 

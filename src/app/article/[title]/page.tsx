@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 interface WikiArticle {
@@ -10,22 +10,18 @@ interface WikiArticle {
   thumbnail?: { source: string };
   description?: string;
   content_urls?: { desktop: { page: string } };
-  sections?: WikiSection[];
-}
-
-interface WikiSection {
-  title: string;
-  level: number;
-  line: string;
 }
 
 function ArticleContent() {
   const params = useParams();
+  const pathname = usePathname();
   const title = decodeURIComponent(params.title as string);
   const [article, setArticle] = useState<WikiArticle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -33,7 +29,6 @@ function ArticleContent() {
       setError(null);
 
       try {
-        // Get article summary
         const summaryRes = await fetch(
           `/api/wikipedia?action=summary&title=${encodeURIComponent(title)}`
         );
@@ -45,7 +40,6 @@ function ArticleContent() {
           setError('Article not found');
         }
 
-        // Check if saved
         const savedArticles = JSON.parse(localStorage.getItem('savedArticles') || '[]');
         setSaved(savedArticles.includes(title));
       } catch (err) {
@@ -58,6 +52,40 @@ function ArticleContent() {
 
     fetchArticle();
   }, [title]);
+
+  // Scroll progress and back to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+      setShowBackToTop(scrollTop > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Intersection Observer for fade-in animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [article]);
 
   const handleSave = () => {
     const savedArticles = JSON.parse(localStorage.getItem('savedArticles') || '[]');
@@ -73,14 +101,19 @@ function ArticleContent() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen">
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <div className="wiki-loading">
@@ -96,8 +129,9 @@ function ArticleContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <main className="wiki-content" style={{ padding: '40px 20px' }}>
@@ -113,147 +147,192 @@ function ArticleContent() {
     );
   }
 
-  return (
-    <div className="min-h-screen">
-      <nav className="journey-nav">
-        <Link href="/" className="journey-nav-brand">WikiCurious</Link>
-        <div className="journey-nav-links">
-          <button
-            onClick={handleSave}
-            className="back-link"
-            style={{
-              margin: 0,
-              borderColor: saved ? 'var(--imperial-gold)' : 'var(--ottoman-purple)',
-              color: saved ? 'var(--antique-gold)' : 'var(--ottoman-purple)',
-              background: saved ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-              fontSize: 'var(--font-sm)',
-              padding: '4px 12px',
-            }}
-          >
-            {saved ? 'Saved' : 'Save'}
-          </button>
-          <Link href="/">Journey</Link>
-          <Link href="/saved">Saved</Link>
-        </div>
-      </nav>
+  // Split extract into paragraphs for immersive reading
+  const paragraphs = article.extract.split('\n\n').filter(p => p.trim());
+  const pullQuoteIndex = paragraphs.length > 3 ? 1 : 0;
 
-      <main className="wiki-content" style={{ padding: '32px 20px' }}>
-        {/* Breadcrumb */}
-        <nav className="cdx-breadcrumb" style={{ marginBottom: '16px' }}>
-          <Link href="/" className="cdx-link">Home</Link>
-          <span> / </span>
-          <span className="typ-body-sm" style={{ color: 'var(--wc-text)' }}>{title}</span>
+  return (
+    <>
+      {/* Reading progress bar */}
+      <div className="reading-progress" style={{ width: `${scrollProgress}%` }} />
+
+      {/* Back to top button */}
+      <button
+        className={`back-to-top ${showBackToTop ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
+
+      <div className="min-h-screen">
+        <nav className="journey-nav">
+          <Link href="/" className="journey-nav-brand">WikiCurious</Link>
+          <div className="journey-nav-links">
+            <button
+              onClick={handleSave}
+              className="back-link"
+              style={{
+                margin: 0,
+                borderColor: saved ? 'var(--imperial-gold)' : 'var(--ottoman-purple)',
+                color: saved ? 'var(--antique-gold)' : 'var(--ottoman-purple)',
+                background: saved ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+              }}
+            >
+              {saved ? '★ Saved' : '☆ Save'}
+            </button>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
+          </div>
         </nav>
 
-        {/* Main Article */}
-        <article className="wiki-article fade-in">
-          {/* Article Header */}
-          <div className="article-header-layout" style={{ marginBottom: '32px' }}>
+        {/* Immersive article experience */}
+        <article className="immersive-article">
+          {/* Hero Section */}
+          <header className="article-hero fade-in-scroll">
+            <h1 className="article-hero-title">{article.title}</h1>
+
+            {article.description && (
+              <p className="article-hero-subtitle">{article.description}</p>
+            )}
+
+            <div className="article-hero-meta">
+              <div className="article-hero-meta-item">
+                <span>📖</span>
+                <span>From Wikipedia</span>
+              </div>
+              <div className="article-hero-meta-item">
+                <span>⏱️</span>
+                <span>{Math.ceil(article.extract.length / 1000)} min read</span>
+              </div>
+            </div>
+          </header>
+
+          {/* Main content */}
+          <main style={{ padding: '0 var(--space-xl)' }}>
+            {/* Immersive image */}
             {article.thumbnail && (
-              <div className="hero-image-section" style={{ maxWidth: '400px' }}>
+              <figure className="immersive-image fade-in-scroll">
                 <img
                   src={article.thumbnail.source}
                   alt={`${article.title} - from Wikipedia`}
                 />
-                <div className="hero-image-caption">
-                  Image from <a href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`} target="_blank" rel="noopener noreferrer">Wikipedia</a>
-                </div>
-              </div>
+                <figcaption className="immersive-image-caption">
+                  <a
+                    href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Image from Wikipedia
+                  </a>
+                </figcaption>
+              </figure>
             )}
-            <div style={{ flex: 1 }}>
-              <h1 className="typ-h1">{article.title}</h1>
-              {article.description && (
-                <div className="wiki-infobox" style={{ marginBottom: '20px' }}>
-                  <div className="wiki-infobox-title">About</div>
-                  <div className="typ-body">{article.description}</div>
+
+            {/* Immersive text paragraphs */}
+            <div style={{ margin: 'var(--space-3xl) auto' }}>
+              {paragraphs.map((paragraph, idx) => (
+                <div key={idx}>
+                  {idx === pullQuoteIndex && paragraphs.length > 2 && (
+                    <blockquote className="pull-quote fade-in-scroll">
+                      {paragraph.length > 150 ? paragraph.slice(0, 150) + '...' : paragraph}
+                      {paragraph.length > 150 && <cite className="pull-quote-citation">— {article.title}</cite>}
+                    </blockquote>
+                  )}
+
+                  {idx !== pullQuoteIndex && (
+                    <p className="immersive-text fade-in-scroll">
+                      {paragraph}
+                    </p>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
+              ))}
 
-          {/* Content */}
-          <div style={{ marginBottom: '32px' }}>
-            {article.extract && (
-              <div>
-                {article.extract.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className={`typ-body ${idx === 0 ? 'typ-dropcap' : ''}`}>
-                    {paragraph}
-                  </p>
-                ))}
+              {/* Section divider */}
+              {paragraphs.length > 3 && <div className="section-divider" />}
+            </div>
+
+            {/* Call to action */}
+            <div className="article-footer fade-in-scroll">
+              <p className="typ-body" style={{ marginBottom: 'var(--space-lg)', color: 'var(--ottoman-purple)' }}>
+                This article is a summary from Wikipedia. For the complete article with citations, references, and more details, visit the source.
+              </p>
+
+              <div className="article-footer-actions">
+                <a
+                  href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="journey-button"
+                  style={{
+                    display: 'inline-block',
+                    opacity: 1,
+                    animation: 'none',
+                  }}
+                >
+                  Read full article on Wikipedia
+                </a>
+
+                <button
+                  onClick={handleSave}
+                  className="back-link"
+                  style={{
+                    margin: 0,
+                    padding: '12px 24px',
+                  }}
+                >
+                  {saved ? '★ Saved' : '☆ Save for later'}
+                </button>
               </div>
-            )}
-          </div>
 
-          {/* Read More */}
-          <div className="wiki-infobox" style={{ textAlign: 'center', padding: '28px' }}>
-            <div className="wiki-infobox-title" style={{ justifyContent: 'center', marginBottom: '20px' }}>
-              Read More on Wikipedia
+              <div style={{ marginTop: 'var(--space-xl)' }}>
+                <Link href="/" className="back-link" style={{ margin: 0 }}>
+                  ← Return to journey
+                </Link>
+              </div>
             </div>
-            <p className="typ-body" style={{ marginBottom: '20px', color: 'var(--cumin)' }}>
-              This is a summary from Wikipedia. For the full article with citations, references, and more details:
-            </p>
-            <a
-              href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="journey-button"
-              style={{ display: 'inline-block', opacity: 1, animation: 'none', fontSize: 'var(--font-base)', padding: '12px 24px' }}
-            >
-              Read full article
-            </a>
-          </div>
 
-          {/* Actions */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginTop: '32px', justifyContent: 'center' }}>
-            <Link href="/saved" className="back-link" style={{ margin: 0 }}>
-              View Saved Articles
-            </Link>
-            <Link href={`/search?q=${encodeURIComponent(title)}`} className="back-link" style={{ margin: 0 }}>
-              Find Related Articles
-            </Link>
-          </div>
+            {/* Attribution */}
+            <footer style={{
+              padding: 'var(--space-2xl) 0',
+              textAlign: 'center',
+              fontSize: 'var(--font-sm)',
+              color: 'var(--cumin)',
+              borderTop: '1px solid var(--ui-border)',
+              marginTop: 'var(--space-2xl)',
+            }}>
+              <p style={{ marginBottom: 'var(--space-sm)' }}>
+                Content from <a
+                  href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--iznik-cobalt)' }}
+                >
+                  "{article.title}"
+                </a> — <a
+                  href="https://creativecommons.org/licenses/by-sa/3.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--iznik-cobalt)' }}
+                >
+                  CC BY-SA 3.0
+                </a>
+              </p>
+              <p style={{ margin: 0 }}>
+                Wikipedia® is a registered trademark of Wikimedia Foundation, Inc.
+              </p>
+            </footer>
+          </main>
         </article>
-
-        {/* Wikipedia Attribution */}
-        <div style={{ marginTop: '32px', padding: '20px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-          <div style={{
-            borderTop: '2px solid var(--imperial-gold)',
-            paddingTop: '24px',
-            fontSize: 'var(--font-sm)',
-            color: 'var(--cumin)',
-            lineHeight: '1.6'
-          }}>
-            <p style={{ margin: '0 0 8px 0' }}>
-              Content from &ldquo;<a
-                href={article.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--iznik-cobalt)', textDecoration: 'underline' }}
-              >
-                {article.title}
-              </a>&rdquo; &mdash;{' '}
-              <a
-                href="https://creativecommons.org/licenses/by-sa/3.0/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--iznik-cobalt)', textDecoration: 'underline' }}
-              >
-                CC BY-SA 3.0
-              </a>
-            </p>
-            <p style={{ margin: '0' }}>
-              Wikipedia&reg; is a registered trademark of the Wikimedia Foundation, Inc.
-            </p>
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
 
 export default function ArticlePage() {
   return (
-    <Suspense fallback={<div className="wiki-loading"><div className="cdx-spinner"></div></div>}>
+    <Suspense fallback={<div className="wiki-loading"><div className="loading-story">Loading...</div></div>}>
       <ArticleContent />
     </Suspense>
   );

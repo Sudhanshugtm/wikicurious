@@ -63,6 +63,9 @@ export default function SavedPage() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+              <div className="nav-info-icon">ℹ</div>
+            </Link>
           </div>
         </nav>
         <div className="wiki-loading">
@@ -78,6 +81,9 @@ export default function SavedPage() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
+            <div className="nav-info-icon">ℹ</div>
+          </Link>
         </div>
       </nav>
 
