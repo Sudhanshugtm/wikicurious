@@ -105,7 +105,6 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
@@ -122,7 +121,6 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
@@ -143,7 +141,6 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
@@ -165,7 +162,6 @@ function SearchContent() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>

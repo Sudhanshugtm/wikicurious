@@ -27,8 +27,6 @@ export default function CultureJourney() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/journey/culture" className={pathname === '/journey/culture' ? 'active' : ''}>Culture</Link>
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
@@ -247,8 +245,6 @@ export default function CultureJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-          <Link href="/search?q=Turkish culture" className={pathname === '/search' ? 'active' : ''}>Search</Link>
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>

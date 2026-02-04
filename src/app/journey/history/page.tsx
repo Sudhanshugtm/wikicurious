@@ -28,8 +28,6 @@ export default function HistoryJourney() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/journey/history" className={pathname === '/journey/history' ? 'active' : ''}>Timeline</Link>
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
@@ -274,8 +272,6 @@ export default function HistoryJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-          <Link href="/search?q=History of Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>

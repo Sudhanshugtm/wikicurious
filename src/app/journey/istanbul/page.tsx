@@ -61,8 +61,6 @@ export default function IstanbulJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-          <Link href="/search?q=Istanbul" className={pathname === '/search' ? 'active' : ''}>Search</Link>
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>

@@ -25,9 +25,7 @@ export default function Home() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/search?q=Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
           </div>
         </nav>
 
@@ -47,9 +45,7 @@ export default function Home() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/search?q=Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
         </div>
       </nav>
 

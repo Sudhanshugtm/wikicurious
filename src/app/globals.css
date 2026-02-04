@@ -1817,14 +1817,12 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
   background: rgba(247, 240, 227, 0.9);
   border-bottom: 1px solid var(--ui-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .journey-nav a {
@@ -1832,21 +1830,18 @@ body::after {
   text-decoration: none;
   font-family: var(--font-display);
   font-size: var(--font-sm);
-  letter-spacing: 0.05em;
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-md);
   transition: var(--transition-base);
 }
 
 .journey-nav a:hover {
   color: var(--ottoman-crimson);
-  background: rgba(139, 0, 0, 0.06);
 }
 
 /* Active nav link state */
 .journey-nav a.active {
   color: var(--ottoman-crimson);
-  background: rgba(139, 0, 0, 0.1);
   font-weight: 600;
 }
 
@@ -1854,13 +1849,13 @@ body::after {
   font-family: var(--font-display);
   font-size: var(--font-base);
   font-weight: 600;
-  color: var(--ottoman-crimson) !important;
-  letter-spacing: 0.02em !important;
+  color: var(--ottoman-crimson);
+  text-decoration: none;
 }
 
 .journey-nav-links {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 /* ============================================

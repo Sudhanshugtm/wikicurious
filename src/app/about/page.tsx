@@ -12,8 +12,6 @@ export default function AboutPage() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
         </div>
       </nav>
 
