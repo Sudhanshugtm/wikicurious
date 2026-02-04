@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useWikiSummaries } from '../../hooks/useWikiData';
 
 const ERA_IMAGES = {
@@ -18,6 +19,7 @@ const ALL_TOPICS = [
 
 export default function HistoryJourney() {
   const [selectedEra, setSelectedEra] = useState<string | null>(null);
+  const pathname = usePathname();
   const { data: wikiData } = useWikiSummaries(ALL_TOPICS);
 
   if (selectedEra) {
@@ -26,9 +28,9 @@ export default function HistoryJourney() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/journey/history">Timeline</Link>
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/journey/history" className={pathname === '/journey/history' ? 'active' : ''}>Timeline</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
 
@@ -272,9 +274,9 @@ export default function HistoryJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/search?q=History of Turkey">Search</Link>
-          <Link href="/saved">Saved</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/search?q=History of Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>
 

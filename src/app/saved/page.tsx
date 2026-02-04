@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface WikiSummary {
   title: string;
@@ -13,6 +14,7 @@ interface WikiSummary {
 export default function SavedPage() {
   const [savedArticles, setSavedArticles] = useState<WikiSummary[]>([]);
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchSavedArticles = async () => {
@@ -60,8 +62,8 @@ export default function SavedPage() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/about">About</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
           </div>
         </nav>
         <div className="wiki-loading">
@@ -76,8 +78,8 @@ export default function SavedPage() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/about">About</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
         </div>
       </nav>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useWikiSummaries } from './hooks/useWikiData';
 
@@ -16,6 +16,7 @@ export default function Home() {
   const [started, setStarted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const pathname = usePathname();
   const { data: wikiData, loading: imagesLoading } = useWikiSummaries(
     CARD_TOPICS.map(c => c.key)
   );
@@ -33,9 +34,9 @@ export default function Home() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/search?q=Turkey">Search</Link>
-            <Link href="/saved">Saved</Link>
-            <Link href="/about">About</Link>
+            <Link href="/search?q=Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
           </div>
         </nav>
 
@@ -55,9 +56,9 @@ export default function Home() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/search?q=Turkey">Search</Link>
-          <Link href="/saved">Saved</Link>
-          <Link href="/about">About</Link>
+          <Link href="/search?q=Turkey" className={pathname === '/search' ? 'active' : ''}>Search</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
         </div>
       </nav>
 

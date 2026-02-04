@@ -1,13 +1,19 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function AboutPage() {
+  const pathname = usePathname();
+
   return (
     <div className="min-h-screen">
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/saved">Saved</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
+          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
         </div>
       </nav>
 

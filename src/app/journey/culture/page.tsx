@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useWikiSummaries } from '../../hooks/useWikiData';
 
 const CULTURE_TOPICS = [
@@ -17,6 +18,7 @@ const CULTURE_TOPICS = [
 
 export default function CultureJourney() {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const pathname = usePathname();
   const { data: wikiData } = useWikiSummaries(CULTURE_TOPICS);
 
   if (selectedTopic) {
@@ -25,9 +27,9 @@ export default function CultureJourney() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/journey/culture">Culture</Link>
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/journey/culture" className={pathname === '/journey/culture' ? 'active' : ''}>Culture</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
 
@@ -245,9 +247,9 @@ export default function CultureJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/search?q=Turkish culture">Search</Link>
-          <Link href="/saved">Saved</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/search?q=Turkish culture" className={pathname === '/search' ? 'active' : ''}>Search</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>
 

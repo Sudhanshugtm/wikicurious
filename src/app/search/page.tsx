@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 interface WikiSummary {
@@ -22,6 +22,7 @@ interface WikiArticle {
 
 function SearchContent() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const query = searchParams.get('q') || '';
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState<WikiSummary[]>([]);
@@ -104,8 +105,8 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
         <div className="wiki-loading">
@@ -121,8 +122,8 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
         <div className="content-wrapper">
@@ -142,8 +143,8 @@ function SearchContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/">Journey</Link>
-            <Link href="/saved">Saved</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+            <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
           </div>
         </nav>
         <div className="content-wrapper">
@@ -164,8 +165,8 @@ function SearchContent() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/saved">Saved</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>
 

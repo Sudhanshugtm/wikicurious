@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useWikiSummaries, type WikiSummary } from '../../hooks/useWikiData';
 
 interface WikiArticle {
@@ -27,6 +28,7 @@ const EXPLORE_TOPICS = [
 export default function IstanbulJourney() {
   const [article, setArticle] = useState<WikiArticle | null>(null);
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
   const { data: exploreData } = useWikiSummaries(EXPLORE_TOPICS);
 
   useEffect(() => {
@@ -59,9 +61,9 @@ export default function IstanbulJourney() {
       <nav className="journey-nav">
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
-          <Link href="/">Journey</Link>
-          <Link href="/search?q=Istanbul">Search</Link>
-          <Link href="/saved">Saved</Link>
+          <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
+          <Link href="/search?q=Istanbul" className={pathname === '/search' ? 'active' : ''}>Search</Link>
+          <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
         </div>
       </nav>
 
