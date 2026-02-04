@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import NavInfoJournal from '@/app/components/NavInfoJournal';
 
 interface WikiArticle {
   title: string;
@@ -14,7 +15,6 @@ interface WikiArticle {
 
 function ArticleContent() {
   const params = useParams();
-  const pathname = usePathname();
   const title = decodeURIComponent(params.title as string);
   const [article, setArticle] = useState<WikiArticle | null>(null);
   const [loading, setLoading] = useState(true);
@@ -111,9 +111,7 @@ function ArticleContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-              <div className="nav-info-icon">ℹ</div>
-            </Link>
+            <NavInfoJournal />
           </div>
         </nav>
         <div className="wiki-loading">
@@ -129,9 +127,7 @@ function ArticleContent() {
         <nav className="journey-nav">
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-              <div className="nav-info-icon">ℹ</div>
-            </Link>
+            <NavInfoJournal />
           </div>
         </nav>
         <main className="wiki-content" style={{ padding: '40px 20px' }}>
@@ -181,9 +177,7 @@ function ArticleContent() {
             >
               {saved ? '★ Saved' : '☆ Save'}
             </button>
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-              <div className="nav-info-icon">ℹ</div>
-            </Link>
+            <NavInfoJournal />
           </div>
         </nav>
 

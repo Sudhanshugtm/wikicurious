@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import NavInfoJournal from '@/app/components/NavInfoJournal';
 import { useWikiSummaries } from './hooks/useWikiData';
 
 const CARD_TOPICS = [
@@ -26,9 +27,7 @@ export default function Home() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-              <div className="nav-info-icon">ℹ</div>
-            </Link>
+            <NavInfoJournal />
           </div>
         </nav>
 
@@ -49,9 +48,7 @@ export default function Home() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-            <div className="nav-info-icon">ℹ</div>
-          </Link>
+          <NavInfoJournal />
         </div>
       </nav>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import NavInfoJournal from '@/app/components/NavInfoJournal';
 import { usePathname } from 'next/navigation';
 import { useWikiSummaries, type WikiSummary } from '../../hooks/useWikiData';
 
@@ -62,9 +63,7 @@ export default function IstanbulJourney() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/saved" className={pathname === '/saved' ? 'active' : ''}>Saved</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-            <div className="nav-info-icon">ℹ</div>
-          </Link>
+          <NavInfoJournal />
         </div>
       </nav>
 

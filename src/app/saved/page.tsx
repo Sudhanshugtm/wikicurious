@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import NavInfoJournal from '@/app/components/NavInfoJournal';
 import { usePathname } from 'next/navigation';
 
 interface WikiSummary {
@@ -63,9 +64,7 @@ export default function SavedPage() {
           <Link href="/" className="journey-nav-brand">WikiCurious</Link>
           <div className="journey-nav-links">
             <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-            <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-              <div className="nav-info-icon">ℹ</div>
-            </Link>
+            <NavInfoJournal />
           </div>
         </nav>
         <div className="wiki-loading">
@@ -81,9 +80,7 @@ export default function SavedPage() {
         <Link href="/" className="journey-nav-brand">WikiCurious</Link>
         <div className="journey-nav-links">
           <Link href="/" className={pathname === '/' ? 'active' : ''}>Journey</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>
-            <div className="nav-info-icon">ℹ</div>
-          </Link>
+          <NavInfoJournal />
         </div>
       </nav>
 
